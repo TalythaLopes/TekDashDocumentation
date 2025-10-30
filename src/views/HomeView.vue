@@ -1,10 +1,6 @@
 <template>
-    <section class="top-bar">
-        <NavBar />
-    </section>
-    <section class="tekDash-bar">
-        <NavBarTekDash />
-    </section>
+    <NavBar />
+    <NavBarTekDash />
     <div>
         <h1>Home View</h1>
     </div>
