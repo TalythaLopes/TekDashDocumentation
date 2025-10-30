@@ -2,6 +2,9 @@
     <section class="top-bar">
         <NavBar />
     </section>
+    <section class="tekDash-bar">
+        <NavBarTekDash />
+    </section>
     <div>
         <h1>Home View</h1>
     </div>
@@ -9,6 +12,7 @@
 
 <script lang="ts" setup>
 import NavBar from '../components/NavBar.vue'
+import NavBarTekDash from '@/components/NavBarTekDash.vue';
 </script>
 
 <style scoped>

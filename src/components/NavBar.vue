@@ -13,7 +13,6 @@
     </nav>
 </template>
 
-
 <script lang="ts" setup>
 import { ref } from 'vue'
 import Logo from './Logo.vue';
@@ -33,9 +32,11 @@ function toggleMenu() {
     justify-content: center;
     align-items: center;
     width: 100%;
+    z-index: 1000;
     height: 62px;
     padding: 5px;
     position: relative;
+    background-color: var(--color-background-site);
 }
 
 .navbar-toggle {
@@ -50,7 +51,7 @@ function toggleMenu() {
     align-items: center;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1100px) {
     .navbar-content {
         display: flex;
         flex-direction: column;
@@ -60,7 +61,6 @@ function toggleMenu() {
         width: 100%;
         justify-content: space-between;
         padding: 5px 20px;
-        /*padding: 10px 0;*/
         
         opacity: 0;
         transform: translateY(-20px);
@@ -83,6 +83,7 @@ function toggleMenu() {
     .navbar-toggle {
         display: block;
         margin-left: auto;
+        margin-right: 14px;
     }
 }
 </style>
