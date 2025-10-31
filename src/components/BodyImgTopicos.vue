@@ -72,7 +72,7 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .gestao-section {
-    background-color: #fff;
+    background-color: var(--color-background);
     padding: 80px 0;
     text-align: center;
 }
@@ -80,7 +80,7 @@ onBeforeUnmount(() => {
 .section-title {
     font-size: 2rem;
     font-weight: 700;
-    color: #000;
+    color: var(--vt-c-gray);
     margin-bottom: 40px;
 }
 
@@ -130,7 +130,7 @@ onBeforeUnmount(() => {
     bottom: 24px;
     left: 24px;
     right: 24px;
-    color: #fff;
+    color: var(--color-background);
     text-align: left;
     /*background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent 60%);*/
     background-color: rgba(0, 0, 0, 0.5);

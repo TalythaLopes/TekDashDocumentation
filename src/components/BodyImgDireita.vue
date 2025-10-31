@@ -1,20 +1,18 @@
-/*  VIBE CODING, REFAZ ESSE TREM */
+/* VIBE CODING, REFAZ ESSE TREM */
 
 <template>
   <section class="hero">
     <div class="hero-container">
       <!-- Coluna de texto -->
       <div class="hero-text">
-        <h2>Conta Nu Empresas</h2>
+        <h2>Dashboard Empresarial</h2>
         <h1>
-          Uma conta PJ prática e confiável para você focar no que realmente importa:
-          <strong>seu negócio.</strong>
+          Acompanhe as vendas, o financeiro, o estoque e o transporte da sua empresa de forma fácil e eficiente.
+          <strong>Tenha o controle de tudo em um só lugar, em tempo real.</strong>
         </h1>
 
         <div class="hero-form">
-          <p>Abra sua conta PJ em minutos</p>
-          <input type="text" placeholder="Digite seu CNPJ" />
-          <button>Continuar</button>
+          <button>Fazer login no TekDash</button>
         </div>
       </div>
 
@@ -28,7 +26,7 @@
 
 <style scoped>
 .hero {
-  background-color: #fff;
+  background-color: var(--color-background);
   width: 100%;
   display: flex;
   justify-content: center;
@@ -45,20 +43,20 @@
 }
 
 .hero-text h2 {
-  color: #8a05be;
+  color: var(--vt-c-red);
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
 }
 
 .hero-text h1 {
   font-size: 2rem;
-  color: #242424;
+  color: var(--vt-c-gray);
   font-weight: 600;
   line-height: 1.3;
 }
 
 .hero-text strong {
-  color: #8a05be;
+  color: var(--vt-c-red);
 }
 
 .hero-form {
@@ -70,21 +68,9 @@
   max-width: 350px;
 }
 
-.hero-form p {
-  font-weight: 500;
-  color: #555;
-}
-
-.hero-form input {
-  padding: 12px 16px;
-  border-radius: 20px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-}
-
 .hero-form button {
-  background-color: #8a05be;
-  color: #fff;
+  background-color: var(--vt-c-red);
+  color: var(--color-background);
   font-weight: 600;
   border: none;
   border-radius: 20px;
@@ -94,7 +80,7 @@
 }
 
 .hero-form button:hover {
-  background-color: #6b0494;
+  background-color: var(--vt-c-red);
 }
 
 .hero-image img {

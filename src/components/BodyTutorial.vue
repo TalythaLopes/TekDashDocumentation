@@ -1,28 +1,20 @@
-/*  VIBE CODING, REFAZ ESSE TREM */
+/* VIBE CODING, REFAZ ESSE TREM */
 
 <template>
   <section class="tutorial-section">
     <!-- título -->
     <h2 class="tutorial-title">
-      Como abrir uma conta <br />
-      <span>Nu Empresas</span> se você já tem conta no Nubank?
+      Como adquirir o <span>TekDashboard</span><br />se você já usa o ERP Tek-System?
     </h2>
 
     <!-- card principal -->
     <div ref="cardRef" class="tutorial-card">
       <div class="progress-bar">
-        <div
-          class="progress-fill"
-          :style="{ height: progress + '%' }"
-        ></div>
+        <div class="progress-fill" :style="{ height: progress + '%' }"></div>
       </div>
 
       <div class="tutorial-steps">
-        <div
-          v-for="(step, index) in steps"
-          :key="index"
-          class="step"
-        >
+        <div v-for="(step, index) in steps" :key="index" class="step">
           <h3>{{ step.title }}</h3>
           <p>{{ step.text }}</p>
         </div>
@@ -41,16 +33,24 @@ interface Step {
 
 const steps: Step[] = [
   {
-    title: '1. Acesse o aplicativo do Nubank',
-    text: 'Entre na sua conta pessoal do Nubank e vá até o menu “Perfil”.'
+    title: '1. Contato com a equipe comercial',
+    text: 'Entre em contato com a equipe comercial da Tek-System para solicitar um orçamento e realizar uma análise de aderência, garantindo que o TekDash atenda às necessidades da sua empresa.'
   },
   {
-    title: '2. Escolha “Conta PJ”',
-    text: 'No menu, selecione a opção “Conta PJ” e siga as instruções exibidas na tela.'
+    title: '2. Treinamento e orientação',
+    text: 'Receba suporte da equipe Tek-System com treinamentos e orientações para aproveitar o máximo do TekDash desde o primeiro acesso.'
   },
   {
-    title: '3. Preencha os dados da empresa',
-    text: 'Informe as informações do seu negócio e conclua a abertura da conta pelo app.'
+    title: '3. Upload de dados',
+    text: 'Com o auxílio técnico da Tek-System, faça o upload dos dados do seu ERP para o TekDash e comece a visualizar as informações em tempo real.'
+  },
+  {
+    title: '4. Definição de usuários e acessos',
+    text: 'Configure os usuários, permissões e níveis de acesso conforme as funções e responsabilidades de cada equipe.'
+  },
+  {
+    title: '5. Personalização e uso estratégico',
+    text: 'Personalize o dashboard para que cada usuário visualize os dados da forma mais eficiente e possa utilizá-los para discutir e definir melhores estratégias de negócio.'
   }
 ]
 
@@ -92,7 +92,7 @@ onBeforeUnmount(() => {
 <style scoped>
 /* ===== Estrutura geral ===== */
 .tutorial-section {
-  background-color: #efefef;
+  background-color: var(--color-background-site);
   padding: 120px 200px;
   display: flex;
   flex-direction: column;
@@ -105,20 +105,19 @@ onBeforeUnmount(() => {
   font-size: 2.3rem;
   font-weight: 700;
   line-height: 1.3;
-  color: #111;
+  color: var(--vt-c-gray);
   margin-bottom: 60px;
 }
 
 .tutorial-title span {
-  color: #8a05be; /* roxo Nubank */
+  color: var(--vt-c-red)
 }
 
-/* ===== Card principal ===== */
 .tutorial-card {
   position: relative;
   width: 100%;
   max-width: 850px;
-  background-color: #f9f9f9;
+  background-color: var(--color-background);
   border-radius: 20px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
   padding: 60px 80px;
@@ -130,7 +129,7 @@ onBeforeUnmount(() => {
 /* barra lateral interna */
 .progress-bar {
   width: 3px;
-  background-color: #e2e2e2;
+  background-color: var(--color-background);
   border-radius: 3px;
   flex-shrink: 0;
   position: relative;
@@ -139,11 +138,12 @@ onBeforeUnmount(() => {
 
 .progress-fill {
   position: absolute;
-  top: 0; /* muda de bottom:0 para top:0 */
+  top: 0;
+  /* muda de bottom:0 para top:0 */
   left: 0;
   width: 100%;
   height: 0%;
-  background-color: #8a05be;
+  background-color: var(--vt-c-red);
   border-radius: 3px;
   transition: height 0.25s ease;
 }
@@ -158,13 +158,13 @@ onBeforeUnmount(() => {
 .step h3 {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #111;
+  color: var(--vt-c-gray);
   margin-bottom: 8px;
 }
 
 .step p {
   font-size: 1rem;
-  color: #444;
+  color: var(--vt-c-gray);
   line-height: 1.6;
   max-width: 600px;
 }

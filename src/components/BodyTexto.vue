@@ -2,7 +2,7 @@
 
 <template>
   <section class="vantagens-section">
-    <h2 class="title">Vantagens da conta Nu Empresas</h2>
+    <h2 class="title">Vantagens do TekDash</h2>
 
     <div class="vantagens-container">
       <div
@@ -10,7 +10,7 @@
         :key="index"
         class="vantagem-card"
       >
-        <img :src="item.icon" :alt="item.title" class="icon" />
+        <v-icon size="50">{{ item.icon }}</v-icon>
         <h3>{{ item.title }}</h3>
         <p>{{ item.description }}</p>
       </div>
@@ -27,29 +27,29 @@ interface Vantagem {
 
 const vantagens: Vantagem[] = [
   {
-    icon: '/icons/phone.svg',
-    title: 'Praticidade e facilidade',
+    icon: 'mdi-relation-one-or-many-to-one-or-many',
+    title: 'Integração total com o ERP',
     description:
-      'Crie a sua conta PJ em poucos minutos e sem precisar daquela papelada toda.'
+      'Todos os dados da sua empresa moveleira em um só sistema, sem necessidade de lançamentos manuais.'
   },
   {
-    icon: '/icons/money.svg',
-    title: 'Zero taxas de manutenção',
+    icon: 'mdi-arrow-decision',
+    title: 'Decisões mais inteligentes',
     description:
-      'Você não paga nada para manter nem movimentar o próprio dinheiro.'
+      'Transforme informações em insights e tome decisões estratégicas com base em indicadores confiáveis.'
   },
   {
-    icon: '/icons/pix.svg',
-    title: 'Pix gratuito e ilimitado',
+    icon: 'mdi-finance',
+    title: 'Crescimento sustentável',
     description:
-      'Você não paga nada nem para receber nem para fazer pagamentos e transferências.'
+      'Identifique oportunidades, reduza custos e aumente a eficiência em todos os setores da operação.'
   }
 ]
 </script>
 
 <style scoped>
 .vantagens-section {
-  background-color: #f2f2f2; /* cinza claro do fundo */
+  background-color: var(--color-background-site);
   padding: 80px 180px;
   width: 100%;
   display: flex;
@@ -60,7 +60,7 @@ const vantagens: Vantagem[] = [
 .title {
   font-size: 2rem;
   font-weight: 700;
-  color: #000;
+  color: var(--vt-c-gray);
   text-align: center;
   margin-bottom: 50px;
 }
@@ -75,7 +75,7 @@ const vantagens: Vantagem[] = [
 }
 
 .vantagem-card {
-  background-color: #fff;
+  background-color: var(--color-background);
   border-radius: 24px;
   padding: 40px 30px;
   flex: 1 1 300px;
@@ -92,21 +92,16 @@ const vantagens: Vantagem[] = [
   transform: translateY(-4px);
 }
 
-.icon {
-  width: 36px;
-  height: 36px;
-}
-
 .vantagem-card h3 {
   font-size: 1.3rem;
   font-weight: 700;
-  color: #000;
+  color: var(--vt-c-gray);
   margin: 0;
 }
 
 .vantagem-card p {
   font-size: 1rem;
-  color: #333;
+  color: var(--vt-c-gray);
   line-height: 1.4;
 }
 
