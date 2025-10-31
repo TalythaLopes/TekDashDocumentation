@@ -4,8 +4,8 @@
             <Logo />
             <h1>Documentation</h1>
         </v-app-bar>
-        <v-navigation-drawer app permanent>
-            <v-list nav>
+        <v-navigation-drawer app permanent width="300">
+            <v-list nav class="items-start">
                 <v-list-item v-for="(item, index) in contents" :key="item.title" link @click="activeIndex = index"
                     :class="{ 'active-item': activeIndex === index }">
                     <v-list-item-icon>
@@ -19,7 +19,7 @@
         </v-navigation-drawer>
 
         <v-main :style="{ width: '100vw' }">
-            <v-container>
+            <v-container class="texto-item">
                 <component :is="activeComponent" />
             </v-container>
         </v-main>
@@ -35,6 +35,7 @@ import Logo from '@/components/Logo.vue'
 import VamosComecar from '../components/DocVamosComecar.vue'
 import Configuracoes from '../components/DocConfiguracoes.vue'
 import Temas from '../components/DocTemas.vue'
+import PoliticaPrivacidade from '../components/DocPoliticaPrivacidade.vue'
 const contents: {
     icon: string;
     title: string;
@@ -56,79 +57,9 @@ const contents: {
             component: Temas
         },
         {
-            icon: 'mdi-arrow-right-circle-outline',
-            title: 'Vamos Começar?',
-            component: VamosComecar
-        },
-        {
-            icon: 'mdi-cog-outline',
-            title: 'Configurações',
-            component: Configuracoes
-        },
-        {
-            icon: 'mdi-file-document-multiple-outline',
-            title: 'Temas Disponíveis',
-            component: Temas
-        },
-        {
-            icon: 'mdi-arrow-right-circle-outline',
-            title: 'Vamos Começar?',
-            component: VamosComecar
-        },
-        {
-            icon: 'mdi-cog-outline',
-            title: 'Configurações',
-            component: Configuracoes
-        },
-        {
-            icon: 'mdi-file-document-multiple-outline',
-            title: 'Temas Disponíveis',
-            component: Temas
-        },
-        {
-            icon: 'mdi-arrow-right-circle-outline',
-            title: 'Vamos Começar?',
-            component: VamosComecar
-        },
-        {
-            icon: 'mdi-cog-outline',
-            title: 'Configurações',
-            component: Configuracoes
-        },
-        {
-            icon: 'mdi-file-document-multiple-outline',
-            title: 'Temas Disponíveis',
-            component: Temas
-        },
-        {
-            icon: 'mdi-arrow-right-circle-outline',
-            title: 'Vamos Começar?',
-            component: VamosComecar
-        },
-        {
-            icon: 'mdi-cog-outline',
-            title: 'Configurações',
-            component: Configuracoes
-        },
-        {
-            icon: 'mdi-file-document-multiple-outline',
-            title: 'Temas Disponíveis',
-            component: Temas
-        },
-        {
-            icon: 'mdi-arrow-right-circle-outline',
-            title: 'Vamos Começar?',
-            component: VamosComecar
-        },
-        {
-            icon: 'mdi-cog-outline',
-            title: 'Configurações',
-            component: Configuracoes
-        },
-        {
-            icon: 'mdi-file-document-multiple-outline',
-            title: 'Temas Disponíveis',
-            component: Temas
+            icon: 'mdi-lock-outline',
+            title: 'Política de Privacidade',
+            component: PoliticaPrivacidade
         }
     ]
 
@@ -137,8 +68,15 @@ const activeComponent = computed(() => contents[activeIndex.value]!.component)
 </script>
 
 <style scoped>
+.items-start {
+    align-items: flex-start;
+    padding-top: 20px;
+    flex-direction: row;
+    font-size: 16px;
+}
+
 .active-item {
-    background-color: #fff;
+    color: var(--vt-c-red);
     border-radius: 4px;
 }
 
@@ -151,5 +89,10 @@ const activeComponent = computed(() => contents[activeIndex.value]!.component)
     display: flex;
     align-items: center;
     flex-direction: row;
+}
+
+.v-container.texto-item {
+    max-width: 1200px;
+    padding: 20px;
 }
 </style>

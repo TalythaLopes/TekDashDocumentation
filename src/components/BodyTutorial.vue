@@ -4,7 +4,7 @@
   <section class="tutorial-section">
     <!-- título -->
     <h2 class="tutorial-title">
-      Como adquirir o <span>TekDashboard</span><br />se você já usa o ERP Tek-System?
+      Como adquirir o <strong>TekDashboard</strong> se você já <br />usa o ERP Tek-System?
     </h2>
 
     <!-- card principal -->
@@ -15,8 +15,11 @@
 
       <div class="tutorial-steps">
         <div v-for="(step, index) in steps" :key="index" class="step">
-          <h3>{{ step.title }}</h3>
-          <p>{{ step.text }}</p>
+          <p :style="{ fontSize: '40px' }">0{{ index + 1 }}</p>
+          <div class="step-text">
+            <h3>{{ step.title }}</h3>
+            <p>{{ step.text }}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -33,23 +36,23 @@ interface Step {
 
 const steps: Step[] = [
   {
-    title: '1. Contato com a equipe comercial',
+    title: 'Contato com a equipe comercial',
     text: 'Entre em contato com a equipe comercial da Tek-System para solicitar um orçamento e realizar uma análise de aderência, garantindo que o TekDash atenda às necessidades da sua empresa.'
   },
   {
-    title: '2. Treinamento e orientação',
+    title: 'Treinamento e orientação',
     text: 'Receba suporte da equipe Tek-System com treinamentos e orientações para aproveitar o máximo do TekDash desde o primeiro acesso.'
   },
   {
-    title: '3. Upload de dados',
+    title: 'Upload de dados',
     text: 'Com o auxílio técnico da Tek-System, faça o upload dos dados do seu ERP para o TekDash e comece a visualizar as informações em tempo real.'
   },
   {
-    title: '4. Definição de usuários e acessos',
+    title: 'Definição de usuários e acessos',
     text: 'Configure os usuários, permissões e níveis de acesso conforme as funções e responsabilidades de cada equipe.'
   },
   {
-    title: '5. Personalização e uso estratégico',
+    title: 'Personalização e uso estratégico',
     text: 'Personalize o dashboard para que cada usuário visualize os dados da forma mais eficiente e possa utilizá-los para discutir e definir melhores estratégias de negócio.'
   }
 ]
@@ -93,7 +96,7 @@ onBeforeUnmount(() => {
 /* ===== Estrutura geral ===== */
 .tutorial-section {
   background-color: var(--color-background-site);
-  padding: 120px 200px;
+  padding: 80px 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -102,34 +105,35 @@ onBeforeUnmount(() => {
 
 .tutorial-title {
   text-align: center;
-  font-size: 2.3rem;
+  font-size: 48px;
   font-weight: 700;
-  line-height: 1.3;
+  max-width: 1000px;
+  line-height: 1.2;
   color: var(--vt-c-gray);
   margin-bottom: 60px;
 }
 
-.tutorial-title span {
+.tutorial-title strong {
   color: var(--vt-c-red)
 }
 
 .tutorial-card {
   position: relative;
   width: 100%;
-  max-width: 850px;
+  max-width: 1050px;
   background-color: var(--color-background);
-  border-radius: 20px;
+  border-radius: 50px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
-  padding: 60px 80px;
+  padding: 60px 60px;
   display: flex;
-  gap: 40px;
+  gap: 30px;
   overflow: hidden;
 }
 
 /* barra lateral interna */
 .progress-bar {
   width: 3px;
-  background-color: var(--color-background);
+  background-color: var(--color-background-site);
   border-radius: 3px;
   flex-shrink: 0;
   position: relative;
@@ -152,21 +156,34 @@ onBeforeUnmount(() => {
 .tutorial-steps {
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  gap: 40px;
+}
+
+.step {
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+}
+
+.step-number p {
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--vt-c-red);
+  flex-shrink: 0;
 }
 
 .step h3 {
-  font-size: 1.25rem;
+  font-size: 22px;
   font-weight: 700;
   color: var(--vt-c-gray);
   margin-bottom: 8px;
 }
 
 .step p {
-  font-size: 1rem;
+  font-size: 18px;
   color: var(--vt-c-gray);
-  line-height: 1.6;
-  max-width: 600px;
+  line-height: 1.2;
+  max-width: 1000px;
 }
 
 /* ===== Responsivo ===== */

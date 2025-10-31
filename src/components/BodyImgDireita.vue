@@ -5,20 +5,22 @@
     <div class="hero-container">
       <!-- Coluna de texto -->
       <div class="hero-text">
-        <h2>Dashboard Empresarial</h2>
+        <h2>ERP Tek-System na palma da mão</h2>
         <h1>
-          Acompanhe as vendas, o financeiro, o estoque e o transporte da sua empresa de forma fácil e eficiente.
-          <strong>Tenha o controle de tudo em um só lugar, em tempo real.</strong>
+          <!-- Com o TekDashboard, o seu ERP Tek-System vai com você.-->
+          Visualize indicadores, acompanhe resultados e mantenha o 
+          <strong>controle total do seu negócio em qualquer lugar.</strong>
         </h1>
 
         <div class="hero-form">
-          <button>Fazer login no TekDash</button>
+          <router-link to="/documentacao" class="btn-doc">Mais informações sobre o TekDashboard</router-link>
+          <a href="https://tekdashboard.teksystem.com.br/" target="_blank" class="btn-login">Fazer login no TekDashboard</a>
         </div>
       </div>
 
       <!-- Coluna de imagem -->
       <div class="hero-image">
-        <img src="/img/BrasilComS_00029.jpg" alt="Pessoas trabalhando" />
+        <img src="/img/TelaTekDash.png" alt="Mulher loira de costas olhando o TekDashboard no celular e no notebook" />
       </div>
     </div>
   </section>
@@ -35,24 +37,30 @@
 
 .hero-container {
   width: 90%;
-  max-width: 1200px;
+  max-width: 1400px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: auto 1fr;
   gap: 40px;
   align-items: center;
 }
 
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+}
+
 .hero-text h2 {
   color: var(--vt-c-red);
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
+  font-size: 28px;
+  font-weight: 500;
 }
 
 .hero-text h1 {
-  font-size: 2rem;
+  font-size: 38px;
   color: var(--vt-c-gray);
   font-weight: 600;
-  line-height: 1.3;
+  line-height: 1.1;
 }
 
 .hero-text strong {
@@ -68,25 +76,41 @@
   max-width: 350px;
 }
 
-.hero-form button {
-  background-color: var(--vt-c-red);
-  color: var(--color-background);
-  font-weight: 600;
-  border: none;
-  border-radius: 20px;
+.hero-form .btn-doc,
+.hero-form .btn-login {
+  text-decoration: none;
   padding: 12px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  transition: 0.3s ease;
+  text-align: center;
   cursor: pointer;
-  transition: 0.3s;
+  font-size: 15px;
 }
 
-.hero-form button:hover {
+.hero-form .btn-doc {
+  background-color: var(--color-background);
+  color: var(--vt-c-red);
+  border: var(--vt-c-red) 1.5px solid;
+}
+
+.hero-form .btn-login {
   background-color: var(--vt-c-red);
+  color: var(--color-background);
+  border: none;
+}
+
+.hero-form .btn-doc:hover,
+.hero-form .btn-login:hover,
+.hero-image img:hover {
+  transform: scale(1.10);
 }
 
 .hero-image img {
   width: 100%;
   height: auto;
   border-radius: 10px;
+  transition: transform 0.3s ease;
 }
 
 /* Responsividade */

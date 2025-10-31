@@ -33,7 +33,7 @@ const items: CarouselItem[] = [
     {
         image: '/img/vendas.jpg',
         title: 'Vendas',
-        description: 'Analise seu alcance de vendas forma rápida e dinâmica.'
+        description: 'Analise a movimentação das vendas de forma rápida e dinâmica.'
     },
     {
         image: '/img/financeiro.jpeg',
@@ -46,9 +46,9 @@ const items: CarouselItem[] = [
         description: 'Tenha atualização sobre seu estoque há qualquer momento.'
     },
     {
-        image: '/img/transporte.jpeg',
-        title: 'Transporte',
-        description: 'Acompanhe a logística da sua empresa de onde estiver.'
+        image: '/img/producao.jpg',
+        title: 'Produção',
+        description: 'Painéis sobre a produção da sua empresa sempre atualizados.'
     }
 ]
 
@@ -62,7 +62,7 @@ function setActive(index: number) {
 onMounted(() => {
     interval = window.setInterval(() => {
         activeIndex.value = (activeIndex.value + 1) % items.length
-    }, 5000)
+    }, 8000)
 })
 
 onBeforeUnmount(() => {
@@ -75,10 +75,11 @@ onBeforeUnmount(() => {
     background-color: var(--color-background);
     padding: 80px 0;
     text-align: center;
+    max-width: 1400px;
 }
 
 .section-title {
-    font-size: 2rem;
+    font-size: 48px;
     font-weight: 700;
     color: var(--vt-c-gray);
     margin-bottom: 40px;
@@ -89,10 +90,10 @@ onBeforeUnmount(() => {
     display: flex;
     justify-content: center;
     align-items: stretch;
-    gap: 16px;
+    gap: 20px;
     overflow: hidden;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
 }
 
@@ -118,10 +119,12 @@ onBeforeUnmount(() => {
     height: 100%;
     object-fit: cover;
     transition: transform 0.4s ease;
+    filter: brightness(0.5);
 }
 
 .carousel-item.active .carousel-image {
     transform: scale(1.05);
+    filter: brightness(1);
 }
 
 /* texto */
@@ -153,7 +156,7 @@ onBeforeUnmount(() => {
 
 .fade-enter-active,
 .fade-leave-active {
-    transition: opacity 0.3s;
+    transition: opacity 0.4s;
 }
 
 .fade-enter-from,
