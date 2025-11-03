@@ -28,10 +28,4 @@ const links = [
 .navbar-links li {
     margin: 0 15px;
 }
-
-.navbar-links a {
-    text-decoration: none;
-    font-weight: 500;
-    text-transform: uppercase;
-}
 </style>

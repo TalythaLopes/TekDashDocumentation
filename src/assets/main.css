@@ -1,19 +1,24 @@
 @import './base.css';
 
-a.fundo {
-  text-decoration: none;
-  color: hsla(358, 73%, 33%, 1);
-  transition: 0.4s;
-  padding: 3px;
-}
-
 a {
   text-decoration: none;
+  display: inline-block;
+}
+
+a.fundo {
+  color: hsla(358, 73%, 33%, 1);
+  font-size: 15px;
+  transition: 0.4s;
+  font-weight: bold;
+}
+
+a.zoom {
   color: hsla(0, 0%, 14%, 1);
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
   transition: color 0.4s, transform 0.4s;
   padding: 13px 14px;
-  display: inline-block;
-  font-size: 13px;
 }
 
 @media (hover: hover) {

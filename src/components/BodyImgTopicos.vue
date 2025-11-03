@@ -1,18 +1,17 @@
-/* VIBE CODING, REFAZ ESSE TREM */
+/* respondividade titulo carrossel - vibe coded *mudar* */
 
 <template>
-    <section class="gestao-section">
-        <h2 class="section-title">Temas para acompanhar sua empresa</h2>
+    <section>
+        <h1>Temas para acompanhar sua empresa</h1>
 
         <div class="carousel">
             <div v-for="(item, index) in items" :key="index" class="carousel-item"
                 :class="{ active: index === activeIndex }" @click="setActive(index)">
                 <img :src="item.image" :alt="item.title" class="carousel-image" />
-
                 <transition name="fade">
                     <div v-if="index === activeIndex" class="carousel-text">
-                        <h3>{{ item.title }}</h3>
-                        <p>{{ item.description }}</p>
+                        <h4>{{ item.title }}</h4>
+                        <p class="pb-0">{{ item.description }}</p>
                     </div>
                 </transition>
             </div>
@@ -71,21 +70,10 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
-.gestao-section {
-    background-color: var(--color-background);
-    padding: 80px 0;
-    text-align: center;
-    max-width: 1400px;
+h1 {
+  color: var(--color-text);
 }
 
-.section-title {
-    font-size: 48px;
-    font-weight: 700;
-    color: var(--vt-c-gray);
-    margin-bottom: 40px;
-}
-
-/* container principal */
 .carousel {
     display: flex;
     justify-content: center;
@@ -97,7 +85,6 @@ onBeforeUnmount(() => {
     margin: 0 auto;
 }
 
-/* cada card */
 .carousel-item {
     position: relative;
     width: 200px;
@@ -113,7 +100,6 @@ onBeforeUnmount(() => {
     width: 410px;
 }
 
-/* imagem */
 .carousel-image {
     width: 100%;
     height: 100%;
@@ -127,7 +113,6 @@ onBeforeUnmount(() => {
     filter: brightness(1);
 }
 
-/* texto */
 .carousel-text {
     position: absolute;
     bottom: 24px;
@@ -140,18 +125,14 @@ onBeforeUnmount(() => {
     /*backdrop-filter: blur(4px); /* opcional, dá um efeito de vidro */
     padding: 20px;
     border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
-.carousel-text h3 {
-    font-size: 1.25rem;
+.carousel-text h4 {
+    font-size: 26px;
     font-weight: 700;
-    margin-bottom: 8px;
-}
-
-.carousel-text p {
-    font-size: 1rem;
-    line-height: 1.4;
-    margin: 0;
 }
 
 .fade-enter-active,
@@ -165,16 +146,19 @@ onBeforeUnmount(() => {
 }
 
 /* Responsivo */
-@media (max-width: 900px) {
+@media (max-width: 1110px) {
     .carousel {
         flex-direction: column;
         align-items: center;
     }
 
-    .carousel-item,
+    .carousel-item {
+        width: 90%;
+        height: 200px;
+    }
     .carousel-item.active {
         width: 90%;
-        height: 400px;
+        height: 300px;
     }
 }
 </style>

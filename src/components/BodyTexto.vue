@@ -1,14 +1,14 @@
-/* VIBE CODING, REFAZ ESSE TREM */
+/* respondividade titulo | card pode ser um componente */
 
 <template>
-  <section class="vantagens-section">
-    <h2 class="title">Vantagens do TekDashboard</h2>
+  <section>
+    <h1>Vantagens do TekDashboard</h1>
 
-    <div class="vantagens-container">
-      <div v-for="(item, index) in vantagens" :key="index" class="vantagem-card">
+    <div class="card-container">
+      <div v-for="(item, index) in vantagens" :key="index" class="card">
         <v-icon size="48">{{ item.icon }}</v-icon>
         <h3>{{ item.title }}</h3>
-        <p>{{ item.description }}</p>
+        <p class="pb-0" :style="{ fontSize: '20px' }">{{ item.description }}</p>
       </div>
     </div>
   </section>
@@ -44,24 +44,15 @@ const vantagens: Vantagem[] = [
 </script>
 
 <style scoped>
-.vantagens-section {
+section {
   background-color: var(--color-background-site);
-  padding: 80px 0px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
-.title {
-  font-size: 48px;
-  font-weight: 700;
-  max-width: 1400px;
-  text-align: center;
-  margin-bottom: 50px;
+h1 {
+  color: var(--color-text);
 }
 
-.vantagens-container {
+.card-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -70,13 +61,13 @@ const vantagens: Vantagem[] = [
   max-width: 1400px;
 }
 
-.vantagem-card {
+.card {
   background-color: var(--color-background);
   border-radius: 35px;
   padding: 40px 40px;
   flex: 1 1 300px;
   max-width: 450px;
-  min-width: 300px;
+  min-width: 250px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
@@ -85,31 +76,25 @@ const vantagens: Vantagem[] = [
   transition: transform 0.2s ease;
 }
 
-.vantagem-card:hover {
+.card:hover {
   transform: scale(1.05);
 }
 
 
-.vantagem-card h3 {
+.card h3 {
   font-size: 36px;
   font-weight: 700;
   margin: 0;
   max-width: 300px;
 }
 
-.vantagem-card p {
-  font-size: 20px;
-  line-height: 1.4;
-}
-
-/* Responsividade */
 @media (max-width: 900px) {
-  .vantagens-container {
+  .card-container {
     flex-direction: column;
     align-items: center;
   }
 
-  .vantagem-card {
+  .card {
     max-width: 90%;
   }
 }

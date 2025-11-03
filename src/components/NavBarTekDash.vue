@@ -1,10 +1,10 @@
 <template>
     <nav class="navbar-container">
         <div class="navbar-content">
-            <p class="navbar-title">TekDashboard</p>
-            <div class="fundo">
-                <a href="https://tekdashboard.teksystem.com.br/" target="_blank">Login</a>
-                <router-link to="/documentacao" :style="{ paddingRight: '0' }">Documentação</router-link>
+            <h4 class="navbar-title">TekDashboard</h4>
+            <div class="nav-links">
+                <a class="fundo" href="https://tekdashboard.teksystem.com.br/" target="_blank">Login</a>
+                <router-link to="/documentacao" class="fundo" :style="{ paddingRight: '0' }">Documentação</router-link>
             </div>
         </div>
     </nav>
@@ -38,24 +38,16 @@
     color: var(--vt-c-red);
 }
 
-.navbar-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin: 0;
-}
-
-a {
-    color: var(--vt-c-red);
-    text-decoration: none;
-    font-size: 15px;
-    padding: 0px 16px;
-    height: 21px;
-    align-items: center;
-    font-weight: bold;
+.nav-links {
+    padding: 0 0 0 16px;
+    gap: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 :global(main),
 :global(.page-content) {
-  padding-top: 45px;
+    padding-top: 45px;
 }
 </style>

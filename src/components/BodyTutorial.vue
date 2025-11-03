@@ -1,13 +1,11 @@
 /* VIBE CODING, REFAZ ESSE TREM */
 
 <template>
-  <section class="tutorial-section">
-    <!-- título -->
-    <h2 class="tutorial-title">
+  <section>
+    <h1>
       Como adquirir o <strong>TekDashboard</strong> se você já <br />usa o ERP Tek-System?
-    </h2>
+    </h1>
 
-    <!-- card principal -->
     <div ref="cardRef" class="tutorial-card">
       <div class="progress-bar">
         <div class="progress-fill" :style="{ height: progress + '%' }"></div>
@@ -17,8 +15,8 @@
         <div v-for="(step, index) in steps" :key="index" class="step">
           <p :style="{ fontSize: '40px' }">0{{ index + 1 }}</p>
           <div class="step-text">
-            <h3>{{ step.title }}</h3>
-            <p>{{ step.text }}</p>
+            <h5>{{ step.title }}</h5>
+            <p class="pb-0">{{ step.text }}</p>
           </div>
         </div>
       </div>
@@ -93,24 +91,12 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
-/* ===== Estrutura geral ===== */
-.tutorial-section {
+section {
   background-color: var(--color-background-site);
-  padding: 80px 0px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
 }
 
-.tutorial-title {
-  text-align: center;
-  font-size: 48px;
-  font-weight: 700;
-  max-width: 1000px;
-  line-height: 1.2;
-  color: var(--vt-c-gray);
-  margin-bottom: 60px;
+h1 {
+  color: var(--color-text);
 }
 
 .tutorial-title strong {
@@ -130,7 +116,6 @@ onBeforeUnmount(() => {
   overflow: hidden;
 }
 
-/* barra lateral interna */
 .progress-bar {
   width: 3px;
   background-color: var(--color-background-site);
@@ -143,7 +128,6 @@ onBeforeUnmount(() => {
 .progress-fill {
   position: absolute;
   top: 0;
-  /* muda de bottom:0 para top:0 */
   left: 0;
   width: 100%;
   height: 0%;
@@ -152,7 +136,6 @@ onBeforeUnmount(() => {
   transition: height 0.25s ease;
 }
 
-/* texto dos passos */
 .tutorial-steps {
   display: flex;
   flex-direction: column;
@@ -165,13 +148,6 @@ onBeforeUnmount(() => {
   gap: 30px;
 }
 
-.step-number p {
-  font-size: 48px;
-  font-weight: 700;
-  color: var(--vt-c-red);
-  flex-shrink: 0;
-}
-
 .step h3 {
   font-size: 22px;
   font-weight: 700;
@@ -179,27 +155,16 @@ onBeforeUnmount(() => {
   margin-bottom: 8px;
 }
 
-.step p {
-  font-size: 18px;
-  color: var(--vt-c-gray);
-  line-height: 1.2;
-  max-width: 1000px;
-}
-
-/* ===== Responsivo ===== */
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
   .tutorial-card {
     flex-direction: row;
-    padding: 40px 24px;
-    gap: 24px;
+    padding: 30px 24px;
+    gap: 20px;
+    width: 80%;
   }
 
   .tutorial-steps {
-    gap: 40px;
-  }
-
-  .tutorial-title {
-    font-size: 1.8rem;
+    gap: 20px;
   }
 }
 </style>

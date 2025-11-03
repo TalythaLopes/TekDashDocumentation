@@ -2,7 +2,7 @@
     <v-app>
         <v-app-bar style="padding-left: 20px;">
             <Logo />
-            <h1>Documentation</h1>
+            <h3 class="section-heading">Documentação</h3>
         </v-app-bar>
         <v-navigation-drawer app permanent width="300">
             <v-list nav class="items-start">
