@@ -19,7 +19,7 @@ import SideBar from "@/components/SideBar.vue";
 
 import VamosComecar from '../components/DocVamosComecar.vue'
 import Configuracoes from '../components/DocConfiguracoes.vue'
-import Temas from '../components/DocTemas.vue'
+import Temas from '../components/DocTema.vue'
 import PoliticaPrivacidade from '../components/DocPoliticaPrivacidade.vue'
 
 const activeComponent = ref<DefineComponent<{}, {}, any>>(VamosComecar);

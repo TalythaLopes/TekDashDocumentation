@@ -34,7 +34,7 @@ import Logo from '@/components/Logo.vue'
 // Lista de componentes
 import VamosComecar from '../components/DocVamosComecar.vue'
 import Configuracoes from '../components/DocConfiguracoes.vue'
-import Temas from '../components/DocTemas.vue'
+import Temas from '../components/DocTema.vue'
 import PoliticaPrivacidade from '../components/DocPoliticaPrivacidade.vue'
 const contents: {
     icon: string;

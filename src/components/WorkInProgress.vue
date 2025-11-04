@@ -15,7 +15,7 @@ interface Props {
 const props = defineProps<Props>()
 const theme = computed(() => props.theme || 'light')
 const iconSrc = computed(() => theme.value === 'dark' ? '/img/wip-dark.png' : '/img/wip-light.png')
-const colortext = computed(() => theme.value === 'dark' ? 'var(--vt-c-gray)' : 'var(--color-background-site)')
+const colortext = computed(() => theme.value === 'dark' ? 'var(--vt-c-red)' : 'var(--color-background-site)')
 </script>
 
 <style scoped>
