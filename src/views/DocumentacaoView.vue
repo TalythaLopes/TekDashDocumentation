@@ -14,10 +14,10 @@
 import { ref } from 'vue';
 import type { DefineComponent } from 'vue';
 
-import HelpCenter from "@/components/NavBars/HelpCenter.vue";
-import SideBar from "@/components/NavBars/SideBar.vue";
+import HelpCenter from "@/components/navBars/HelpCenter.vue";
+import SideBar from "@/components/navBars/SideBar.vue";
 
-import VamosComecar from '../components/Docs/DocVamosComecar.vue'
+import VamosComecar from '@/components/docs/DocVamosComecar.vue'
 
 const activeComponent = ref<DefineComponent<{}, {}, any>>(VamosComecar);
 

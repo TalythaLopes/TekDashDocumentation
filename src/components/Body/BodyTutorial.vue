@@ -1,18 +1,19 @@
 /* VIBE CODING, REFAZ ESSE TREM */
 
 <template>
-  <section>
-    <h1>
+  <section ref="sectionRef">
+    <h1 ref="titleRef" :class="{ 'in-view': inViewTitle }">
       Como adquirir o <strong>TekDashboard</strong> se você já <br />usa o ERP Tek-System?
     </h1>
 
-    <div ref="cardRef" class="tutorial-card">
+    <div ref="cardRef" class="tutorial-card" :class="{ 'in-view': inViewCard }">
       <div class="progress-bar">
         <div class="progress-fill" :style="{ height: progress + '%' }"></div>
       </div>
 
       <div class="tutorial-steps">
-        <div v-for="(step, index) in steps" :key="index" class="step">
+        <div v-for="(step, index) in steps" :key="index" class="step" :class="{ 'in-view': inViewSteps }"
+          :style="{ animationDelay: `${0.2 * index}s` }">
           <p :style="{ fontSize: '40px' }">0{{ index + 1 }}</p>
           <div class="step-text">
             <h5>{{ step.title }}</h5>
@@ -25,12 +26,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount, onUnmounted } from 'vue';
 
 interface Step {
   title: string
   text: string
-}
+};
 
 const steps: Step[] = [
   {
@@ -53,41 +54,77 @@ const steps: Step[] = [
     title: 'Personalização e uso estratégico',
     text: 'Personalize o dashboard para que cada usuário visualize os dados da forma mais eficiente e possa utilizá-los para discutir e definir melhores estratégias de negócio.'
   }
-]
+];
 
-const cardRef = ref<HTMLElement | null>(null)
-const progress = ref(0)
+const sectionRef = ref<HTMLElement | null>(null);
+const titleRef = ref<HTMLElement | null>(null);
+const cardRef = ref<HTMLElement | null>(null);
+
+const inViewTitle = ref(false);
+const inViewCard = ref(false);
+const inViewSteps = ref(false);
+
+const progress = ref(0);
+const activeIndex = ref(0);
+
+let interval: number | undefined;
+let observer: IntersectionObserver | null = null;
+
+function createObserver(refElement: typeof sectionRef, callback: () => void, threshold = 0.2, rootMargin = "0px") {
+  const obs = new IntersectionObserver((entries) => {
+    const entry = entries[0];
+    if (entry?.isIntersecting) {
+      callback();
+      obs.unobserve(entry.target);
+    }
+  }, { threshold, rootMargin });
+
+  if (refElement.value) obs.observe(refElement.value);
+  return obs;
+}
 
 function updateProgress() {
-  const el = cardRef.value
-  if (!el) return
+  const el = cardRef.value;
+  if (!el) return;
 
   const rect = el.getBoundingClientRect()
   const windowHeight = window.innerHeight
   const sectionHeight = rect.height
 
-  // ponto da tela que ativa o preenchimento (metade da viewport)
-  const startPoint = windowHeight / 3
-
-  // quanto da seção passou do ponto de início
-  const distancePassed = sectionHeight - Math.max(rect.bottom - startPoint, 0)
-
-  // converte em porcentagem
+  const startPoint = windowHeight / 4
+  const distancePassed = sectionHeight - Math.max(rect.bottom - (startPoint * 3), 0)
   let progressPercent = (distancePassed / sectionHeight) * 100
-
-  // limita entre 0 e 100
   progress.value = Math.min(Math.max(progressPercent, 0), 100)
 }
 
-
 onMounted(() => {
+  interval = window.setInterval(() => {
+    activeIndex.value = (activeIndex.value + 1) % steps.length
+  }, 8000)
+
   window.addEventListener('scroll', updateProgress, { passive: true })
   updateProgress()
-})
+
+  observer = createObserver(titleRef, () => {
+    inViewTitle.value = true;
+
+    setTimeout(() => {
+      inViewCard.value = true;
+      setTimeout(() => {
+        inViewSteps.value = true;
+      }, 300);
+    }, 200);
+  }, 0.2);
+});
 
 onBeforeUnmount(() => {
   window.removeEventListener('scroll', updateProgress)
+  if (interval) clearInterval(interval)
 })
+
+onUnmounted(() => {
+  if (observer && sectionRef.value) observer.unobserve(sectionRef.value);
+});
 </script>
 
 <style scoped>
@@ -97,6 +134,19 @@ section {
 
 h1 {
   color: var(--color-text);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+h1.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .tutorial-title strong {
@@ -114,6 +164,12 @@ h1 {
   display: flex;
   gap: 30px;
   overflow: hidden;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.tutorial-card.in-view {
+  animation: slideUp 0.8s ease forwards;
 }
 
 .progress-bar {
@@ -146,13 +202,12 @@ h1 {
   display: flex;
   align-items: flex-start;
   gap: 30px;
+  opacity: 0;
+  transform: translateY(30px);
 }
 
-.step h3 {
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--vt-c-gray);
-  margin-bottom: 8px;
+.step.in-view {
+  animation: slideUp 0.8s ease forwards;
 }
 
 @media (max-width: 1100px) {

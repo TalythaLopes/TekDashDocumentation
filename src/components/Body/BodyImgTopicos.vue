@@ -1,12 +1,12 @@
 /* respondividade titulo carrossel - vibe coded *mudar* */
 
 <template>
-  <section>
-    <h1>Temas para acompanhar sua empresa</h1>
+  <section ref="sectionRef">
+    <h1 ref="titleRef" :class="{ 'in-view': inViewTitle }">Temas para acompanhar sua empresa</h1>
 
     <div class="carousel">
-      <div v-for="(item, index) in items" :key="index" class="carousel-item" :class="{ active: index === activeIndex }"
-        @click="setActive(index)">
+      <div v-for="(item, index) in items" :key="index" class="carousel-item" :class="{ active: index === activeIndex, 'in-view': inView }"
+        :style="{ animationDelay: `${0.2 * index}s` }" @click="setActive(index)">
         <img :src="item.image" :alt="item.title" class="carousel-image" />
         <transition name="fade">
           <div v-if="index === activeIndex" class="carousel-text">
@@ -20,13 +20,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount, onUnmounted } from 'vue';
 
 interface CarouselItem {
   image: string
   title: string
   description: string
-}
+};
 
 const items: CarouselItem[] = [
   {
@@ -49,29 +49,82 @@ const items: CarouselItem[] = [
     title: 'Produção',
     description: 'Painéis sobre a produção da sua empresa sempre atualizados.'
   }
-]
+];
 
-const activeIndex = ref(0)
-let interval: number | undefined
+const sectionRef = ref<HTMLElement | null>(null);
+const titleRef = ref<HTMLElement | null>(null);
+const inView = ref(false);
+const inViewTitle = ref(false);
+const activeIndex = ref(0);
+
+let interval: number | undefined;
+let observer: IntersectionObserver | null = null;
 
 function setActive(index: number) {
   activeIndex.value = index
+};
+
+function createObserver(refElement: typeof sectionRef, callback: () => void, threshold = 0.2, rootMargin = "0px") {
+  const obs = new IntersectionObserver((entries) => {
+    const entry = entries[0];
+    if (entry?.isIntersecting) {
+      callback();
+      obs.unobserve(entry.target);
+    }
+  }, { threshold, rootMargin });
+
+  if (refElement.value) obs.observe(refElement.value);
+  return obs;
 }
 
 onMounted(() => {
   interval = window.setInterval(() => {
     activeIndex.value = (activeIndex.value + 1) % items.length
   }, 8000)
-})
+
+  createObserver(titleRef, () => {
+    inViewTitle.value = true;
+
+    const triggerCards = () => {
+      inView.value = true;
+    };
+
+    if (sectionRef.value) {
+      const rect = sectionRef.value.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        setTimeout(triggerCards, 200);
+      } else {
+        observer = createObserver(sectionRef, triggerCards, 0.2, "-100px 0px 0px 0px");
+      }
+    }
+  }, 0.2);
+});
 
 onBeforeUnmount(() => {
   if (interval) clearInterval(interval)
 })
+
+onUnmounted(() => {
+  if (observer && sectionRef.value) observer.unobserve(sectionRef.value);
+});
 </script>
 
 <style scoped>
 h1 {
   color: var(--color-text);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+h1.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .carousel {
@@ -94,10 +147,16 @@ h1 {
   cursor: pointer;
   transition: width 0.6s ease;
   flex-shrink: 0;
+  opacity: 0;
+  transform: translateY(30px);
 }
 
 .carousel-item.active {
   width: 410px;
+}
+
+.carousel-item.in-view {
+  animation: slideUp 0.8s ease forwards;
 }
 
 .carousel-image {
