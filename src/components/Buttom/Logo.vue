@@ -1,7 +1,7 @@
 <template>
-    <a href="https://homepage.teksystem.com.br/" class="logo-link">
-        <img src="/img/logo-completa.png" alt="Tek-System Logo" class="logo-img"/>
-    </a>
+  <a href="https://homepage.teksystem.com.br/" target="_blank" class="logo-link">
+    <img src="/logos/logo-completa.png" alt="Tek-System Logo" class="logo-img" />
+  </a>
 </template>
 
 <script lang="ts" setup>

@@ -36,14 +36,14 @@
 import { ref } from "vue";
 import type { DefineComponent } from "vue";
 
-import VamosComecar from "../components/DocVamosComecar.vue";
-import Configuracoes from "../components/DocConfiguracoes.vue";
-import Temas from "./DocTema.vue";
-import PoliticaPrivacidade from "../components/DocPoliticaPrivacidade.vue";
-import TemaVendas from "../components/DocTemaVendas.vue";
-import TemaFinanceiro from "../components/DocTemaFinanceiro.vue";
-import TemaEstoque from "../components/DocTemaEstoque.vue";
-import TemaProducao from "../components/DocTemaProducao.vue";
+import VamosComecar from "../Docs/DocVamosComecar.vue";
+import Configuracoes from "../Docs/DocConfiguracoes.vue";
+import Temas from "../Docs/DocTema.vue";
+import PoliticaPrivacidade from "../Docs/DocPoliticaPrivacidade.vue";
+import TemaVendas from "../Docs/DocTemaVendas.vue";
+import TemaFinanceiro from "../Docs/DocTemaFinanceiro.vue";
+import TemaEstoque from "../Docs/DocTemaEstoque.vue";
+import TemaProducao from "../Docs/DocTemaProducao.vue";
 
 interface SidebarItem {
   title: string;
@@ -53,7 +53,7 @@ interface SidebarItem {
 interface SidebarSection {
   title: string;
   icon: string;
-  component?: DefineComponent<{}, {}, any>; 
+  component?: DefineComponent<{}, {}, any>;
   items?: SidebarItem[];
 }
 

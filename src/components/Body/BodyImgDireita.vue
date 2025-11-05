@@ -7,13 +7,14 @@
         <h4>ERP Tek-System na palma da mão</h4>
         <h2>
           <!-- Com o TekDashboard, o seu ERP Tek-System vai com você.-->
-          Visualize indicadores, acompanhe resultados e mantenha o 
+          Visualize indicadores, acompanhe resultados e mantenha o
           <strong>controle total do seu negócio em qualquer lugar.</strong>
         </h2>
 
         <div class="form">
           <router-link to="/documentacao" class="btn-doc">Mais informações sobre o TekDashboard</router-link>
-          <a href="https://tekdashboard.teksystem.com.br/" target="_blank" class="btn-login">Fazer login no TekDashboard</a>
+          <a href="https://tekdashboard.teksystem.com.br/" target="_blank" class="btn-login">Fazer login no
+            TekDashboard</a>
         </div>
       </div>
 
