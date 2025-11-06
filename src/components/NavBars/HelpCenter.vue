@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import Logo from '@/components/Buttom/Logo.vue'
+import Logo from '@/components/buttom/Logo.vue'
 </script>
 
 <style scoped>

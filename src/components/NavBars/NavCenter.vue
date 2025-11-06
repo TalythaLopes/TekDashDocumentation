@@ -21,11 +21,24 @@ const links = [
   list-style: none;
   margin: 0;
   padding: 0;
-  display: flex;
   margin-left: 0px;
 }
 
 .navbar-links li {
   margin: 0 15px;
+}
+
+@media (max-width: 1200px) {
+  .navbar-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    width: 100%;
+  }
+
+  .navbar-links li {
+    margin: 0;
+  }
 }
 </style>

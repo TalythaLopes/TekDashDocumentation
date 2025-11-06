@@ -11,13 +11,13 @@
 </template>
 
 <script lang="ts" setup>
-import NavBar from '../components/NavBars/NavBar.vue'
-import NavBarTekDash from '@/components/NavBars/NavBarTekDash.vue';
-import BodyImgDireita from '@/components/Body/BodyImgDireita.vue';
-import BodyTexto from '@/components/Body/BodyTexto.vue';
-import BodyImgTopicos from '@/components/Body/BodyImgTopicos.vue';
-import BodyTutorial from '@/components/Body/BodyTutorial.vue';
-import BottomInfos from '@/components/NavBars/BottomInfos.vue';
+import NavBar from '../components/navBars/NavBar.vue'
+import NavBarTekDash from '@/components/navBars/NavBarTekDash.vue';
+import BodyImgDireita from '@/components/body/BodyImgDireita.vue';
+import BodyTexto from '@/components/body/BodyTexto.vue';
+import BodyImgTopicos from '@/components/body/BodyImgTopicos.vue';
+import BodyTutorial from '@/components/body/BodyTutorial.vue';
+import BottomInfos from '@/components/navBars/BottomInfos.vue';
 </script>
 
 <style scoped>

@@ -167,5 +167,11 @@ h1.in-view {
   .card {
     max-width: 90%;
   }
+
+  h1 {
+    text-align: center;
+    padding: 0 32px; 
+    margin: 0 auto;
+  }
 }
 </style>

@@ -25,13 +25,12 @@
   background-color: var(--color-background);
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 999; 
   /*box-shadow: 0 2px 6px var(--color-border);*/
 }
 
 .navbar-content {
-  width: 80%;
-  width: 1067px;
+  width: 1087px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -53,5 +52,14 @@
 :global(main),
 :global(.page-content) {
   padding-top: 45px;
+}
+
+@media (max-width: 1200px) {
+  .navbar-container{
+    padding: 5px 24px;
+  }
+  .navbar-content {
+  width: 100%;}
+
 }
 </style>

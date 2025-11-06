@@ -3,7 +3,7 @@
 <template>
   <section ref="sectionRef">
     <h1 ref="titleRef" :class="{ 'in-view': inViewTitle }">
-      Como adquirir o <strong>TekDashboard</strong> se você já <br />usa o ERP Tek-System?
+      Como adquirir o <strong>TekDashboard</strong> se você já usa o ERP Tek-System?
     </h1>
 
     <div ref="cardRef" class="tutorial-card" :class="{ 'in-view': inViewCard }">
@@ -29,8 +29,8 @@
 import { ref, onMounted, onBeforeUnmount, onUnmounted } from 'vue';
 
 interface Step {
-  title: string
-  text: string
+  title: string;
+  text: string;
 };
 
 const steps: Step[] = [
@@ -87,23 +87,23 @@ function updateProgress() {
   const el = cardRef.value;
   if (!el) return;
 
-  const rect = el.getBoundingClientRect()
-  const windowHeight = window.innerHeight
-  const sectionHeight = rect.height
+  const rect = el.getBoundingClientRect();
+  const windowHeight = window.innerHeight;
+  const sectionHeight = rect.height;
 
-  const startPoint = windowHeight / 4
-  const distancePassed = sectionHeight - Math.max(rect.bottom - (startPoint * 3), 0)
-  let progressPercent = (distancePassed / sectionHeight) * 100
-  progress.value = Math.min(Math.max(progressPercent, 0), 100)
+  const startPoint = windowHeight / 4;
+  const distancePassed = sectionHeight - Math.max(rect.bottom - (startPoint * 3), 0);
+  let progressPercent = (distancePassed / sectionHeight) * 100;
+  progress.value = Math.min(Math.max(progressPercent, 0), 100);
 }
 
 onMounted(() => {
   interval = window.setInterval(() => {
-    activeIndex.value = (activeIndex.value + 1) % steps.length
-  }, 8000)
+    activeIndex.value = (activeIndex.value + 1) % steps.length;
+  }, 8000);
 
-  window.addEventListener('scroll', updateProgress, { passive: true })
-  updateProgress()
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
 
   observer = createObserver(titleRef, () => {
     inViewTitle.value = true;
@@ -118,9 +118,9 @@ onMounted(() => {
 });
 
 onBeforeUnmount(() => {
-  window.removeEventListener('scroll', updateProgress)
-  if (interval) clearInterval(interval)
-})
+  window.removeEventListener('scroll', updateProgress);
+  if (interval) clearInterval(interval);
+});
 
 onUnmounted(() => {
   if (observer && sectionRef.value) observer.unobserve(sectionRef.value);
@@ -137,6 +137,8 @@ h1 {
   opacity: 0;
   transform: translateY(30px);
   transition: all 0.8s ease;
+  max-width: 835px;
+  text-align: center;
 }
 
 h1.in-view {
@@ -150,7 +152,7 @@ h1.in-view {
 }
 
 .tutorial-title strong {
-  color: var(--vt-c-red)
+  color: var(--vt-c-red);
 }
 
 .tutorial-card {
@@ -220,6 +222,12 @@ h1.in-view {
 
   .tutorial-steps {
     gap: 20px;
+  }
+  
+  h1 {
+    text-align: center;
+    padding: 0 32px; 
+    margin: 0 auto;
   }
 }
 </style>

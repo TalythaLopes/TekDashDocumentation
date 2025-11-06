@@ -220,5 +220,11 @@ h1.in-view {
     width: 90%;
     height: 300px;
   }
+
+  h1 {
+    text-align: center;
+    padding: 0 32px; 
+    margin: 0 auto;
+  }
 }
 </style>

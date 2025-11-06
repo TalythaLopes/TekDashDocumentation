@@ -15,9 +15,9 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import Logo from '../Buttom/Logo.vue';
+import Logo from '../buttom/Logo.vue';
 import NavCenter from './NavCenter.vue';
-import FalarComComercial from '../Buttom/FalarComComercial.vue';
+import FalarComComercial from '../buttom/FalarComComercial.vue';
 
 const mobileMenuOpen = ref(false)
 
@@ -51,29 +51,30 @@ function toggleMenu() {
   align-items: center;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1200px) {
+  .navbar-container{
+    padding: 5px 24px;
+  }
+
   .navbar-content {
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 62px;
-    left: 0;
-    width: 100%;
-    justify-content: space-between;
-    padding: 5px 20px;
-
+    top: 60px;
+    width: 95%;
+    padding: 5px 0;
     opacity: 0;
     transform: translateY(-20px);
-    max-height: 0;
     overflow: hidden;
-
     transition: transform 0.4s ease, opacity 0.4s ease, max-height 0.4s ease;
+    background-color: var(--color-background-site);
   }
 
   .navbar-content.open {
     opacity: 1;
     transform: translateY(0);
-    max-height: 500px;
+    max-height: 350px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   }
 
   .btn-mobile-hide {

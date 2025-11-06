@@ -5,7 +5,7 @@
         <v-list-item class="section-header" @click="handleSectionClick(sIndex, section)">
           <template #prepend>
             <div class="icon-circle" :class="{ 'icon-active': activeSection === sIndex }">
-              <v-icon size="21">{{ section.icon }}</v-icon>
+              <v-icon size="22">{{ section.icon }}</v-icon>
             </div>
             <v-list-item-title class="section-title" :class="{ 'section-active': activeSection === sIndex }">
               {{ section.title }}
@@ -36,14 +36,14 @@
 import { ref } from "vue";
 import type { DefineComponent } from "vue";
 
-import VamosComecar from "../Docs/DocVamosComecar.vue";
-import Configuracoes from "../Docs/DocConfiguracoes.vue";
-import Temas from "../Docs/DocTema.vue";
-import PoliticaPrivacidade from "../Docs/DocPoliticaPrivacidade.vue";
-import TemaVendas from "../Docs/DocTemaVendas.vue";
-import TemaFinanceiro from "../Docs/DocTemaFinanceiro.vue";
-import TemaEstoque from "../Docs/DocTemaEstoque.vue";
-import TemaProducao from "../Docs/DocTemaProducao.vue";
+import VamosComecar from "../docs/DocVamosComecar.vue";
+import Configuracoes from "../docs/DocConfiguracoes.vue";
+import Temas from "../docs/DocTema.vue";
+import PoliticaPrivacidade from "../docs/DocPoliticaPrivacidade.vue";
+import TemaVendas from "../docs/DocTemaVendas.vue";
+import TemaFinanceiro from "../docs/DocTemaFinanceiro.vue";
+import TemaEstoque from "../docs/DocTemaEstoque.vue";
+import TemaProducao from "../docs/DocTemaProducao.vue";
 
 interface SidebarItem {
   title: string;
@@ -126,6 +126,10 @@ function setActive(sectionIndex: number, itemIndex: number) {
 <style scoped>
 .v-list-item {
   --v-theme-overlay-multiplier: 0 !important;
+}
+
+.v-list {
+  padding: 15px;
 }
 
 .sidebar-clean {

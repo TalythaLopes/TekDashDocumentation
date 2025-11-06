@@ -1,9 +1,9 @@
-/* responsividade e botoões = vibe coded *mudar urgente* */
+/* responsividade e botoões = vibe coded *mudar urgente* aaa a a aaaaaaaaaaaaaaa*/
 
 <template>
   <section>
     <div class="container">
-      <div class="text">
+      <div class="text text-top">
         <div class="animate-block block-1">
           <h4>ERP Tek-System na palma da mão</h4>
         </div>
@@ -14,16 +14,19 @@
             <strong>controle total do seu negócio em qualquer lugar.</strong>
           </h2>
         </div>
+      </div>
+      <div class="image animate-img">
+        <img src="/img/TelaTekDash.png" alt="Mulher loira de costas olhando o TekDashboard no celular e no notebook" />
+      </div>
+      <div class="text form">
         <div class="animate-block block-3 form">
           <router-link to="/documentacao" class="btn-doc">Mais informações sobre o TekDashboard</router-link>
         </div>
         <div class="animate-block block-4 form">
           <a href="https://tekdashboard.teksystem.com.br/" target="_blank" class="btn-login">Fazer login no
-            TekDashboard</a>
+            TekDashboard
+          </a>
         </div>
-      </div>
-      <div class="image animate-img">
-        <img src="/img/TelaTekDash.png" alt="Mulher loira de costas olhando o TekDashboard no celular e no notebook" />
       </div>
     </div>
   </section>
@@ -48,44 +51,54 @@
 }
 
 @keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes zoomOut {
-  from {
-    opacity: 1;
-    transform: scale(1.15);
-  }
+  from { opacity: 1; transform: scale(1.15); }
+  to   { opacity: 1; transform: scale(1); }
+}
 
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+section {
+  padding-top: 30px;
 }
 
 .container {
   width: 90%;
   max-width: 1400px;
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 1fr 760px;
+  grid-template-areas: "text-top image"
+                       "form     image";
   gap: 40px;
   align-items: center;
+  transition: all 0.3s ease;
+}
+
+.text-top {
+  grid-area: text-top;
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+}
+
+.form {
+  grid-area: form;
+  display: flex;
+  flex-direction: column;
+  max-width: 350px;
 }
 
 .image {
+  grid-area: image;
   width: 760px;
   height: 550px;
   overflow: hidden;
   border-radius: 16px;
   position: relative;
+  transition: all 0.4s ease;
 }
 
 .image img {
@@ -99,29 +112,17 @@
   transform: scale(1.05);
 }
 
-.text {
-  display: flex;
-  flex-direction: column;
-  max-width: 600px;
-}
-
-.text h4 {
+.text-top h4 {
   color: var(--vt-c-red);
   margin-bottom: 10px;
 }
 
+/* ==================== BOTÕES ==================== */
 .form {
   display: flex;
   flex-direction: column;
   max-width: 350px;
-}
-
-.form .btn-doc {
-  margin-top: 50px;
-}
-
-.form .btn-login {
-  margin-top: 12px;
+  gap: 12px;
 }
 
 .form .btn-doc,
@@ -150,17 +151,46 @@
 
 .form .btn-doc:hover,
 .form .btn-login:hover {
-  transform: scale(1.10);
+  transform: scale(1.06);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1330px) {
+  .container { grid-template-columns: 1fr 620px; }
+  .image { width: 620px; height: 450px; }
+}
+
+@media (max-width: 1250px) {
+  .container { grid-template-columns: 1fr 520px; }
+  .image { width: 520px; height: 380px; }
+}
+
+@media (max-width: 1200px) {
   .container {
     grid-template-columns: 1fr;
+    grid-template-areas:
+      "text-top"
+      "image"
+      "form";
     text-align: center;
+    justify-items: center;
+    gap: 24px;
   }
 
-  .form {
+  .text-top {
+    max-width: 90%;
     margin: 0 auto;
+    align-items: center;
+  }
+
+  .image {
+    width: 100%;
+    height: 200px;
+    margin: 0;
+  }
+  
+  .image img {
+    height: 200px;
+    width: 100%;
   }
 }
 </style>
