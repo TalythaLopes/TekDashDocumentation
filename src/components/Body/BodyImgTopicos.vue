@@ -227,4 +227,24 @@ h1.in-view {
     margin: 0 auto;
   }
 }
+
+@media (max-width: 400px) {
+  .carousel {
+    gap: 12px;
+  }
+
+  .carousel-item {
+    height: 120px;
+  }
+
+  .carousel-item.active {
+    height: 250px;
+  }
+
+  .carousel-text {
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+  }
+}
 </style>

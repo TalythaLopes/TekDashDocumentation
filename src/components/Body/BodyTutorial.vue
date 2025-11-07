@@ -90,9 +90,15 @@ function updateProgress() {
   const rect = el.getBoundingClientRect();
   const windowHeight = window.innerHeight;
   const sectionHeight = rect.height;
+  let startPoint;
 
-  const startPoint = windowHeight / 4;
-  const distancePassed = sectionHeight - Math.max(rect.bottom - (startPoint * 3), 0);
+  if (window.innerWidth > 400) {
+    startPoint = (windowHeight / 4) * 3;
+  } else {
+    startPoint = (windowHeight / 2);
+  }
+
+  let distancePassed = sectionHeight - Math.max(rect.bottom - (startPoint), 0);
   let progressPercent = (distancePassed / sectionHeight) * 100;
   progress.value = Math.min(Math.max(progressPercent, 0), 100);
 }
@@ -229,5 +235,21 @@ h1.in-view {
     padding: 0 32px; 
     margin: 0 auto;
   }
+}
+
+@media (max-width: 400px) {
+  .tutorial-card {
+    flex: 1 1 auto;
+    padding: 24px;
+    gap: 15px;
+    width: 90%;
+    border-radius: 30px;
+  }
+
+  .tutorial-steps { gap: 15px; }
+  .step { gap: 15px; }
+  .step p { font-size: 22px !important; }
+  .step-text p { font-size: 16px !important; }
+  .step-text h5 { padding-bottom: 5px; }
 }
 </style>

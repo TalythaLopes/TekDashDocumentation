@@ -133,6 +133,7 @@ h1.in-view {
   flex: 1 1 300px;
   max-width: 450px;
   min-width: 250px;
+  height: auto;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
@@ -172,6 +173,20 @@ h1.in-view {
     text-align: center;
     padding: 0 32px; 
     margin: 0 auto;
+  }
+}
+
+@media (max-width: 400px) {
+  .card-container {
+    gap: 12px;
+    width: 100%;
+  }
+
+  .card {
+    flex: 1 1 auto;
+    padding: 32px 24px;
+    gap: 12px;
+    height: auto;
   }
 }
 </style>

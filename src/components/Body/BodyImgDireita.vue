@@ -193,4 +193,10 @@ section {
     width: 100%;
   }
 }
+
+@media (max-width: 400px) {
+  .container {
+    gap: 20px;
+  }
+}
 </style>
