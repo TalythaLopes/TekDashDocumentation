@@ -152,11 +152,6 @@ h1.in-view {
   transform: translateY(0);
 }
 
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
 .tutorial-title strong {
   color: var(--vt-c-red);
 }

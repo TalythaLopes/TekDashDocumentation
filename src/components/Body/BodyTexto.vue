@@ -1,17 +1,17 @@
-/* respondividade titulo | card pode ser um componente */
+/* card pode ser um componente */
 
 <template>
   <section ref="sectionRef">
-    <div>
-      <h1 ref="titleRef" :class="{ 'in-view': inViewTitle }">Vantagens do TekDashboard</h1>
-    </div>
+    <h1 ref="titleRef" :class="{ 'in-view': inViewTitle }">Vantagens do TekDashboard</h1>
 
-    <div class="card-container">
-      <div v-for="(item, index) in vantagens" :key="index" class="card" :class="{ 'in-view': inView }"
-        :style="{ animationDelay: `${0.2 * index}s` }">
-        <v-icon size="48">{{ item.icon }}</v-icon>
-        <h3>{{ item.title }}</h3>
-        <p class="pb-0" :style="{ fontSize: '20px' }">{{ item.description }}</p>
+    <div ref="cardRef" class="card-container">
+      <div v-for="(item, index) in vantagens" :key="index" class="card-wrapper" :class="{ 'in-view': inViewCards }"
+        :style="{ animationDelay: `${0.5 * index}s` }">
+        <div class="card">
+          <v-icon size="48">{{ item.icon }}</v-icon>
+          <h3>{{ item.title }}</h3>
+          <p class="pb-0" :style="{ fontSize: '20px' }">{{ item.description }}</p>
+        </div>
       </div>
     </div>
   </section>
@@ -21,9 +21,9 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 
 interface Vantagem {
-  icon: string
-  title: string
-  description: string
+  icon: string;
+  title: string;
+  description: string;
 }
 
 const vantagens: Vantagem[] = [
@@ -45,51 +45,35 @@ const vantagens: Vantagem[] = [
     description:
       'Visualize seus principais indicadores de forma clara e organizada. Nossos painéis são estruturados em temas de dados, permitindo que você navegue facilmente por vendas, finanças, estoque e muito mais.'
   }
-]
-
-const sectionRef = ref<HTMLElement | null>(null);
-const inView = ref(false);
+];
 
 const titleRef = ref<HTMLElement | null>(null);
+const cardRef = ref<HTMLElement | null>(null);
+const inViewCards = ref(false);
 const inViewTitle = ref(false);
 
 let observer: IntersectionObserver | null = null;
 
-function createObserver(refElement: typeof sectionRef, callback: () => void, threshold = 0.2, rootMargin = "0px") {
-  const obs = new IntersectionObserver((entries) => {
-    const entry = entries[0];
-    if (entry?.isIntersecting) {
-      callback();
-      obs.unobserve(entry.target);
-    }
-  }, { threshold, rootMargin });
-
-  if (refElement.value) obs.observe(refElement.value);
-  return obs;
-}
-
 onMounted(() => {
-  createObserver(titleRef, () => {
-    inViewTitle.value = true;
+  observer = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        if (entry.target === titleRef.value) {
+          inViewTitle.value = true;
 
-    const triggerCards = () => {
-      inView.value = true;
-    };
-
-    if (sectionRef.value) {
-      const rect = sectionRef.value.getBoundingClientRect();
-      if (rect.top < window.innerHeight && rect.bottom > 0) {
-        setTimeout(triggerCards, 200);
-      } else {
-        observer = createObserver(sectionRef, triggerCards, 0.2, "-100px 0px 0px 0px");
+          // Delay suave de 300ms antes dos cards
+          setTimeout(() => (inViewCards.value = true), 300);
+        }
+        observer?.unobserve(entry.target);
       }
     }
-  }, 0.2);
+  }, { threshold: 0.2, rootMargin: "-50px" });
+
+  if (titleRef.value) observer.observe(titleRef.value);
+  if (cardRef.value) observer.observe(cardRef.value);
 });
 
-onUnmounted(() => {
-  if (observer && sectionRef.value) observer.unobserve(sectionRef.value);
-});
+onUnmounted(() => observer?.disconnect());
 </script>
 
 <style scoped>
@@ -106,15 +90,9 @@ h1 {
   transform: translateY(30px);
   transition: all 0.8s ease;
 }
-
 h1.in-view {
   opacity: 1;
   transform: translateY(0);
-}
-
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 
 .card-container {
@@ -126,32 +104,40 @@ h1.in-view {
   max-width: 1400px;
 }
 
-.card {
-  background-color: var(--color-background);
-  border-radius: 35px;
-  padding: 40px;
+.card-wrapper {
   flex: 1 1 300px;
   max-width: 450px;
   min-width: 250px;
-  height: auto;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  text-align: left;
-  transition: transform 0.2s ease;
   opacity: 0;
   transform: translateY(30px);
+  display: flex;
+  flex-direction: column;
+}
+.card-wrapper.in-view {
+  animation: slideUp 0.8s forwards ease-out;
 }
 
-.card.in-view {
-  animation: slideUp 0.8s ease forwards;
-}
+.card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  
+  border-radius: 35px;
+  padding: 40px;
+  background-color: var(--color-background);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  gap: 16px;
+  text-align: left;
 
-.card:hover {
-  transform: scale(1.05);
-}
+  transition: transform 0.5s ease;
+  will-change: transform;
+  transform-origin: center;
 
+  &:hover {
+    transform: scale(1.05); 
+  }
+}
 .card h3 {
   font-size: 36px;
   font-weight: 700;
@@ -159,20 +145,25 @@ h1.in-view {
   max-width: 300px;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1110px) {
+  h1 {
+    text-align: center;
+    padding: 0 32px; 
+  }
   .card-container {
     flex-direction: column;
     align-items: center;
   }
-
-  .card {
-    max-width: 90%;
+  .card-wrapper {
+    flex: 1 1 auto;
+    max-width: 900px;
+    min-width: 90%;
   }
-
-  h1 {
-    text-align: center;
-    padding: 0 32px; 
-    margin: 0 auto;
+  .card {
+    padding: 32px 32px 32px 24px;
+  }
+  .card h3 {
+    max-width: 100%;
   }
 }
 
@@ -182,11 +173,15 @@ h1.in-view {
     width: 100%;
   }
 
+  .card-wrapper {
+    max-width: 90%;
+  }
+
   .card {
-    flex: 1 1 auto;
+    align-items: center;
+    text-align: center;
     padding: 32px 24px;
     gap: 12px;
-    height: auto;
   }
 }
 </style>

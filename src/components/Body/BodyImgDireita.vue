@@ -1,9 +1,9 @@
-/* responsividade e botoões = vibe coded *mudar urgente* aaa a a aaaaaaaaaaaaaaa*/
+/* botoões - vibe coded *mudar urgente* */
 
 <template>
   <section>
     <div class="container">
-      <div class="text text-top">
+      <div class="text-top">
         <div class="animate-block block-1">
           <h4>ERP Tek-System na palma da mão</h4>
         </div>
@@ -15,22 +15,41 @@
           </h2>
         </div>
       </div>
-      <div class="image animate-img">
-        <img src="/img/TelaTekDash.png" alt="Mulher loira de costas olhando o TekDashboard no celular e no notebook" />
+      <div class="image-container">
+        <img ref="imgRef" src="/img/TelaTekDash.png" alt="Mulher loira de costas olhando o TekDashboard no celular e no notebook" class="image"/>
       </div>
-      <div class="text form">
+      <div class="form">
         <div class="animate-block block-3 form">
           <router-link to="/documentacao" class="btn-doc">Mais informações sobre o TekDashboard</router-link>
         </div>
         <div class="animate-block block-4 form">
-          <a href="https://tekdashboard.teksystem.com.br/" target="_blank" class="btn-login">Fazer login no
-            TekDashboard
-          </a>
+          <a href="https://tekdashboard.teksystem.com.br/" target="_blank" class="btn-login">Fazer login no TekDashboard</a>
         </div>
       </div>
     </div>
   </section>
 </template>
+
+<script setup lang="ts">
+import { ref, onMounted, nextTick } from 'vue';
+
+const imgRef = ref<HTMLImageElement | null>(null);
+
+onMounted(async () => {
+  await nextTick();
+
+  const img = imgRef.value;
+  if (!img) return;
+
+  img.addEventListener('animationend', () => {
+    img.classList.add('loaded');
+  });
+
+  setTimeout(() => {
+    if (!img.classList.contains('loaded')) img.classList.add('loaded');
+  }, 1600);
+});
+</script>
 
 <style scoped>
 .animate-block {
@@ -43,22 +62,6 @@
 .block-2 { animation-delay: 0.4s; }
 .block-3 { animation-delay: 0.6s; }
 .block-4 { animation-delay: 0.8s; }
-
-.animate-img img {
-  opacity: 0;
-  transform: scale(1.15);
-  animation: zoomOut 1.5s ease forwards;
-}
-
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes zoomOut {
-  from { opacity: 1; transform: scale(1.15); }
-  to   { opacity: 1; transform: scale(1); }
-}
 
 section {
   padding-top: 30px;
@@ -74,7 +77,6 @@ section {
                        "form     image";
   gap: 40px;
   align-items: center;
-  transition: all 0.3s ease;
 }
 
 .text-top {
@@ -89,26 +91,36 @@ section {
   display: flex;
   flex-direction: column;
   max-width: 350px;
+  gap: 12px;
 }
 
-.image {
+.image-container {
   grid-area: image;
   width: 760px;
   height: 550px;
   overflow: hidden;
   border-radius: 16px;
   position: relative;
-  transition: all 0.4s ease;
 }
 
-.image img {
+.image-container .image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transform: scale(1.15);
+  opacity: 0;
+  animation: zoomOut 1.4s ease forwards;
+  transform-origin: center center;
   transition: transform 0.4s ease;
 }
 
-.image:hover img {
+.image-container .image.loaded {
+  animation: none;
+  transform: scale(1);
+  opacity: 1;
+}
+
+.image-container:hover .image.loaded {
   transform: scale(1.05);
 }
 
@@ -118,13 +130,6 @@ section {
 }
 
 /* ==================== BOTÕES ==================== */
-.form {
-  display: flex;
-  flex-direction: column;
-  max-width: 350px;
-  gap: 12px;
-}
-
 .form .btn-doc,
 .form .btn-login {
   text-decoration: none;
@@ -135,33 +140,30 @@ section {
   text-align: center;
   cursor: pointer;
   font-size: 15px;
-}
 
+  &:hover{
+    transform: scale(1.06);
+  }
+}
 .form .btn-doc {
   background-color: var(--color-background);
   color: var(--vt-c-red);
   border: var(--vt-c-red) 1.5px solid;
 }
-
 .form .btn-login {
   background-color: var(--vt-c-red);
   color: var(--color-background);
   border: none;
 }
 
-.form .btn-doc:hover,
-.form .btn-login:hover {
-  transform: scale(1.06);
-}
-
 @media (max-width: 1330px) {
   .container { grid-template-columns: 1fr 620px; }
-  .image { width: 620px; height: 450px; }
+  .image-container { width: 620px; height: 450px; }
 }
 
 @media (max-width: 1250px) {
   .container { grid-template-columns: 1fr 520px; }
-  .image { width: 520px; height: 380px; }
+  .image-container { width: 520px; height: 380px; }
 }
 
 @media (max-width: 1200px) {
@@ -175,28 +177,12 @@ section {
     justify-items: center;
     gap: 24px;
   }
-
-  .text-top {
-    max-width: 90%;
-    margin: 0 auto;
-    align-items: center;
-  }
-
-  .image {
-    width: 100%;
-    height: 200px;
-    margin: 0;
-  }
-  
-  .image img {
-    height: 200px;
-    width: 100%;
-  }
+  .text-top { max-width: 90%; margin: 0 auto; }
+  .image-container { width: 100%; height: 200px; }
+  .image-container img { height: 200px; }
 }
 
 @media (max-width: 400px) {
-  .container {
-    gap: 20px;
-  }
+  .container { gap: 20px; }
 }
 </style>
