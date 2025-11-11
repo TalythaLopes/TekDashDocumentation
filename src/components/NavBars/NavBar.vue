@@ -2,7 +2,7 @@
   <nav class="navbar-container">
     <Logo />
     <button class="navbar-toggle" @click="toggleMenu">
-      <v-icon color="#242424" style="font-size: 1.3rem;">
+      <v-icon color="#242424" style="font-size: 25px;">
         {{ mobileMenuOpen ? 'mdi-window-close' : 'mdi-menu' }}
       </v-icon>
     </button>
@@ -41,7 +41,10 @@ function toggleMenu() {
 
 .navbar-toggle {
   display: none;
-  background: none;
+  background: var(--vt-c-gray-divider);
+  width: 33px;
+  height: 33px;
+  border-radius: 5px;
   border: none;
   cursor: pointer;
 }
@@ -49,6 +52,16 @@ function toggleMenu() {
 .navbar-content {
   display: flex;
   align-items: center;
+  pointer-events: none; /* Desabilitar interações quando o menu estiver fechado */
+}
+
+.navbar-content.open {
+  opacity: 1;
+  transform: translateY(0);
+  max-height: 350px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  pointer-events: auto; /* Habilitar interações quando o menu estiver aberto */
+  z-index: 1000;
 }
 
 @media (max-width: 1200px) {
@@ -60,7 +73,7 @@ function toggleMenu() {
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 60px;
+    top: 42px;
     width: 95%;
     padding: 5px 0;
     opacity: 0;
@@ -68,13 +81,7 @@ function toggleMenu() {
     overflow: hidden;
     transition: transform 0.4s ease, opacity 0.4s ease, max-height 0.4s ease;
     background-color: var(--color-background-site);
-  }
-
-  .navbar-content.open {
-    opacity: 1;
-    transform: translateY(0);
-    max-height: 350px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 0;
   }
 
   .btn-mobile-hide {
@@ -85,6 +92,16 @@ function toggleMenu() {
     display: block;
     margin-left: auto;
     margin-right: 14px;
+  }
+}
+
+@media (max-width: 400px) {
+  .navbar-container {
+    height: 45px;
+    padding: 5px
+  }
+  .navbar-toggle {
+    margin-right: 0;
   }
 }
 </style>
