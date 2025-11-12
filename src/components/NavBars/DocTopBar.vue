@@ -1,9 +1,17 @@
 <template>
-  <v-app-bar class="help-bar">
+  <v-app-bar class="top-bar">
+    <div class="top-left">
+      <v-btn icon class="menu-toggle" @click="$emit('toggle-drawer')" v-show="!isDesktop">
+        <v-icon>{{ drawer ? 'mdi-close' : 'mdi-menu' }}</v-icon>
+      </v-btn>
+    </div>
+
     <div class="logo-area">
       <Logo />
-      <div class="divider"></div>
-      <a href="/"><h5 class="help-center pb-0">TekDashboard</h5></a>
+      <div class="divider" />
+      <a href="/">
+        <h5 class="top-center pb-0">TekDashboard</h5>
+      </a>
     </div>
 
     <div class="bar-center">
@@ -28,18 +36,31 @@
 
 <script setup lang="ts">
 import Logo from '@/components/buttom/Logo.vue'
+
+const props = defineProps<{
+  drawer: boolean
+  isDesktop: boolean
+}>()
 </script>
 
 <style scoped>
-.help-bar {
+.top-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
   height: 64px;
+  width: 100%;
   padding: 0 32px !important;
   gap: 24px;
 }
+
+.menu-toggle {
+  background: none;
+  box-shadow: none;
+  border: none;
+  margin-right: 8px;
+}
+.menu-toggle .v-icon { color: var(--vt-c-red); }
 
 .logo-area {
   display: flex;
@@ -49,13 +70,11 @@ import Logo from '@/components/buttom/Logo.vue'
 .divider {
   width: 1px;
   height: 42px;
-  background-color: var(--vt-c-red);
   margin: 0 8px;
+  background-color: var(--vt-c-red);
 }
 
-.help-center {
-  color: var(--vt-c-red);
-}
+.top-center { color: var(--vt-c-red); }
 
 .bar-center {
   flex: 1;
@@ -67,22 +86,20 @@ import Logo from '@/components/buttom/Logo.vue'
   display: flex;
   align-items: center;
   gap: 8px;
-  background: var(--color-background-site);
+  width: 280px;
   padding: 8px 12px;
   border-radius: 20px;
-  width: 280px;
-  transition: all 0.4s;
+  background: var(--color-background-site);
   border: 1px solid transparent;
+  transition: all 0.4s;
 }
-
 .search-box input {
+  width: 100%;
+  font-size: 15px;
   border: none;
   outline: none;
   background: transparent;
-  font-size: 15px;
-  width: 100%;
 }
-
 .search-box:focus-within {
   background: var(--color-background);
   border: 1px solid var(--vt-c-gray-mute);
@@ -99,14 +116,34 @@ import Logo from '@/components/buttom/Logo.vue'
   display: flex;
   align-items: center;
   gap: 6px;
-  color: var(--vt-c-gray);
-  font-weight: 500;
   font-size: 15px;
+  font-weight: 500;
+  color: var(--vt-c-gray);
   cursor: pointer;
-  transition: 0.2s;
+  transition: color 0.2s;
+
+  &:hover {
+    color: var(--vt-c-red);
+  }
 }
 
-.right-item:hover {
-  color: var(--vt-c-red);
+@media (max-width: 1000px) {
+  .top-bar { padding: 0 32px 0 5px !important; }
+  .search-box:focus-within { width: 300px; }
+}
+
+@media (max-width: 900px) {
+  .bar-center, .bar-right { display: none; }
+}
+@media (max-width: 400px) {
+  .top-bar {
+    height: 45px;
+    padding: 5px !important;
+    gap: 10px;
+    justify-content: center;
+  }
+  .menu-toggle { margin-right: 0px; }
+  .divider { height: 34px; }
+  :deep(.v-toolbar__content) { height: 35px !important; }
 }
 </style>
