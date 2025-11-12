@@ -1,4 +1,4 @@
-# <p align="center"> 📘 Documentação do TekDashboard </p> 
+# <p align="center"> Documentação do TekDashboard </p> 
 
 <p align="center">
   <img src="https://img.shields.io/badge/desenvolvido%20por-Talytha%20Lopes-7a0017" />
@@ -85,5 +85,5 @@ Para evoluir o projeto e fortalecer a abordagem **Docs as Code**, estão planeja
 
 ## 👩‍💻 Autoria
 
-Desenvolvido por **Talytha Lopes**  
+Desenvolvido por **Talytha Lopes**.
 Para dúvidas ou sugestões, entre em contato com **talythasoares@teksystem.com.br**.
