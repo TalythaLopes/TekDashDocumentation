@@ -31,24 +31,17 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, nextTick } from 'vue';
-
+import { ref, onMounted, nextTick } from 'vue'
+// Estados iniciais e referências aos elementos do DO
 const imgRef = ref<HTMLImageElement | null>(null);
-
+// Ciclo de vida
 onMounted(async () => {
-  await nextTick();
-
-  const img = imgRef.value;
-  if (!img) return;
-
-  img.addEventListener('animationend', () => {
-    img.classList.add('loaded');
-  });
-
-  setTimeout(() => {
-    if (!img.classList.contains('loaded')) img.classList.add('loaded');
-  }, 1600);
-});
+  await nextTick()
+  const img = imgRef.value
+  if (!img) return
+  img.addEventListener('animationend', () => img.classList.add('loaded'))
+  setTimeout(() => { if (!img.classList.contains('loaded')) img.classList.add('loaded') }, 1600)
+})
 </script>
 
 <style scoped>
@@ -63,9 +56,7 @@ onMounted(async () => {
 .block-3 { animation-delay: 0.6s; }
 .block-4 { animation-delay: 0.8s; }
 
-section {
-  padding-top: 30px;
-}
+section { padding-top: 30px; }
 
 .container {
   width: 90%;
@@ -120,16 +111,13 @@ section {
   opacity: 1;
 }
 
-.image-container:hover .image.loaded {
-  transform: scale(1.05);
-}
+.image-container:hover .image.loaded { transform: scale(1.05);}
 
 .text-top h4 {
   color: var(--vt-c-red);
   margin-bottom: 10px;
 }
 
-/* ==================== BOTÕES ==================== */
 .form .btn-doc,
 .form .btn-login {
   text-decoration: none;

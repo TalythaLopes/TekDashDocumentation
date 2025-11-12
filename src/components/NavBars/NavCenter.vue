@@ -5,7 +5,6 @@
 </template>
 
 <script lang="ts" setup>
-
 const links = [
   { label: "HOME", url: "https://homepage.teksystem.com.br/" },
   { label: "SOBRE", url: "https://homepage.teksystem.com.br/sobre/" },
@@ -16,6 +15,7 @@ const links = [
   { label: "ATENDIMENTO WEB", url: "https://www.atendimento.teksystem.com.br/#/login" }
 ];
 </script>
+
 <style scoped>
 .navbar-links {
   list-style: none;

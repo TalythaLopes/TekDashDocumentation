@@ -21,7 +21,7 @@ import TopBar from "@/components/navBars/DocTopBar.vue"
 import SideBar from "@/components/navBars/DocSideBar.vue"
 
 import VamosComecar from '@/components/docs/DocVamosComecar.vue'
-// Estados iniciais
+// Estados iniciais e referências aos elementos do DOM
 const activeComponent = ref<DefineComponent<{}, {}, any>>(VamosComecar)
 const drawer = ref(true)
 const windowWidth = ref(window.innerWidth)
@@ -34,7 +34,7 @@ const handleResize = () => {
   windowWidth.value = window.innerWidth
   drawer.value = isDesktop.value // Mantém aberto no desktop (>=1000px)
 }
-// Ciclos de vida
+// Ciclo de vida
 onMounted(() => {
   window.addEventListener('resize', handleResize)
   handleResize()

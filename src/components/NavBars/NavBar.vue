@@ -2,7 +2,7 @@
   <nav class="navbar-container">
     <Logo />
     <button class="navbar-toggle" @click="toggleMenu">
-      <v-icon color="#242424" style="font-size: 25px;">
+      <v-icon :style="{ color: 'var(--color-text)', fontSize: '25px' }">
         {{ mobileMenuOpen ? 'mdi-window-close' : 'mdi-menu' }}
       </v-icon>
     </button>
@@ -18,12 +18,10 @@ import { ref } from 'vue'
 import Logo from '../buttom/Logo.vue';
 import NavCenter from './NavCenter.vue';
 import FalarComComercial from '../buttom/FalarComComercial.vue';
-
+// Estados inciais
 const mobileMenuOpen = ref(false)
-
-function toggleMenu() {
-  mobileMenuOpen.value = !mobileMenuOpen.value
-}
+// Métodos
+const toggleMenu = () => mobileMenuOpen.value = !mobileMenuOpen.value
 </script>
 
 <style scoped>
@@ -31,12 +29,12 @@ function toggleMenu() {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
   width: 100%;
-  z-index: 1000;
   height: 62px;
   padding: 5px;
-  position: relative;
   background-color: var(--color-background-site);
+  z-index: 1000;
 }
 
 .navbar-toggle {
@@ -44,49 +42,46 @@ function toggleMenu() {
   background: var(--vt-c-gray-divider);
   width: 33px;
   height: 33px;
-  border-radius: 5px;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
 }
 
 .navbar-content {
   display: flex;
   align-items: center;
-  pointer-events: none; /* Desabilitar interações quando o menu estiver fechado */
-}
-
-.navbar-content.open {
-  opacity: 1;
-  transform: translateY(0);
-  max-height: 350px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  pointer-events: auto; /* Habilitar interações quando o menu estiver aberto */
-  z-index: 1000;
 }
 
 @media (max-width: 1200px) {
-  .navbar-container{
-    padding: 5px 24px;
-  }
+  .navbar-container{ padding: 5px 24px; }
 
   .navbar-content {
-    display: flex;
     flex-direction: column;
     position: absolute;
     top: 42px;
     width: 95%;
     padding: 5px 0;
+    overflow: hidden;
+
     opacity: 0;
     transform: translateY(-20px);
-    overflow: hidden;
-    transition: transform 0.4s ease, opacity 0.4s ease, max-height 0.4s ease;
-    background-color: var(--color-background-site);
+    pointer-events: none;
     z-index: 0;
+
+    background-color: var(--color-background-site);
+    transition: transform 0.4s ease, opacity 0.4s ease, max-height 0.4s ease;
   }
 
-  .btn-mobile-hide {
-    display: none;
+  .navbar-content.open {
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 350px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    pointer-events: auto;
+    z-index: 1000;
   }
+
+  .btn-mobile-hide { display: none; }
 
   .navbar-toggle {
     display: block;
@@ -100,8 +95,6 @@ function toggleMenu() {
     height: 45px;
     padding: 5px
   }
-  .navbar-toggle {
-    margin-right: 0;
-  }
+  .navbar-toggle { margin-right: 0; }
 }
 </style>

@@ -18,14 +18,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue';
-
+import { ref, onMounted, onUnmounted } from 'vue'
+// Tipagem
 interface Vantagem {
-  icon: string;
-  title: string;
-  description: string;
+  icon: string
+  title: string
+  description: string
 }
-
+// Dados dos cards
 const vantagens: Vantagem[] = [
   {
     icon: 'mdi-relation-one-or-many-to-one-or-many',
@@ -45,30 +45,28 @@ const vantagens: Vantagem[] = [
     description:
       'Visualize seus principais indicadores de forma clara e organizada. Nossos painéis são estruturados em temas de dados, permitindo que você navegue facilmente por vendas, finanças, estoque e muito mais.'
   }
-];
+]
+// Estados iniciais e referências aos elementos do DOM
+const titleRef = ref<HTMLElement | null>(null)
+const cardRef = ref<HTMLElement | null>(null)
 
-const titleRef = ref<HTMLElement | null>(null);
-const cardRef = ref<HTMLElement | null>(null);
-const inViewCards = ref(false);
-const inViewTitle = ref(false);
+const inViewCards = ref(false)
+const inViewTitle = ref(false)
 
-let observer: IntersectionObserver | null = null;
-
+let observer: IntersectionObserver | null = null
+// Ciclo de vida
 onMounted(() => {
   observer = new IntersectionObserver((entries) => {
     for (const entry of entries) {
       if (entry.isIntersecting) {
         if (entry.target === titleRef.value) {
           inViewTitle.value = true;
-
-          // Delay suave de 300ms antes dos cards
           setTimeout(() => (inViewCards.value = true), 300);
         }
         observer?.unobserve(entry.target);
       }
     }
   }, { threshold: 0.2, rootMargin: "-50px" });
-
   if (titleRef.value) observer.observe(titleRef.value);
   if (cardRef.value) observer.observe(cardRef.value);
 });
@@ -113,16 +111,13 @@ h1.in-view {
   display: flex;
   flex-direction: column;
 }
-.card-wrapper.in-view {
-  animation: slideUp 0.8s forwards ease-out;
-}
+.card-wrapper.in-view { animation: slideUp 0.8s forwards ease-out; }
 
 .card {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  
   border-radius: 35px;
   padding: 40px;
   background-color: var(--color-background);
@@ -159,12 +154,8 @@ h1.in-view {
     max-width: 900px;
     min-width: 90%;
   }
-  .card {
-    padding: 32px 32px 32px 24px;
-  }
-  .card h3 {
-    max-width: 100%;
-  }
+  .card { padding: 32px 32px 32px 24px; }
+  .card h3 { max-width: 100%; }
 }
 
 @media (max-width: 400px) {
@@ -173,9 +164,7 @@ h1.in-view {
     width: 100%;
   }
 
-  .card-wrapper {
-    max-width: 90%;
-  }
+  .card-wrapper { max-width: 90%; }
 
   .card {
     align-items: center;

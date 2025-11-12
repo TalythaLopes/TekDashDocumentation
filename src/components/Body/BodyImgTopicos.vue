@@ -20,14 +20,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount, onUnmounted } from 'vue';
-
+import { ref, onMounted, onBeforeUnmount, onUnmounted } from 'vue'
+// Tipagens
 interface CarouselItem {
   image: string
   title: string
   description: string
 };
-
+// Dados do carrossel
 const items: CarouselItem[] = [
   {
     image: '/img/TemaVendas.jpg',
@@ -49,64 +49,52 @@ const items: CarouselItem[] = [
     title: 'Produção',
     description: 'Painéis sobre a produção da sua empresa sempre atualizados.'
   }
-];
+]
+// Estados iniciais e referências aos elementos do DOM
+const sectionRef = ref<HTMLElement | null>(null)
+const titleRef = ref<HTMLElement | null>(null)
 
-const sectionRef = ref<HTMLElement | null>(null);
-const titleRef = ref<HTMLElement | null>(null);
-const inView = ref(false);
-const inViewTitle = ref(false);
-const activeIndex = ref(0);
+const inView = ref(false)
+const inViewTitle = ref(false)
+const activeIndex = ref(0)
 
-let interval: number | undefined;
-let observer: IntersectionObserver | null = null;
-
-function setActive(index: number) {
-  activeIndex.value = index
-};
+let interval: number | undefined
+let observer: IntersectionObserver | null = null
+// Métodos
+const setActive = (index: number) => activeIndex.value = index;
 
 function createObserver(refElement: typeof sectionRef, callback: () => void, threshold = 0.2, rootMargin = "0px") {
   const obs = new IntersectionObserver((entries) => {
-    const entry = entries[0];
+    const entry = entries[0]
     if (entry?.isIntersecting) {
-      callback();
-      obs.unobserve(entry.target);
+      callback()
+      obs.unobserve(entry.target)
     }
-  }, { threshold, rootMargin });
+  }, { threshold, rootMargin })
 
-  if (refElement.value) obs.observe(refElement.value);
+  if (refElement.value) obs.observe(refElement.value)
   return obs;
 }
-
+// Ciclo de vida
 onMounted(() => {
   interval = window.setInterval(() => {
     activeIndex.value = (activeIndex.value + 1) % items.length
   }, 8000)
 
   createObserver(titleRef, () => {
-    inViewTitle.value = true;
+    inViewTitle.value = true
 
-    const triggerCards = () => {
-      inView.value = true;
-    };
+    const triggerCards = () => inView.value = true
 
     if (sectionRef.value) {
-      const rect = sectionRef.value.getBoundingClientRect();
-      if (rect.top < window.innerHeight && rect.bottom > 0) {
-        setTimeout(triggerCards, 200);
-      } else {
-        observer = createObserver(sectionRef, triggerCards, 0.2, "-100px 0px 0px 0px");
-      }
+      const rect = sectionRef.value.getBoundingClientRect()
+      if (rect.top < window.innerHeight && rect.bottom > 0) setTimeout(triggerCards, 200)
+      else observer = createObserver(sectionRef, triggerCards, 0.2, "-100px 0px 0px 0px")
     }
-  }, 0.2);
-});
-
-onBeforeUnmount(() => {
-  if (interval) clearInterval(interval)
+  }, 0.2)
 })
-
-onUnmounted(() => {
-  if (observer && sectionRef.value) observer.unobserve(sectionRef.value);
-});
+onBeforeUnmount(() => { if (interval) clearInterval(interval) })
+onUnmounted(() => { if (observer && sectionRef.value) observer.unobserve(sectionRef.value) });
 </script>
 
 <style scoped>
@@ -146,13 +134,8 @@ h1.in-view {
   transform: translateY(30px);
 }
 
-.carousel-item.active {
-  width: 410px;
-}
-
-.carousel-item.in-view {
-  animation: slideUp 0.8s ease forwards;
-}
+.carousel-item.active { width: 410px; }
+.carousel-item.in-view { animation: slideUp 0.8s ease forwards; }
 
 .carousel-image {
   width: 100%;
@@ -189,17 +172,9 @@ h1.in-view {
   font-weight: 700;
 }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.4s;
-}
+.fade-enter-active, .fade-leave-active { transition: opacity 0.4s; }
+.fade-enter-from, .fade-leave-to { opacity: 0; }
 
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-
-/* Responsivo */
 @media (max-width: 1110px) {
   .carousel {
     flex-direction: column;
@@ -224,18 +199,9 @@ h1.in-view {
 }
 
 @media (max-width: 400px) {
-  .carousel {
-    gap: 12px;
-  }
-
-  .carousel-item {
-    height: 120px;
-  }
-
-  .carousel-item.active {
-    height: 250px;
-  }
-
+  .carousel { gap: 12px; }
+  .carousel-item { height: 120px; }
+  .carousel-item.active { height: 250px; }
   .carousel-text {
     bottom: 12px;
     left: 12px;

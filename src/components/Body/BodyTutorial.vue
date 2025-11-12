@@ -27,12 +27,12 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount, onUnmounted } from 'vue';
-
+// Tipagens
 interface Step {
   title: string;
   text: string;
 };
-
+// Dados do tutorial
 const steps: Step[] = [
   {
     title: 'Contato com a equipe comercial',
@@ -55,7 +55,7 @@ const steps: Step[] = [
     text: 'Personalize o dashboard para que cada usuário visualize os dados da forma mais eficiente e possa utilizá-los para discutir e definir melhores estratégias de negócio.'
   }
 ];
-
+// Estados iniciais e referências aos elementos do DOM
 const sectionRef = ref<HTMLElement | null>(null);
 const titleRef = ref<HTMLElement | null>(null);
 const cardRef = ref<HTMLElement | null>(null);
@@ -69,7 +69,7 @@ const activeIndex = ref(0);
 
 let interval: number | undefined;
 let observer: IntersectionObserver | null = null;
-
+// Métodos
 function createObserver(refElement: typeof sectionRef, callback: () => void, threshold = 0.2, rootMargin = "0px") {
   const obs = new IntersectionObserver((entries) => {
     const entry = entries[0];
@@ -102,11 +102,9 @@ function updateProgress() {
   let progressPercent = (distancePassed / sectionHeight) * 100;
   progress.value = Math.min(Math.max(progressPercent, 0), 100);
 }
-
+// Ciclo de vida
 onMounted(() => {
-  interval = window.setInterval(() => {
-    activeIndex.value = (activeIndex.value + 1) % steps.length;
-  }, 8000);
+  interval = window.setInterval(() => activeIndex.value = (activeIndex.value + 1) % steps.length, 8000);
 
   window.addEventListener('scroll', updateProgress, { passive: true });
   updateProgress();
@@ -116,9 +114,7 @@ onMounted(() => {
 
     setTimeout(() => {
       inViewCard.value = true;
-      setTimeout(() => {
-        inViewSteps.value = true;
-      }, 300);
+      setTimeout(() => inViewSteps.value = true, 300);
     }, 200);
   }, 0.2);
 });
@@ -128,15 +124,11 @@ onBeforeUnmount(() => {
   if (interval) clearInterval(interval);
 });
 
-onUnmounted(() => {
-  if (observer && sectionRef.value) observer.unobserve(sectionRef.value);
-});
+onUnmounted(() => { if (observer && sectionRef.value) observer.unobserve(sectionRef.value); });
 </script>
 
 <style scoped>
-section {
-  background-color: var(--color-background-site);
-}
+section { background-color: var(--color-background-site); }
 
 h1 {
   color: var(--color-text);
@@ -152,9 +144,7 @@ h1.in-view {
   transform: translateY(0);
 }
 
-.tutorial-title strong {
-  color: var(--vt-c-red);
-}
+.tutorial-title strong { color: var(--vt-c-red); }
 
 .tutorial-card {
   position: relative;
@@ -163,7 +153,7 @@ h1.in-view {
   background-color: var(--color-background);
   border-radius: 50px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
-  padding: 60px 60px;
+  padding: 60px;
   display: flex;
   gap: 30px;
   overflow: hidden;
@@ -171,9 +161,7 @@ h1.in-view {
   transform: translateY(30px);
 }
 
-.tutorial-card.in-view {
-  animation: slideUp 0.8s ease forwards;
-}
+.tutorial-card.in-view { animation: slideUp 0.8s ease forwards; }
 
 .progress-bar {
   width: 3px;
@@ -209,9 +197,7 @@ h1.in-view {
   transform: translateY(30px);
 }
 
-.step.in-view {
-  animation: slideUp 0.8s ease forwards;
-}
+.step.in-view { animation: slideUp 0.8s ease forwards; }
 
 @media (max-width: 1100px) {
   .tutorial-card {
@@ -221,9 +207,7 @@ h1.in-view {
     width: 80%;
   }
 
-  .tutorial-steps {
-    gap: 20px;
-  }
+  .tutorial-steps { gap: 20px; }
   
   h1 {
     text-align: center;
@@ -240,7 +224,6 @@ h1.in-view {
     width: 90%;
     border-radius: 30px;
   }
-
   .tutorial-steps { gap: 15px; }
   .step { gap: 15px; }
   .step p { font-size: 22px !important; }

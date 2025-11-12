@@ -90,7 +90,7 @@ const emit = defineEmits<{
   (e: "update:modelValue", value: boolean): void
   (e: "item-selected", component: DefineComponent<{}, {}, any>): void
 }>()
-// Estados  iniciais
+// Estados iniciais e referências aos elementos do DOM
 const internalDrawer = ref(props.modelValue)
 const windowWidth = ref(window.innerWidth)
 
@@ -107,6 +107,12 @@ const drawerStyle = computed(() => ({
 // Watchers 
 watch(() => props.modelValue, v => (internalDrawer.value = v))
 watch(internalDrawer, v => emit('update:modelValue', v))
+watch(() => activeSection.value, (newValue) => {
+  if (newValue !== null) {
+    // Expande a seção selecionada automaticamente
+    toggleSection(newValue);
+  }
+});
 // Métodos
 const toggleSection = (sectionIndex: number) => {
   if (openSections.value.includes(sectionIndex)) openSections.value = openSections.value.filter(i => i !== sectionIndex);
@@ -130,7 +136,7 @@ const setActive = (sectionIndex: number, itemIndex: number) => {
     emit("item-selected", item.component);
   }
 };
-// Ciclos de vida
+// Ciclo de vida
 const handleResize = () => windowWidth.value = window.innerWidth
 onMounted(() => window.addEventListener('resize', handleResize))
 onBeforeUnmount(() => window.removeEventListener('resize', handleResize))
