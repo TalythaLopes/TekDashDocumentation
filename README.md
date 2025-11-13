@@ -43,7 +43,7 @@ A documentação é organizada em **dois contextos principais**:
 
 ## 🧩 Estrutura do Projeto
 
-```bash
+````
 src/
 ├─ assets/ # Estilos globais e variáveis
 ├─ components/
@@ -60,7 +60,7 @@ Essa arquitetura modular permite que **novos documentos sejam adicionados com fa
 
 ## ⚙️ Como Executar Localmente
 
-```bash
+````
 # Clonar o repositório
 git clone https://github.com/TalythaLopes/TekDashDocumentation.git
 
