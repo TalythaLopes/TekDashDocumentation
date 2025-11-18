@@ -35,7 +35,7 @@
 </template>
 
 <script setup lang="ts">
-import Logo from '@/components/buttom/Logo.vue'
+import Logo from '@/components/common/Logo.vue'
 
 const props = defineProps<{
   drawer: boolean
@@ -60,7 +60,7 @@ const props = defineProps<{
   border: none;
   margin-right: 8px;
 }
-.menu-toggle .v-icon { color: var(--vt-c-red); }
+.menu-toggle .v-icon { color: var(--color-principal); }
 
 .logo-area {
   display: flex;
@@ -71,10 +71,10 @@ const props = defineProps<{
   width: 1px;
   height: 42px;
   margin: 0 8px;
-  background-color: var(--vt-c-red);
+  background-color: var(--color-principal);
 }
 
-.top-center { color: var(--vt-c-red); }
+.top-center { color: var(--color-principal); }
 
 .bar-center {
   flex: 1;
@@ -123,7 +123,7 @@ const props = defineProps<{
   transition: color 0.2s;
 
   &:hover {
-    color: var(--vt-c-red);
+    color: var(--color-principal);
   }
 }
 

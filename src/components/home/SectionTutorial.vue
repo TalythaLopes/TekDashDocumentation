@@ -2,20 +2,20 @@
 
 <template>
   <section ref="sectionRef">
-    <h1 ref="titleRef" :class="{ 'in-view': inViewTitle }">
+    <h1 ref="titleRef" :class="{ 'LStyleInView': inViewTitle }">
       Como adquirir o <strong>TekDashboard</strong> se você já usa o ERP Tek-System?
     </h1>
 
-    <div ref="cardRef" class="tutorial-card" :class="{ 'in-view': inViewCard }">
-      <div class="progress-bar">
-        <div class="progress-fill" :style="{ height: progress + '%' }"></div>
+    <div ref="cardRef" class="LStyleTutorialCard" :class="{ 'LStyleInView': inViewCard }">
+      <div class="LStyleProgressBar">
+        <div class="LStyleProgressFill" :style="{ height: progress + '%' }"></div>
       </div>
 
-      <div class="tutorial-steps">
-        <div v-for="(step, index) in steps" :key="index" class="step" :class="{ 'in-view': inViewSteps }"
+      <div class="LStyleTutorialSteps">
+        <div v-for="(step, index) in steps" :key="index" class="LStyleStep" :class="{ 'LStyleInView': inViewSteps }"
           :style="{ animationDelay: `${0.2 * index}s` }">
           <p :style="{ fontSize: '40px' }">0{{ index + 1 }}</p>
-          <div class="step-text">
+          <div class="LStyleStepText">
             <h5>{{ step.title }}</h5>
             <p class="pb-0">{{ step.text }}</p>
           </div>
@@ -139,14 +139,14 @@ h1 {
   text-align: center;
 }
 
-h1.in-view {
+h1.LStyleInView {
   opacity: 1;
   transform: translateY(0);
 }
 
-.tutorial-title strong { color: var(--vt-c-red); }
+.LStyleTutorialTitle strong { color: var(--color-principal); }
 
-.tutorial-card {
+.LStyleTutorialCard {
   position: relative;
   width: 100%;
   max-width: 1050px;
@@ -161,9 +161,9 @@ h1.in-view {
   transform: translateY(30px);
 }
 
-.tutorial-card.in-view { animation: slideUp 0.8s ease forwards; }
+.LStyleTutorialCard.LStyleInView { animation: slideUp 0.8s ease forwards; }
 
-.progress-bar {
+.LStyleProgressBar {
   width: 3px;
   background-color: var(--color-background-site);
   border-radius: 3px;
@@ -172,24 +172,24 @@ h1.in-view {
   overflow: hidden;
 }
 
-.progress-fill {
+.LStyleProgressFill {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 0%;
-  background-color: var(--vt-c-red);
+  background-color: var(--color-principal);
   border-radius: 3px;
   transition: height 0.25s ease;
 }
 
-.tutorial-steps {
+.LStyleTutorialSteps {
   display: flex;
   flex-direction: column;
   gap: 40px;
 }
 
-.step {
+.LStyleStep {
   display: flex;
   align-items: flex-start;
   gap: 30px;
@@ -197,17 +197,17 @@ h1.in-view {
   transform: translateY(30px);
 }
 
-.step.in-view { animation: slideUp 0.8s ease forwards; }
+.LStyleStep.LStyleInView { animation: slideUp 0.8s ease forwards; }
 
 @media (max-width: 1100px) {
-  .tutorial-card {
+  .LStyleTutorialCard {
     flex-direction: row;
     padding: 30px 24px;
     gap: 20px;
     width: 80%;
   }
 
-  .tutorial-steps { gap: 20px; }
+  .LStyleTutorialSteps { gap: 20px; }
   
   h1 {
     text-align: center;
@@ -217,17 +217,17 @@ h1.in-view {
 }
 
 @media (max-width: 400px) {
-  .tutorial-card {
+  .LStyleTutorialCard {
     flex: 1 1 auto;
     padding: 24px;
     gap: 15px;
     width: 90%;
     border-radius: 30px;
   }
-  .tutorial-steps { gap: 15px; }
-  .step { gap: 15px; }
-  .step p { font-size: 22px !important; }
-  .step-text p { font-size: 16px !important; }
-  .step-text h5 { padding-bottom: 5px; }
+  .LStyleTutorialSteps { gap: 15px; }
+  .LStyleStep { gap: 15px; }
+  .LStyleStep p { font-size: 22px !important; }
+  .LStyleStepText p { font-size: 16px !important; }
+  .LStyleStepText h5 { padding-bottom: 5px; }
 }
 </style>

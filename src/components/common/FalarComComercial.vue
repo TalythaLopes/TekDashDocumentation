@@ -10,7 +10,7 @@
 
 <style scoped>
 .btn-especialista {
-  background-color: var(--vt-c-red);
+  background-color: var(--color-principal);
   color: var(--color-background);
   padding: 12px 24px;
   border-radius: 4px;

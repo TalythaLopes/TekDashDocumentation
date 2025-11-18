@@ -2,14 +2,14 @@
 
 <template>
   <section ref="sectionRef">
-    <h1 ref="titleRef" :class="{ 'in-view': inViewTitle }">Temas para acompanhar sua empresa</h1>
+    <h1 ref="titleRef" :class="{ 'LStyleInView': inViewTitle }">Temas para acompanhar sua empresa</h1>
 
-    <div class="carousel">
-      <div v-for="(item, index) in items" :key="index" class="carousel-item" :class="{ active: index === activeIndex, 'in-view': inView }"
+    <div class="LStyleCarrossel">
+      <div v-for="(item, index) in items" :key="index" class="LStyleCarrosselItem" :class="{ LStyleActive: index === activeIndex, 'LStyleInView': inView }"
         :style="{ animationDelay: `${0.2 * index}s` }" @click="setActive(index)">
-        <img :src="item.image" :alt="item.title" class="carousel-image" />
+        <img :src="item.image" :alt="item.title" class="LStyleCarrosselImage" />
         <transition name="fade">
-          <div v-if="index === activeIndex" class="carousel-text">
+          <div v-if="index === activeIndex" class="LStyleCarrosselText">
             <h4>{{ item.title }}</h4>
             <p class="pb-0">{{ item.description }}</p>
           </div>
@@ -22,13 +22,13 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount, onUnmounted } from 'vue'
 // Tipagens
-interface CarouselItem {
+interface CarrosselItem {
   image: string
   title: string
   description: string
 };
 // Dados do carrossel
-const items: CarouselItem[] = [
+const items: CarrosselItem[] = [
   {
     image: '/img/TemaVendas.jpg',
     title: 'Vendas',
@@ -105,12 +105,12 @@ h1 {
   transition: all 0.8s ease;
 }
 
-h1.in-view {
+h1.LStyleInView {
   opacity: 1;
   transform: translateY(0);
 }
 
-.carousel {
+.LStyleCarrossel {
   display: flex;
   justify-content: center;
   align-items: stretch;
@@ -121,7 +121,7 @@ h1.in-view {
   margin: 0 auto;
 }
 
-.carousel-item {
+.LStyleCarrosselItem {
   position: relative;
   width: 200px;
   height: 555px;
@@ -134,10 +134,10 @@ h1.in-view {
   transform: translateY(30px);
 }
 
-.carousel-item.active { width: 410px; }
-.carousel-item.in-view { animation: slideUp 0.8s ease forwards; }
+.LStyleCarrosselItem.LStyleActive { width: 410px; }
+.LStyleCarrosselItem.LStyleInView { animation: slideUp 0.8s ease forwards; }
 
-.carousel-image {
+.LStyleCarrosselImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -145,12 +145,12 @@ h1.in-view {
   filter: brightness(0.5);
 }
 
-.carousel-item.active .carousel-image {
+.LStyleCarrosselItem.LStyleActive .LStyleCarrosselImage {
   transform: scale(1.05);
   filter: brightness(1);
 }
 
-.carousel-text {
+.LStyleCarrosselText {
   position: absolute;
   bottom: 24px;
   left: 24px;
@@ -167,7 +167,7 @@ h1.in-view {
   gap: 8px;
 }
 
-.carousel-text h4 {
+.LStyleCarrosselText h4 {
   font-size: 26px;
   font-weight: 700;
 }
@@ -176,17 +176,17 @@ h1.in-view {
 .fade-enter-from, .fade-leave-to { opacity: 0; }
 
 @media (max-width: 1110px) {
-  .carousel {
+  .LStyleCarrossel {
     flex-direction: column;
     align-items: center;
   }
 
-  .carousel-item {
+  .LStyleCarrosselItem {
     width: 90%;
     height: 200px;
   }
 
-  .carousel-item.active {
+  .LStyleCarrosselItem.LStyleActive {
     width: 90%;
     height: 300px;
   }
@@ -199,10 +199,10 @@ h1.in-view {
 }
 
 @media (max-width: 400px) {
-  .carousel { gap: 12px; }
-  .carousel-item { height: 120px; }
-  .carousel-item.active { height: 250px; }
-  .carousel-text {
+  .LStyleCarrossel { gap: 12px; }
+  .LStyleCarrosselItem { height: 120px; }
+  .LStyleCarrosselItem.LStyleActive { height: 250px; }
+  .LStyleCarrosselText {
     bottom: 12px;
     left: 12px;
     right: 12px;

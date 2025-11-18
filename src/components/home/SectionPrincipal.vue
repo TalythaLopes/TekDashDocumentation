@@ -2,12 +2,12 @@
 
 <template>
   <section>
-    <div class="container">
-      <div class="text-top">
-        <div class="animate-block block-1">
+    <div class="LStyleContainer">
+      <div class="LStyleText">
+        <div class="LStyleAnimatedBlock block-1">
           <h4>ERP Tek-System na palma da mão</h4>
         </div>
-        <div class="animate-block block-2">
+        <div class="LStyleAnimatedBlock block-2">
           <h2>
             <!-- Com o TekDashboard, o seu ERP Tek-System vai com você.-->
             Visualize indicadores, acompanhe resultados e mantenha o
@@ -15,15 +15,16 @@
           </h2>
         </div>
       </div>
-      <div class="image-container">
-        <img ref="imgRef" src="/img/TelaTekDash.png" alt="Mulher loira de costas olhando o TekDashboard no celular e no notebook" class="image"/>
+      <div class="LStyleContainerImage">
+        <img ref="imgRef" src="/img/TelaTekDash.png" alt="Mulher loira de costas olhando o TekDashboard no celular e no notebook" class="LStyleImage"/>
       </div>
-      <div class="form">
-        <div class="animate-block block-3 form">
-          <router-link to="/documentacao" class="btn-doc">Mais informações sobre o TekDashboard</router-link>
+      <div class="LStyleButtons">
+        <div class="LStyleAnimatedBlock block-3 LStyleButtons">
+          <router-link to="/documentacao" class="LStyleBtnDoc">Mais informações sobre o TekDashboard</router-link>
         </div>
-        <div class="animate-block block-4 form">
-          <a href="https://tekdashboard.teksystem.com.br/" target="_blank" class="btn-login">Fazer login no TekDashboard</a>
+        <div class="LStyleAnimatedBlock block-4 LStyleButtons">
+          <a href="https://tekdashboard.teksystem.com.br/" target="_blank" class="LStyleBtnLogin">Fazer login no
+            TekDashboard</a>
         </div>
       </div>
     </div>
@@ -45,7 +46,7 @@ onMounted(async () => {
 </script>
 
 <style scoped>
-.animate-block {
+.LStyleAnimatedBlock {
   opacity: 0;
   transform: translateY(30px);
   animation: slideUp 0.8s ease forwards;
@@ -58,7 +59,7 @@ onMounted(async () => {
 
 section { padding-top: 30px; }
 
-.container {
+.LStyleContainer {
   width: 90%;
   max-width: 1400px;
   margin: 0 auto;
@@ -70,14 +71,14 @@ section { padding-top: 30px; }
   align-items: center;
 }
 
-.text-top {
+.LStyleText {
   grid-area: text-top;
   display: flex;
   flex-direction: column;
   max-width: 600px;
 }
 
-.form {
+.LStyleButtons {
   grid-area: form;
   display: flex;
   flex-direction: column;
@@ -85,7 +86,7 @@ section { padding-top: 30px; }
   gap: 12px;
 }
 
-.image-container {
+.LStyleContainerImage {
   grid-area: image;
   width: 760px;
   height: 550px;
@@ -94,7 +95,7 @@ section { padding-top: 30px; }
   position: relative;
 }
 
-.image-container .image {
+.LStyleContainerImage .LStyleImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -105,21 +106,21 @@ section { padding-top: 30px; }
   transition: transform 0.4s ease;
 }
 
-.image-container .image.loaded {
+.LStyleContainerImage .LStyleImage.loaded {
   animation: none;
   transform: scale(1);
   opacity: 1;
 }
 
-.image-container:hover .image.loaded { transform: scale(1.05);}
+.LStyleContainerImage:hover .LStyleImage.loaded { transform: scale(1.05);}
 
-.text-top h4 {
-  color: var(--vt-c-red);
+.LStyleText h4 {
+  color: var(--color-principal);
   margin-bottom: 10px;
 }
 
-.form .btn-doc,
-.form .btn-login {
+.LStyleButtons .LStyleBtnDoc,
+.LStyleButtons .LStyleBtnLogin {
   text-decoration: none;
   padding: 12px 16px;
   border-radius: 20px;
@@ -133,29 +134,29 @@ section { padding-top: 30px; }
     transform: scale(1.06);
   }
 }
-.form .btn-doc {
+.LStyleButtons .LStyleBtnDoc {
   background-color: var(--color-background);
-  color: var(--vt-c-red);
-  border: var(--vt-c-red) 1.5px solid;
+  color: var(--color-principal);
+  border: var(--color-principal) 1.5px solid;
 }
-.form .btn-login {
-  background-color: var(--vt-c-red);
+.LStyleButtons .LStyleBtnLogin {
+  background-color: var(--color-principal);
   color: var(--color-background);
   border: none;
 }
 
 @media (max-width: 1330px) {
-  .container { grid-template-columns: 1fr 620px; }
-  .image-container { width: 620px; height: 450px; }
+  .LStyleContainer { grid-template-columns: 1fr 620px; }
+  .LStyleContainerImage { width: 620px; height: 450px; }
 }
 
 @media (max-width: 1250px) {
-  .container { grid-template-columns: 1fr 520px; }
-  .image-container { width: 520px; height: 380px; }
+  .LStyleContainer { grid-template-columns: 1fr 520px; }
+  .LStyleContainerImage { width: 520px; height: 380px; }
 }
 
 @media (max-width: 1200px) {
-  .container {
+  .LStyleContainer {
     grid-template-columns: 1fr;
     grid-template-areas:
       "text-top"
@@ -165,12 +166,12 @@ section { padding-top: 30px; }
     justify-items: center;
     gap: 24px;
   }
-  .text-top { max-width: 90%; margin: 0 auto; }
-  .image-container { width: 100%; height: 200px; }
-  .image-container img { height: 200px; }
+  .LStyleText { max-width: 90%; margin: 0 auto; }
+  .LStyleContainerImage { width: 100%; height: 200px; }
+  .LStyleContainerImage img { height: 200px; }
 }
 
 @media (max-width: 400px) {
-  .container { gap: 20px; }
+  .LStyleContainer { gap: 20px; }
 }
 </style>

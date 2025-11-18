@@ -6,7 +6,7 @@ a {
 }
 
 a.fundo {
-  color: hsla(358, 73%, 33%, 1);
+  color: var(--color-principal-hover);  
   font-size: 15px;
   transition: 0.4s;
   font-weight: bold;
@@ -27,11 +27,11 @@ a.zoom-btn {
 
 @media (hover: hover) {
   a.fundo:hover {
-    background-color: hsla(358, 73%, 33%, 0.2);
+    background-color: var(--color-principal-background-hover);
   }
 
   a.zoom:hover {
-    color: hsla(358, 73%, 33%, 1) !important;
+    color: var(--color-principal-hover) !important;
     transform: scale(1.20);
   }
 

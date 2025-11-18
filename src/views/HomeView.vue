@@ -2,22 +2,24 @@
   <NavBar />
   <NavBarTekDash />
   <div>
-    <BodyImgDireita />
-    <BodyTexto />
-    <BodyImgTopicos />
-    <BodyTutorial />
+    <SectionPrincipal />
+    <SectionCardsVantagens />
+    <SectionTemas />
+    <SectionTutorial />
   </div>
   <BottomInfos />
+  <WhatsApp />
 </template>
 
 <script lang="ts" setup>
-import NavBar from '../components/navBars/NavBar.vue'
-import NavBarTekDash from '@/components/navBars/NavBarTekDash.vue';
-import BodyImgDireita from '@/components/body/BodyImgDireita.vue';
-import BodyTexto from '@/components/body/BodyTexto.vue';
-import BodyImgTopicos from '@/components/body/BodyImgTopicos.vue';
-import BodyTutorial from '@/components/body/BodyTutorial.vue';
-import BottomInfos from '@/components/navBars/BottomInfos.vue';
+import NavBar from '../components/navigation/NavBar.vue'
+import NavBarTekDash from '@/components/navigation/NavBarTekDash.vue';
+import SectionPrincipal from '@/components/home/SectionPrincipal.vue';
+import SectionCardsVantagens from '@/components/home/SectionCardsVantagens.vue';
+import SectionTemas from '@/components/home/SectionTemas.vue';
+import SectionTutorial from '@/components/home/SectionTutorial.vue';
+import BottomInfos from '@/components/navigation/BottomInfos.vue';
+import WhatsApp from '@/components/common/WhatsApp.vue';
 </script>
 
 <style scoped>

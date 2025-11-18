@@ -17,8 +17,8 @@
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import type { DefineComponent } from 'vue'
 
-import TopBar from "@/components/navBars/DocTopBar.vue"
-import SideBar from "@/components/navBars/DocSideBar.vue"
+import TopBar from "@/components/navigation/DocTopBar.vue"
+import SideBar from "@/components/navigation/DocSideBar.vue"
 
 import VamosComecar from '@/components/docs/DocVamosComecar.vue'
 // Estados iniciais e referências aos elementos do DOM

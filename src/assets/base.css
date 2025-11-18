@@ -17,11 +17,16 @@
   --vt-c-blue-soft: #3F5987;
   --vt-c-blue-mute: #566D95;
   --vt-c-blue-divider: #9FACC3;
+  --vt-c-blue-background: #e6ecf3;
+  --vt-c-blue-hover: hsla(219, 58%, 28%, 1);
+  --vt-c-blue-background-hover: hsla(219, 58%, 28%, 0.2);
 
   --vt-c-red: #92171B;
   --vt-c-red-soft: #A74548;
   --vt-c-red-mute: #CA8D8F;
   --vt-c-red-background: #f7ecec;
+  --vt-c-red-hover: hsla(358, 73%, 33%, 1);
+  --vt-c-red-background-hover: hsla(358, 73%, 33%, 0.2);
 
   --vt-c-gray: #242424;
   --vt-c-gray-soft: #656565;
@@ -51,6 +56,11 @@
   --color-heading: var(--vt-c-text-light-2);
   --color-text: var(--vt-c-text-light-1);
 
+  --color-principal: var(--vt-c-red);
+  --color-principal-background: var(--vt-c-red-background);
+  --color-principal-hover: var(--vt-c-red-hover);
+  --color-principal-background-hover: var(--vt-c-red-background-hover);
+
   --section-gap: 32px;
   --section-padding: 80px 0;
 }
@@ -77,6 +87,16 @@
   font-weight: normal;
 }
 
+::selection {
+  background-color: color-mix(in srgb, var(--color-principal) 80%, transparent);
+  color: var(--color-background);
+}
+
+::-moz-selection {
+  background-color: color-mix(in srgb, var(--color-principal) 80%, transparent);
+  color: var(--color-background);
+}
+
 body {
   min-height: 100vh;
   color: var(--color-text);
@@ -101,7 +121,7 @@ section {
 }
 
 h1 { /* Título principal da seção */
-  color: var(--vt-c-red);
+  color: var(--color-principal);
   font-size: 48px;
   font-weight: 700;
 }
@@ -149,7 +169,7 @@ h6 { /* Nota de rodapé */
 
 p {
   font-size: 18px;
-  line-height: 1.1;
+  line-height: 1.3;
   padding-bottom: 16px;
 }
 
@@ -158,7 +178,7 @@ bold {
 }
 
 strong {
-  color: var(--vt-c-red);
+  color: var(--color-principal);
 }
 
 code {

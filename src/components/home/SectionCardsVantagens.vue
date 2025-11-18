@@ -2,12 +2,12 @@
 
 <template>
   <section ref="sectionRef">
-    <h1 ref="titleRef" :class="{ 'in-view': inViewTitle }">Vantagens do TekDashboard</h1>
+    <h1 ref="titleRef" :class="{ 'LStyleInView': inViewTitle }">Vantagens do TekDashboard</h1>
 
-    <div ref="cardRef" class="card-container">
-      <div v-for="(item, index) in vantagens" :key="index" class="card-wrapper" :class="{ 'in-view': inViewCards }"
-        :style="{ animationDelay: `${0.5 * index}s` }">
-        <div class="card">
+    <div ref="cardRef" class="LStyleCardContainer">
+      <div v-for="(item, index) in vantagens" :key="index" class="LStyleCardWrapper"
+        :class="{ 'LStyleInView': inViewCards }" :style="{ animationDelay: `${0.5 * index}s` }">
+        <div class="LStyleCard">
           <v-icon size="48">{{ item.icon }}</v-icon>
           <h3>{{ item.title }}</h3>
           <p class="pb-0" :style="{ fontSize: '20px' }">{{ item.description }}</p>
@@ -88,12 +88,12 @@ h1 {
   transform: translateY(30px);
   transition: all 0.8s ease;
 }
-h1.in-view {
+h1.LStyleInView {
   opacity: 1;
   transform: translateY(0);
 }
 
-.card-container {
+.LStyleCardContainer {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -102,7 +102,7 @@ h1.in-view {
   max-width: 1400px;
 }
 
-.card-wrapper {
+.LStyleCardWrapper {
   flex: 1 1 300px;
   max-width: 450px;
   min-width: 250px;
@@ -111,9 +111,9 @@ h1.in-view {
   display: flex;
   flex-direction: column;
 }
-.card-wrapper.in-view { animation: slideUp 0.8s forwards ease-out; }
+.LStyleCardWrapper.LStyleInView { animation: slideUp 0.8s forwards ease-out; }
 
-.card {
+.LStyleCard {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -133,7 +133,7 @@ h1.in-view {
     transform: scale(1.05); 
   }
 }
-.card h3 {
+.LStyleCard h3 {
   font-size: 36px;
   font-weight: 700;
   margin: 0;
@@ -145,28 +145,28 @@ h1.in-view {
     text-align: center;
     padding: 0 32px; 
   }
-  .card-container {
+  .LStyleCardContainer {
     flex-direction: column;
     align-items: center;
   }
-  .card-wrapper {
+  .LStyleCardWrapper {
     flex: 1 1 auto;
     max-width: 900px;
     min-width: 90%;
   }
-  .card { padding: 32px 32px 32px 24px; }
-  .card h3 { max-width: 100%; }
+  .LStyleCard { padding: 32px 32px 32px 24px; }
+  .LStyleCard h3 { max-width: 100%; }
 }
 
 @media (max-width: 400px) {
-  .card-container {
+  .LStyleCardContainer {
     gap: 12px;
     width: 100%;
   }
 
-  .card-wrapper { max-width: 90%; }
+  .LStyleCardWrapper { max-width: 90%; }
 
-  .card {
+  .LStyleCard {
     align-items: center;
     text-align: center;
     padding: 32px 24px;

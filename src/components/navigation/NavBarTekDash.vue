@@ -34,11 +34,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: var(--vt-c-red);
+  color: var(--color-principal);
 }
 
 .navbar-title {
-  color: var(--vt-c-red);
+  color: var(--color-principal);
 }
 
 .nav-links {
