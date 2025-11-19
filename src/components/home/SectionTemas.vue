@@ -1,14 +1,13 @@
-/* respondividade titulo carrossel - vibe coded *mudar* */
-
 <template>
   <section ref="sectionRef">
     <h1 ref="titleRef" :class="{ 'LStyleInView': inViewTitle }">Temas para acompanhar sua empresa</h1>
-
     <div class="LStyleCarrossel">
-      <div v-for="(item, index) in items" :key="index" class="LStyleCarrosselItem" :class="{ LStyleActive: index === activeIndex, 'LStyleInView': inView }"
+      <div v-for="(item, index) in items" :key="index" class="LStyleCarrosselItem" 
+        :class="{ LStyleActive: index === activeIndex, 'LStyleInView': inView }"
         :style="{ animationDelay: `${0.2 * index}s` }" @click="setActive(index)">
         <img :src="item.image" :alt="item.title" class="LStyleCarrosselImage" />
-        <transition name="fade">
+        <v-icon class="CarrosselIcon">{{ item.icon }}</v-icon>
+        <transition name="text-fade">
           <div v-if="index === activeIndex" class="LStyleCarrosselText">
             <h4>{{ item.title }}</h4>
             <p class="pb-0">{{ item.description }}</p>
@@ -24,6 +23,7 @@ import { ref, onMounted, onBeforeUnmount, onUnmounted } from 'vue'
 // Tipagens
 interface CarrosselItem {
   image: string
+  icon: string
   title: string
   description: string
 };
@@ -31,21 +31,25 @@ interface CarrosselItem {
 const items: CarrosselItem[] = [
   {
     image: '/img/TemaVendas.jpg',
+    icon: 'mdi-invoice-text-check',
     title: 'Vendas',
     description: 'Analise a movimentação das vendas de forma rápida e dinâmica.'
   },
   {
     image: '/img/TemaFinanceiro.jpeg',
+    icon: 'mdi-finance',
     title: 'Financeiro',
     description: 'Acompanhe suas finanças na palma da sua mão.'
   },
   {
     image: '/img/TemaEstoque.jpeg',
+    icon: 'mdi-package-variant',
     title: 'Estoque',
     description: 'Tenha atualização sobre seu estoque há qualquer momento.'
   },
   {
     image: '/img/TemaProducao.jpg',
+    icon: 'mdi-factory',
     title: 'Produção',
     description: 'Painéis sobre a produção da sua empresa sempre atualizados.'
   }
@@ -61,7 +65,18 @@ const activeIndex = ref(0)
 let interval: number | undefined
 let observer: IntersectionObserver | null = null
 // Métodos
-const setActive = (index: number) => activeIndex.value = index;
+function startInterval() {
+  if (interval) clearInterval(interval)
+
+  interval = window.setInterval(() => {
+    activeIndex.value = (activeIndex.value + 1) % items.length
+  }, 8000)
+}
+
+const setActive = (index: number) => {
+  activeIndex.value = index
+  startInterval()
+}
 
 function createObserver(refElement: typeof sectionRef, callback: () => void, threshold = 0.2, rootMargin = "0px") {
   const obs = new IntersectionObserver((entries) => {
@@ -84,7 +99,11 @@ onMounted(() => {
   createObserver(titleRef, () => {
     inViewTitle.value = true
 
-    const triggerCards = () => inView.value = true
+    const triggerCards = () => {
+      inView.value = true
+      activeIndex.value = 0
+      startInterval()
+    }
 
     if (sectionRef.value) {
       const rect = sectionRef.value.getBoundingClientRect()
@@ -150,6 +169,29 @@ h1.LStyleInView {
   filter: brightness(1);
 }
 
+.CarrosselIcon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 70px;
+  color: rgba(255, 255, 255, 0.9);
+
+  opacity: 1;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+}
+
+.LStyleActive .CarrosselIcon {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.8);
+}
+
+.LStyleCarrosselItem:not(.LStyleActive) .CarrosselIcon {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
 .LStyleCarrosselText {
   position: absolute;
   bottom: 24px;
@@ -172,8 +214,20 @@ h1.LStyleInView {
   font-weight: 700;
 }
 
-.fade-enter-active, .fade-leave-active { transition: opacity 0.4s; }
-.fade-enter-from, .fade-leave-to { opacity: 0; }
+.text-fade-enter-active {
+  transition: opacity 0.5s ease 0.45s, transform 0.5s ease 0.45s
+}
+
+.text-fade-leave-active {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.text-fade-enter-from,
+.text-fade-leave-to {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
 
 @media (max-width: 1110px) {
   .LStyleCarrossel {
