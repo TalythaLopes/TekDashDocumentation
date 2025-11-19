@@ -35,7 +35,7 @@
 </template>
 
 <script setup lang="ts">
-import Logo from '@/components/common/Logo.vue'
+import Logo from '@/components/common/LogoTekSystem.vue'
 
 const props = defineProps<{
   drawer: boolean

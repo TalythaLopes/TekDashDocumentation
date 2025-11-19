@@ -15,9 +15,9 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import Logo from '../common/Logo.vue';
+import Logo from '../common/LogoTekSystem.vue';
 import NavCenter from './NavCenter.vue';
-import FalarComComercial from '../common/FalarComComercial.vue';
+import FalarComComercial from '../common/BtnFalarComComercial.vue';
 // Estados inciais
 const mobileMenuOpen = ref(false)
 // Métodos
