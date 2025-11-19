@@ -6,6 +6,7 @@
         :class="{ LStyleActive: index === activeIndex, 'LStyleInView': inView }"
         :style="{ animationDelay: `${0.2 * index}s` }" @click="setActive(index)">
         <img :src="item.image" :alt="item.title" class="LStyleCarrosselImage" />
+        <div class="LStyleColorOverlay" :style="{ backgroundColor: item.color }" />
         <v-icon class="CarrosselIcon">{{ item.icon }}</v-icon>
         <transition name="text-fade">
           <div v-if="index === activeIndex" class="LStyleCarrosselText">
@@ -20,10 +21,35 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount, onUnmounted } from 'vue'
+// Ciclo de vida
+onMounted(() => {
+  interval = window.setInterval(() => {
+    activeIndex.value = (activeIndex.value + 1) % items.length
+  }, 8000)
+
+  createObserver(titleRef, () => {
+    inViewTitle.value = true
+
+    const triggerCards = () => {
+      inView.value = true
+      activeIndex.value = 0
+      startInterval()
+    }
+
+    if (sectionRef.value) {
+      const rect = sectionRef.value.getBoundingClientRect()
+      if (rect.top < window.innerHeight && rect.bottom > 0) setTimeout(triggerCards, 200)
+      else observer = createObserver(sectionRef, triggerCards, 0.2, "-100px 0px 0px 0px")
+    }
+  }, 0.2)
+})
+onBeforeUnmount(() => { if (interval) clearInterval(interval) })
+onUnmounted(() => { if (observer && sectionRef.value) observer.unobserve(sectionRef.value) });
 // Tipagens
 interface CarrosselItem {
   image: string
   icon: string
+  color: string
   title: string
   description: string
 };
@@ -32,24 +58,28 @@ const items: CarrosselItem[] = [
   {
     image: '/img/TemaVendas.jpg',
     icon: 'mdi-invoice-text-check',
+    color: 'rgba(241, 179, 4, 0.3)',
     title: 'Vendas',
     description: 'Analise a movimentação das vendas de forma rápida e dinâmica.'
   },
   {
     image: '/img/TemaFinanceiro.jpeg',
     icon: 'mdi-finance',
+    color: 'rgba(70, 169, 74, 0.3)',
     title: 'Financeiro',
     description: 'Acompanhe suas finanças na palma da sua mão.'
   },
   {
     image: '/img/TemaEstoque.jpeg',
     icon: 'mdi-package-variant',
+    color: 'rgba(102, 69, 58, 0.3)',
     title: 'Estoque',
     description: 'Tenha atualização sobre seu estoque há qualquer momento.'
   },
   {
     image: '/img/TemaProducao.jpg',
     icon: 'mdi-factory',
+    color: 'rgba(88, 117, 131, 0.3)',
     title: 'Produção',
     description: 'Painéis sobre a produção da sua empresa sempre atualizados.'
   }
@@ -90,30 +120,6 @@ function createObserver(refElement: typeof sectionRef, callback: () => void, thr
   if (refElement.value) obs.observe(refElement.value)
   return obs;
 }
-// Ciclo de vida
-onMounted(() => {
-  interval = window.setInterval(() => {
-    activeIndex.value = (activeIndex.value + 1) % items.length
-  }, 8000)
-
-  createObserver(titleRef, () => {
-    inViewTitle.value = true
-
-    const triggerCards = () => {
-      inView.value = true
-      activeIndex.value = 0
-      startInterval()
-    }
-
-    if (sectionRef.value) {
-      const rect = sectionRef.value.getBoundingClientRect()
-      if (rect.top < window.innerHeight && rect.bottom > 0) setTimeout(triggerCards, 200)
-      else observer = createObserver(sectionRef, triggerCards, 0.2, "-100px 0px 0px 0px")
-    }
-  }, 0.2)
-})
-onBeforeUnmount(() => { if (interval) clearInterval(interval) })
-onUnmounted(() => { if (observer && sectionRef.value) observer.unobserve(sectionRef.value) });
 </script>
 
 <style scoped>
@@ -168,6 +174,21 @@ h1.LStyleInView {
   transform: scale(1.05);
   filter: brightness(1);
 }
+
+.LStyleColorOverlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: 16px;
+
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.LStyleActive .LStyleColorOverlay {
+  opacity: 0;
+}
+
 
 .CarrosselIcon {
   position: absolute;
