@@ -1,5 +1,3 @@
-/* card pode ser um componente */
-
 <template>
   <section ref="sectionRef">
     <h1 ref="titleRef" :class="{ 'LStyleInView': inViewTitle }">Vantagens do TekDashboard</h1>

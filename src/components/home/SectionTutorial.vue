@@ -1,5 +1,3 @@
-/* VIBE CODING, REFAZ ESSE TREM */
-
 <template>
   <section ref="sectionRef">
     <h1 ref="titleRef" :class="{ 'LStyleInView': inViewTitle }">

@@ -1,5 +1,3 @@
-/* botoões - vibe coded *mudar urgente* */
-
 <template>
   <section>
     <div class="LStyleContainer">
