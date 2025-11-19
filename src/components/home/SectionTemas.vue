@@ -198,7 +198,7 @@ h1.LStyleInView {
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 600px) {
   .LStyleCarrossel { gap: 12px; }
   .LStyleCarrosselItem { height: 120px; }
   .LStyleCarrosselItem.LStyleActive { height: 250px; }

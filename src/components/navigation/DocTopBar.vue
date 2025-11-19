@@ -135,7 +135,7 @@ const props = defineProps<{
 @media (max-width: 900px) {
   .bar-center, .bar-right { display: none; }
 }
-@media (max-width: 400px) {
+@media (max-width: 600px) {
   .top-bar {
     height: 45px;
     padding: 5px !important;

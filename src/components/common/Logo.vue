@@ -23,7 +23,7 @@
   display: block;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 600px) {
   .logo-link { min-width: 95px; }
   .logo-img { max-height: 30px;  }
 }

@@ -90,7 +90,7 @@ const toggleMenu = () => mobileMenuOpen.value = !mobileMenuOpen.value
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 600px) {
   .navbar-container {
     height: 45px;
     padding: 5px

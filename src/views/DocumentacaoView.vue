@@ -5,8 +5,8 @@
   <v-app>
     <TopBar :drawer="drawer" :isDesktop="isDesktop" @toggle-drawer="toggleDrawer" />
     <SideBar v-model="drawer" @item-selected="handleItemSelected" />
-    <div class="content-area">
-      <v-container class="content">
+    <div class="LStyleAreaConteudo">
+      <v-container class="LStyleConteudo" fluid>
         <component :is="activeComponent" />
       </v-container>
     </div>
@@ -44,26 +44,26 @@ onBeforeUnmount(() => window.removeEventListener('resize', handleResize))
 </script>
 
 <style scoped>
-.content-area {
+.LStyleAreaConteudo {
   margin-left: 280px;
   margin-top: 64px;
   width: calc(100% - 280px);
   transition: margin-left 0.3s ease;
 }
 
-.content {
+.LStyleConteudo {
   padding: 0 20px;
   max-width: 1100px;
 }
 
 @media (max-width: 1000px) {
-  .content-area {
+  .LStyleAreaConteudo {
     margin-left: 0px;
     width: 100%;
   }
 }
 
-@media (max-width: 400px) {
-  .content-area { margin-top: 45px; }
+@media (max-width: 600px) {
+  .LStyleAreaConteudo { margin-top: 45px; }
 }
 </style>

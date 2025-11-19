@@ -171,7 +171,7 @@ section { padding-top: 30px; }
   .LStyleContainerImage img { height: 200px; }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 600px) {
   .LStyleContainer { gap: 20px; }
 }
 </style>

@@ -158,7 +158,7 @@ h1.LStyleInView {
   .LStyleCard h3 { max-width: 100%; }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 600px) {
   .LStyleCardContainer {
     gap: 12px;
     width: 100%;

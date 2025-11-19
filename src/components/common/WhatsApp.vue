@@ -23,6 +23,11 @@
   padding: 15px;
   border-radius: 50%;
   background-color: var(--color-principal);
+  transition: 0.3s ease;
+
+  &:hover{
+    transform: scale(1.2);
+  }
 }
 
 @media (max-width: 600px) {

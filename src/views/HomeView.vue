@@ -6,6 +6,7 @@
     <SectionCardsVantagens />
     <SectionTemas />
     <SectionTutorial />
+    <SectionGaleriaFotos />
   </div>
   <BottomInfos />
   <WhatsApp />
@@ -18,6 +19,7 @@ import SectionPrincipal from '@/components/home/SectionPrincipal.vue';
 import SectionCardsVantagens from '@/components/home/SectionCardsVantagens.vue';
 import SectionTemas from '@/components/home/SectionTemas.vue';
 import SectionTutorial from '@/components/home/SectionTutorial.vue';
+import SectionGaleriaFotos from '@/components/home/SectionGaleriaFotos.vue';
 import BottomInfos from '@/components/navigation/BottomInfos.vue';
 import WhatsApp from '@/components/common/WhatsApp.vue';
 </script>

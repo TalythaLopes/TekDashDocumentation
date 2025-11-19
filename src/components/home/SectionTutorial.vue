@@ -216,7 +216,7 @@ h1.LStyleInView {
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 600px) {
   .LStyleTutorialCard {
     flex: 1 1 auto;
     padding: 24px;
