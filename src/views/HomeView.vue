@@ -7,6 +7,7 @@
     <SectionTemas />
     <SectionTutorial />
     <SectionGaleriaFotos />
+    <SectionAbraSuaConta />
   </div>
   <Footer @footer-visible="isFooterVisible = true" @footer-hidden="isFooterVisible = false" />
   <WhatsApp :footerVisible="isFooterVisible" />
@@ -20,6 +21,7 @@ import SectionCardsVantagens from '@/components/home/SectionCardsVantagens.vue';
 import SectionTemas from '@/components/home/SectionTemas.vue';
 import SectionTutorial from '@/components/home/SectionTutorial.vue';
 import SectionGaleriaFotos from '@/components/home/SectionGaleriaFotos.vue';
+import SectionAbraSuaConta from '@/components/home/SectionQueroNaMinhaEmpresa.vue';
 import Footer from '@/components/navigation/Footer.vue';
 import WhatsApp from '@/components/common/BtnWhatsApp.vue';
 
