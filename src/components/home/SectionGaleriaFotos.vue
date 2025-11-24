@@ -1,18 +1,16 @@
-/* Ajustar responsividade */
-
 <template>
-  <section ref="sectionRef" class="LStyleGaleriaSection">
-    <div ref="wrapperRef" class="LStyleGaleriaWrapper">
+  <section class="LStyleGaleriaSection">
+    <div ref="wrapperRef" class="LStyleGaleriaWrapper" tabindex="0" aria-label="Galeria de dashboards">
       <div class="LStyleGaleriaRow">
-        <h1 class="LStyleTextStart">Explore os Dashboards</h1>
-        <div v-for="(foto, i) in fotos" :key="i" class="LStyleFotoItem">
+        <h1 class="LStyleTextStart LStyleFadeIn" :class="{ 'LStyleInView': inViewStart }">Explore os Dashboards</h1>
+        <div v-for="(foto, i) in fotos" :key="i" class="LStyleFotoItem LStyleFadeIn" :class="{ 'LStyleInView': cardInView[i] }">
           <img :src="foto.src" :alt="foto.alt" />
           <div class="LStyleHoverOverlay">
             <v-icon size="42" class="LStyleHoverIcon">{{ foto.icon }}</v-icon>
             <p class="LStyleHoverDescription">{{ foto.texto }}</p>
           </div>
         </div>
-        <h1 class="LStyleTextEnd">e muito mais...</h1>
+        <h1 class="LStyleTextEnd LStyleFadeIn" :class="{ 'LStyleInView': inViewEnd }">e muito mais...</h1>
       </div>
     </div>
   </section>
@@ -21,12 +19,15 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount } from "vue";
 
-const sectionRef = ref<HTMLElement | null>(null);
 const wrapperRef = ref<HTMLElement | null>(null);
+
+const inViewStart = ref(false);
+const inViewEnd = ref(false);
+const cardInView = ref<boolean[]>([]);
 
 interface FotoItem {
   src: string;
-  alt: string;
+  alt?: string;
   icon: string;
   texto: string;
 }
@@ -67,36 +68,58 @@ const fotos = ref<FotoItem[]>([
 ]);
 
 onMounted(() => {
-  const el = wrapperRef.value;
-  if (!el) return;
+  const wrapper = wrapperRef.value;
+  if (!wrapper) return;
 
-  let isInside = false;
+  let isMouseInside = false;
 
-  const onWheel = (e: WheelEvent) => {
-    if (!isInside) return;
-
-    e.preventDefault();
-
-    const maxScroll = el.scrollWidth - el.clientWidth;
-
-    el.scrollLeft += e.deltaY;
-
-    if (el.scrollLeft >= maxScroll && e.deltaY > 0) {  isInside = false;
+  const handleWheel = (event: WheelEvent) => {
+    if (!isMouseInside) return;
+    event.preventDefault();
+    const maxScrollLeft = wrapper.scrollWidth - wrapper.clientWidth;
+    wrapper.scrollLeft += event.deltaY;
+    if (wrapper.scrollLeft >= maxScrollLeft && event.deltaY > 0) {
+      isMouseInside = false;
     }
   };
 
-  const onEnter = () => { isInside = true; };
-  const onLeave = () => { isInside = false; };
+  const handleMouseEnter = () => { isMouseInside = true; };
+  const handleMouseLeave = () => { isMouseInside = false; };
 
-  el.addEventListener("mouseenter", onEnter);
-  el.addEventListener("mouseleave", onLeave);
-  window.addEventListener("wheel", onWheel, { passive: false });
+  wrapper.addEventListener("mouseenter", handleMouseEnter);
+  wrapper.addEventListener("mouseleave", handleMouseLeave);
+  window.addEventListener("wheel", handleWheel, { passive: false });
 
   onBeforeUnmount(() => {
-    el.removeEventListener("mouseenter", onEnter);
-    el.removeEventListener("mouseleave", onLeave);
-    window.removeEventListener("wheel", onWheel);
+    wrapper.removeEventListener("mouseenter", handleMouseEnter);
+    wrapper.removeEventListener("mouseleave", handleMouseLeave);
+    window.removeEventListener("wheel", handleWheel);
   });
+
+  cardInView.value = fotos.value.map(() => false);
+
+  const row = wrapperRef.value;
+  if (!row) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      if (!entries[0]?.isIntersecting) return;
+      inViewStart.value = true;
+      const initialDelay = 250;
+      const interval = 400;
+      fotos.value.forEach((_, i) => {
+        setTimeout(() => {
+          cardInView.value[i] = true;
+        }, initialDelay + i * interval);
+      });
+      setTimeout(() => {
+        inViewEnd.value = true;
+      }, initialDelay + fotos.value.length * interval);
+      observer.disconnect();
+    },
+    { threshold: 0.5 }
+  );
+  if (wrapperRef.value) observer.observe(wrapperRef.value);
 });
 </script>
 
@@ -117,15 +140,21 @@ onMounted(() => {
   scroll-behavior: smooth;
 }
 
-.LStyleGaleriaRow { display: flex; gap: 24px; padding: 0 40px; height: 100%; align-items: center; }
-
-h1 {
-  min-width: 300px;
-  color: var(--color-text);
+.LStyleFadeIn {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .6s ease, transform .6s ease;
 }
 
-.LStyleTextStart { margin-left: 15%; }
-.LStyleTextEnd { min-width: 500px; padding-right: 15%; }
+.LStyleInView {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.LStyleGaleriaRow { display: flex; gap: 24px; padding: 0 40px; height: 100%; align-items: center; }
+h1 { color: var(--color-text); }
+.LStyleTextStart { text-align: end; min-width: 280px; margin-left: 15%; }
+.LStyleTextEnd   { min-width: 450px; padding-right: 15%; }
 
 .LStyleFotoItem {
   position: relative;
@@ -143,22 +172,23 @@ h1 {
   transition: transform 0.4s ease;
 }
 
-.LStyleFotoItem:hover img {
-  transform: scale(1.06);
-}
+.LStyleFotoItem:hover img { transform: scale(1.06); }
 
 .LStyleHoverOverlay {
   position: absolute;
+  inset: 0;
+
   background: rgba(0, 0, 0, 0.7);
   color: var(--color-background);
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   padding: 32px 24px;
   text-align: center;
 
-  inset: 0;
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.35s ease, transform 0.35s ease;
@@ -169,29 +199,39 @@ h1 {
   transform: translateY(0);
 }
 
-.LStyleHoverIcon {
-  margin-bottom: 20px;
+.LStyleHoverIcon,
+.LStyleHoverDescription {
   opacity: 0;
-  transform: translateY(-10px);
-  transition: opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s;
+  transition: opacity .45s ease, transform .45s ease;
 }
 
-.LStyleFotoItem:hover .LStyleHoverIcon {
-  opacity: 1;
-  transform: translateY(0);
+.LStyleHoverIcon {
+  margin-bottom: 20px;
+  transform: translateY(-10px);
 }
 
 .LStyleHoverDescription {
   font-size: 20px;
-  line-height: 1.45;
   max-width: 280px;
-  opacity: 0;
+  line-height: 1.45;
   transform: translateY(10px);
-  transition: opacity 0.45s ease 0.15s, transform 0.45s ease 0.15s;
 }
 
+.LStyleFotoItem:hover .LStyleHoverIcon,
 .LStyleFotoItem:hover .LStyleHoverDescription {
   opacity: 1;
   transform: translateY(0);
+}
+
+@media (max-width: 1200px) {
+  .LStyleGaleriaSection { height: auto; }
+  .LStyleFotoItem { width: 300px; height: 340px; }
+  .LStyleTextStart { min-width: 250px; }
+  .LStyleTextEnd { min-width: 280px; padding-right: 10%; }
+}
+
+@media (max-width: 600px) {
+  .LStyleFotoItem { width: 260px; height: 300px; }
+  .LStyleTextStart { min-width: 150px; }
 }
 </style>
