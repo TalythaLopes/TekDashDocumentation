@@ -11,8 +11,9 @@
     pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
     laborum.
   </p>
-  <v-btn>Lorem ipsum</v-btn>
+  <Button text="Lorem ipsum" variant="secondary"/>
 </template>
 
 <script setup lang="ts">
+import Button from '../common/Button.vue';
 </script>

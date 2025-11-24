@@ -23,8 +23,9 @@
     pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
     laborum.
   </p>
-  <v-btn color="#7a0017">Começar Agora</v-btn>
+  <Button text="COMEÇAR AGORA" variant="primary"/>
 </template>
 
 <script setup lang="ts">
+import Button from '../common/Button.vue';
 </script>

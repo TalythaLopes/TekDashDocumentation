@@ -47,8 +47,9 @@
     <v-icon>mdi-circle-small</v-icon>Não causar danos aos sistemas de hardware e software do TekDashboard, de seus
     fornecedores ou terceiros, nem introduzir ou disseminar vírus.<br />
   </p>
-  <v-btn>Lorem ipsum</v-btn>
+  <Button text="Lorem ipsum" variant="secondary"/>
 </template>
 
 <script setup lang="ts">
+import Button from '../common/Button.vue';
 </script>
