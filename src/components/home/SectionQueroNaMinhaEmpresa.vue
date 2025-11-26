@@ -2,13 +2,13 @@
   <section ref="sectionRef">
     <div class="LStyleContainer">
       <div>
-        <h1 ref="titleRef" :class="{ 'LStyleInView': inViewTitle }" class="LStyleText">Destrave o poder dos seus dados</h1>
+        <h1 :class="{ 'LStyleInView': inViewTitle }" class="LStyleText">Destrave o poder dos seus dados</h1>
         <div :class="['LStyleButtonContainer', { LStyleInView: inViewButton }]">
           <Button text="Quero o TekDashboard na minha empresa" variant="primary" :minWidth="320"
           href="https://api.whatsapp.com/send?phone=5532999724221&text=Oi%2C%20quero%20TekDashboard%20na%20minha%20empresa." />
         </div>
       </div>
-      <div ref="imageRef" class="LStyleContainerImage" :class="{ LStyleInView: inViewImage }">
+      <div class="LStyleContainerImage" :class="{ LStyleInView: inViewImage }">
         <img src="/img/TelaMobileTekDash.jpg" class="LStyleImage"
         alt="Duas pessoas de costas olhando no celular a tela do TekDashboard em destaque"/>
       </div>
@@ -21,8 +21,6 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import Button from '../common/Button.vue'
 
 const sectionRef = ref<HTMLElement | null>(null)
-const titleRef = ref<HTMLElement | null>(null)
-const imageRef = ref<HTMLElement | null>(null)
 
 const inViewTitle = ref(false)
 const inViewButton = ref(false)
@@ -31,7 +29,7 @@ const inViewImage = ref(false)
 let observer: IntersectionObserver | null = null
 
 onMounted(() => {
-  observer = createObserver(imageRef, () => {
+  observer = createObserver(sectionRef, () => {
     inViewImage.value = true;
 
     setTimeout(() => {
