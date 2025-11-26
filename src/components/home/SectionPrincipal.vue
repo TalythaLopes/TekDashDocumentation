@@ -18,6 +18,10 @@
         <div class="LStyleAnimatedBlock" style="--delay: .8s">
           <Button  text="Fazer login no TekDashboard" variant="primary" :minWidth="350" href="https://tekdashboard.teksystem.com.br/" />
         </div>
+        <div class="LStyleLojasArea">
+          <DisponivelAppStore class="LStyleAnimatedBlock" style="--delay: 1s" />
+          <DisponivelGooglePlay class="LStyleAnimatedBlock" style="--delay: 1.2s" />
+        </div>
       </div>
     </div>
   </section>
@@ -26,6 +30,8 @@
 <script setup lang="ts">
 import { ref, onMounted, nextTick } from 'vue'
 import Button from '../common/Button.vue'
+import DisponivelAppStore from '../common/DisponivelAppStore.vue'
+import DisponivelGooglePlay from '../common/DisponivelGooglePlay.vue'
 // Estados iniciais e referências aos elementos do DO
 const imgRef = ref<HTMLImageElement | null>(null);
 // Ciclo de vida
@@ -103,6 +109,15 @@ section { padding-top: 30px; }
 }
 
 .LStyleContainerImage:hover .LStyleImage.loaded { transform: scale(1.05);}
+
+.LStyleLojasArea {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: slideUp 0.8s ease forwards;
+}
 
 @media (max-width: 1330px) {
   .LStyleContainer { grid-template-columns: 1fr 620px; }
