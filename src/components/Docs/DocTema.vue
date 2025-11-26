@@ -1,5 +1,5 @@
 <template>
-  <h1 class="section-heading">Bem-vindo à Documentação</h1>
+  <h1 class="LStyleDocumentation">Bem-vindo à Documentação</h1>
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
     magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -7,7 +7,7 @@
     pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
     laborum.
   </p>
-  <h3 class="section-heading">Tema Vendas</h3>
+  <h3 class="LStyleDocumentation">Tema Vendas</h3>
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
     magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -15,7 +15,7 @@
     pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
     laborum.
   </p>
-  <h3 class="section-heading">Tema Financeiro</h3>
+  <h3 class="LStyleDocumentation">Tema Financeiro</h3>
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
     magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -23,7 +23,7 @@
     pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
     laborum.
   </p>
-  <h3 class="section-heading">Tema Estoque</h3>
+  <h3 class="LStyleDocumentation">Tema Estoque</h3>
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
     magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -31,7 +31,7 @@
     pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
     laborum.
   </p>
-  <h3 class="section-heading">Tema Produção</h3>
+  <h3 class="LStyleDocumentation">Tema Produção</h3>
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
     magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo

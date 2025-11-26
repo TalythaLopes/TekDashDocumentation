@@ -1,14 +1,14 @@
 <template>
   <v-navigation-drawer v-if="isDesktop || modelValue" v-model="internalDrawer" app :permanent="isDesktop" temporary
-    class="sidebar" :style="drawerStyle">
+    class="LStyleSideBar" :style="drawerStyle">
     <v-list nav density="compact">
       <template v-for="(section, sIndex) in sidebarSections" :key="section.title">
-        <v-list-item class="section-header" @click="handleSectionClick(sIndex, section)">
+        <v-list-item class="LStyleSectionHeader" @click="handleSectionClick(sIndex, section)">
           <template #prepend>
-            <div class="icon-circle" :class="{ 'icon-active': activeSection === sIndex }">
+            <div class="LStyleIconCircle" :class="{ 'LStyleIconActive': activeSection === sIndex }">
               <v-icon size="22">{{ section.icon }}</v-icon>
             </div>
-            <v-list-item-title class="section-title" :class="{ 'section-active': activeSection === sIndex }">
+            <v-list-item-title class="LStyleSectionTitle" :class="{ 'LStyleSectionActive': activeSection === sIndex }">
               {{ section.title }}
             </v-list-item-title>
           </template>
@@ -16,12 +16,12 @@
 
         <v-expand-transition>
           <div v-show="isSectionOpen(sIndex) && section.items?.length">
-            <v-list-item v-for="(item, iIndex) in section.items" :key="item.title" link class="subsection-header"
+            <v-list-item v-for="(item, iIndex) in section.items" :key="item.title" link class="LStyleSubsectionHeader"
               @click.stop="setActive(sIndex, iIndex)"
-              :class="{ 'selected-subitem': activeSection === sIndex && activeItem === iIndex }">
-              <v-list-item-content class="subitem">
-                <div class="divider"></div>
-                <v-list-item-title class="subitem-title">{{ item.title }}</v-list-item-title>
+              :class="{ 'LStyleSelectedSubitem': activeSection === sIndex && activeItem === iIndex }">
+              <v-list-item-content class="LStyleSubitem">
+                <div class="LStyleDivider"></div>
+                <v-list-item-title class="LStyleSubitemTitle">{{ item.title }}</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
           </div>
@@ -36,9 +36,13 @@ import { ref, computed, watch, onMounted, onBeforeUnmount } from "vue"
 import type { DefineComponent } from "vue"
 // Conteúdos
 import VamosComecar from "../docs/DocVamosComecar.vue"
-import Configuracoes from "../docs/DocConfiguracoes.vue"
-import Temas from "../docs/DocTema.vue"
+import Funcionamento from '../docs/DocFuncionamento.vue';
+import Instalacao from '../docs/DocInstalacaoConfiguracao.vue';
+import AppAcessoLogin from '../docs/DocAppAcessoLogin.vue';
+import AppParametros from '../docs/DocAppParametros.vue';
+import AppAcompanhamento from '../docs/DocAppAcompanhamento.vue';
 import PoliticaPrivacidade from "../docs/DocPoliticaPrivacidade.vue"
+import Temas from "../docs/DocTema.vue"
 import TemaVendas from "../docs/DocTemaVendas.vue"
 import TemaFinanceiro from "../docs/DocTemaFinanceiro.vue"
 import TemaEstoque from "../docs/DocTemaEstoque.vue"
@@ -63,10 +67,24 @@ const sidebarSections: SidebarSection[] = [
     component: VamosComecar
   },
   {
-    title: "Configurações",
-    icon: "mdi-cog-outline",
-    component: Configuracoes
+    title: 'Funcionamento',
+    icon: 'mdi-cog-outline',
+    component: Funcionamento,
   },
+  {
+    title: 'Instalação e Configurações',
+    icon: 'mdi-server-outline',
+    component: Instalacao,
+  },
+  {
+    title: 'Instruções',
+    icon: 'mdi-application-brackets-outline',
+    items: [
+      { title: 'Acesso e login', component: AppAcessoLogin },
+      { title: 'Parâmetros', component: AppParametros },
+      { title: 'Acompanhamento', component: AppAcompanhamento },
+    ],
+  }, /*
   {
     title: "Temas Disponíveis",
     icon: "mdi-palette-outline",
@@ -77,7 +95,7 @@ const sidebarSections: SidebarSection[] = [
       { title: "Tema Estoque", component: TemaEstoque },
       { title: "Tema Produção", component: TemaProducao }
     ]
-  },
+  }, */
   {
     title: 'Política de Privacidade',
     icon: 'mdi-lock-outline',
@@ -118,7 +136,12 @@ const toggleSection = (sectionIndex: number) => {
   if (openSections.value.includes(sectionIndex)) openSections.value = openSections.value.filter(i => i !== sectionIndex);
   else openSections.value.push(sectionIndex);
 };
-const isSectionOpen = (sectionIndex: number) => openSections.value.includes(sectionIndex);
+const isSectionOpen = (sectionIndex: number) => {
+  if (sidebarSections[sectionIndex]?.items?.length) {
+    return true;
+  }
+  return openSections.value.includes(sectionIndex);
+};
 const isItemActive = (sectionIndex: number, itemIndex: number) => activeSection.value === sectionIndex && activeItem.value === itemIndex;
 const handleSectionClick = (sectionIndex: number, section: SidebarSection) => {
   if (section.items && section.items.length > 0) toggleSection(sectionIndex);
@@ -143,15 +166,15 @@ onBeforeUnmount(() => window.removeEventListener('resize', handleResize))
 </script>
 
 <style scoped>
-.v-list { padding: 15px; }
+.v-list { padding: 10px; }
 
-.sidebar {
-  width: 280px !important;
+.LStyleSideBar {
+  width: 300px !important;
   border-right: 1px solid var(--color-background-site);
   transition: transform 0.3s ease;
 }
 
-.section-header {
+.LStyleSectionHeader {
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -159,7 +182,7 @@ onBeforeUnmount(() => window.removeEventListener('resize', handleResize))
   color: var(--color-text);
 }
 
-.icon-circle {
+.LStyleIconCircle {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -170,26 +193,26 @@ onBeforeUnmount(() => window.removeEventListener('resize', handleResize))
   background-color: var(--color-principal-background);
 }
 
-.icon-active { background-color: var(--color-principal); }
+.LStyleIconActive { background-color: var(--color-principal); }
 .v-icon { color: var(--color-principal); }
-.icon-active .v-icon { color: var(--color-background-soft); }
+.LStyleIconActive .v-icon { color: var(--color-background-soft); }
 
-.section-title {
+.LStyleSectionTitle {
   font-size: 18px !important;
   padding: 3px;
   font-weight: 400 !important;
 }
 
-.section-active { color: var(--color-principal); }
+.LStyleSectionActive { color: var(--color-principal); }
 
-.subitem {
+.LStyleSubitem {
   display: flex;
   align-items: center;
   gap: 8px;
   color: var(--color-text);
 }
 
-.subsection-header {
+.LStyleSubsectionHeader {
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -197,17 +220,17 @@ onBeforeUnmount(() => window.removeEventListener('resize', handleResize))
   margin: 0 !important;
 }
 
-.divider {
+.LStyleDivider {
   width: 3px;
   height: 40px;
   background-color: var(--color-principal-background);
 }
 
-.subitem-title {
+.LStyleSubitemTitle {
   font-size: 16px !important;
   font-weight: 400 !important;
 }
 
-.selected-subitem .subitem-title { color: var(--color-principal) !important; }
-.selected-subitem .divider { background-color: var(--color-principal); }
+.LStyleSelectedSubitem .LStyleSubitemTitle { color: var(--color-principal) !important; }
+.LStyleSelectedSubitem .LStyleDivider { background-color: var(--color-principal); }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <h1 class="section-heading">Tema Vendas</h1>
+  <h1 class="LStyleDocumentation">Tema Vendas</h1>
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
     magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -7,7 +7,7 @@
     pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
     laborum.
   </p>
-  <h3 class="section-heading">Painel [nome-do-painel]</h3>
+  <h3 class="LStyleDocumentation">Painel [nome-do-painel]</h3>
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
     magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -22,7 +22,7 @@
     pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
     laborum.
   </p>
-  <h3 class="section-heading">Painel [nome-do-painel]</h3>
+  <h3 class="LStyleDocumentation">Painel [nome-do-painel]</h3>
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
     magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo

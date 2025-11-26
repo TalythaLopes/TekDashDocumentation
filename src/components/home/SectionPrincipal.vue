@@ -13,7 +13,7 @@
       </div>
       <div class="LStyleButtons">
         <div class="LStyleAnimatedBlock" style="--delay: .6s">
-          <Button text="Mais informações sobre o TekDashboard" variant="secondary" :minWidth="350" to="/documentacao" />
+          <Button text="Mais informações sobre o TekDashboard" variant="secondary" :minWidth="350" href="/documentacao" />
         </div>
         <div class="LStyleAnimatedBlock" style="--delay: .8s">
           <Button  text="Fazer login no TekDashboard" variant="primary" :minWidth="350" href="https://tekdashboard.teksystem.com.br/" />
@@ -52,7 +52,7 @@ onMounted(async () => {
   animation-delay: var(--delay);
 }
 
-section { padding-top: 30px; }
+section { padding-top: 120px; }
 
 .LStyleContainer {
   width: 90%;

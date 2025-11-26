@@ -34,33 +34,33 @@ interface FotoItem {
 
 const fotos = ref<FotoItem[]>([
   {
-    src: '../../../img/Galeria2.png',
+    src: '../../../img/SectionGaleria2.png',
     alt: '',
     icon: 'mdi-wallet-bifold',
     texto: 'Tenha uma visão completa da carteira de clientes de cada supervisor e consultor. Identifique rapidamente clientes novos, ativos, quase inativos e inativos para agir com estratégia e precisão.'
 
   },
   {
-    src: '../../../img/Galeria5.png',
+    src: '../../../img/SectionGaleria5.png',
     alt: '',
     icon: 'mdi-abacus',
     texto: 'Acompanhe suas vendas com dashboards visuais e inteligentes: análises por cidade, estado, origem, empresa, órgão, mapas de incidência de pedidos e muito mais em um só lugar.'
 
   },
   {
-    src: '../../../img/Galeria3.png',
+    src: '../../../img/SectionGaleria3.png',
     alt: '',
     icon: 'mdi-cash-multiple',
     texto: 'Compare facilmente períodos de vendas mensais ou anuais com gráficos claros que revelam oportunidades e tendências em poucos segundos.'
   },
   {
-    src: '../../../img/Galeria4.png',
+    src: '../../../img/SectionGaleria4.png',
     alt: '',
     icon: 'mdi-card-account-details-star',
     texto: 'Explore rankings avançados: pedidos de maior valor, desempenho por região, clientes mais rentáveis e total de vendas por consultor. Ideal para criar estratégias de bonificação e incentivo.'
   },
   {
-    src: '../../../img/Galeria1.png',
+    src: '../../../img/SectionGaleria1.png',
     alt: '',
     icon: 'mdi-account-tie',
     texto: 'Gerencie permissões com segurança e permita que supervisores e consultores visualizem apenas suas próprias áreas, criando autonomia para definirem estratégias personalizadas.'

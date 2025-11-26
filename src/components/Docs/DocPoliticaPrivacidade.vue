@@ -1,6 +1,6 @@
 <template>
-  <h1 class="section-heading">Política de Privacidade</h1>
-  <h3 class="section-heading">Visão Geral</h3>
+  <h1 class="LStyleDocumentation">Política de Privacidade</h1>
+  <h3 class="LStyleDocumentation">Visão Geral</h3>
   <p>
     Bem-vindo ao TekDashboard, uma aplicação desenvolvida pela <bold>Tek-System Informática LTDA</bold>. A sua
     privacidade é uma prioridade para nós. Esta Política de Privacidade explica como tratamos os dados na nossa
@@ -12,7 +12,7 @@
     realizados diretamente pelo sistema ERP da sua empresa. O TekDashboard apenas exibe os dados que são enviados a
     ele.
   </p>
-  <h3 class="section-heading">Papéis no Tratamento de Dados (Conforme LGPD)</h3>
+  <h3 class="LStyleDocumentation">Papéis no Tratamento de Dados (Conforme LGPD)</h3>
   <p>Para total transparência, é fundamental definir os papéis:</p>
   <p>
     <v-icon>mdi-circle-small</v-icon>
@@ -24,7 +24,7 @@
     TekDashboard, atua como
     <bold>Operadora</bold> dos dados.
   </p>
-  <h3 class="section-heading">Dados que Processamos</h3>
+  <h3 class="LStyleDocumentation">Dados que Processamos</h3>
   <p>
     Nós <bold>não coletamos</bold> informações pessoais diretamente de você, usuário. Nós processamos os dados que
     <bold>sua empresa (a Controladora) nos envia</bold> através da integração com o sistema ERP.
@@ -33,7 +33,7 @@
     Para a sua segurança, o processo de autenticação (login e senha) é totalmente delegado ao ERP da sua empresa.
     <bold>O TekDashboard não armazena nem tem acesso às suas senhas.</bold>
   </p>
-  <h3 class="section-heading">Compromisso do Usuário</h3>
+  <h3 class="LStyleDocumentation">Compromisso do Usuário</h3>
   <p>
     O usuário se compromete a fazer uso adequado dos conteúdos e da informação que o TekDashboard oferece,
     comprometendo-se a:
@@ -47,9 +47,7 @@
     <v-icon>mdi-circle-small</v-icon>Não causar danos aos sistemas de hardware e software do TekDashboard, de seus
     fornecedores ou terceiros, nem introduzir ou disseminar vírus.<br />
   </p>
-  <Button text="Lorem ipsum" variant="secondary"/>
 </template>
 
 <script setup lang="ts">
-import Button from '../common/Button.vue';
 </script>

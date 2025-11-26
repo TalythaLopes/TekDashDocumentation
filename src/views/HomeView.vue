@@ -1,31 +1,31 @@
 <template>
-  <NavBar />
-  <NavBarTekDash />
+  <ToolbarHome />
   <div>
     <SectionPrincipal />
     <SectionCardsVantagens />
     <SectionTemas />
     <SectionTutorial />
     <SectionGaleriaFotos />
-    <SectionAbraSuaConta />
+    <SectionQueroNaMinhaEmpresa />
   </div>
-  <Footer @footer-visible="isFooterVisible = true" @footer-hidden="isFooterVisible = false" />
-  <WhatsApp :footerVisible="isFooterVisible" />
+  <SectionFooter @footer-visible="isFooterVisible = true" @footer-hidden="isFooterVisible = false" />
+  <BtnWhatsApp :footerVisible="isFooterVisible" />
 </template>
 
 <script lang="ts" setup>
-import NavBar from '../components/navigation/NavBar.vue'
-import NavBarTekDash from '@/components/navigation/NavBarTekDash.vue';
+import { ref } from 'vue'
+// Components fixed
+import ToolbarHome from '@/components/navigation/ToolbarHome.vue';
+import BtnWhatsApp from '@/components/common/BtnWhatsApp.vue';
+// Home Components in order
 import SectionPrincipal from '@/components/home/SectionPrincipal.vue';
 import SectionCardsVantagens from '@/components/home/SectionCardsVantagens.vue';
 import SectionTemas from '@/components/home/SectionTemas.vue';
 import SectionTutorial from '@/components/home/SectionTutorial.vue';
 import SectionGaleriaFotos from '@/components/home/SectionGaleriaFotos.vue';
-import SectionAbraSuaConta from '@/components/home/SectionQueroNaMinhaEmpresa.vue';
-import Footer from '@/components/navigation/Footer.vue';
-import WhatsApp from '@/components/common/BtnWhatsApp.vue';
-
-import { ref } from 'vue'
+import SectionQueroNaMinhaEmpresa from '@/components/home/SectionQueroNaMinhaEmpresa.vue';
+import SectionFooter from '@/components/home/SectionFooter.vue';
+// Estados iniciais e referências aos elementos do DOM
 const isFooterVisible = ref(false)
 </script>
 
