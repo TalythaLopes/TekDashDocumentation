@@ -6,7 +6,7 @@
   <img src="https://img.shields.io/github/last-commit/TalythaLopes/TekDashDocumentation" />
 </p>
 
-Este repositório abriga o projeto da **documentação do TekDashboard**, uma aplicação web que se integra ao **ERP Tek-System** para gerar **dashboards inteligentes e interativos**. A proposta desta documentação vai além do texto técnico: trata-se de uma **plataforma desenvolvida em Vue 3 + Vuetify**, com **design responsivo, interface dinâmica e navegação fluida**, projetada para oferecer uma **experiência leve e moderna** de leitura e manutenção.
+Este repositório abriga o projeto piloto da **documentação do TekDashboard**, uma aplicação web que se integra ao **ERP Tek-System** para gerar **dashboards inteligentes e interativos**. A proposta desta documentação vai além do texto técnico: trata-se de uma **plataforma desenvolvida em Vue 3 + Vuetify**, com **design responsivo, interface dinâmica e navegação fluida**, projetada para oferecer uma **experiência leve e moderna** de leitura e manutenção. Para explorar a versão oficial em produção, com a paleta de cores personalizada do produto, acesse a [página comercial do TekDashboard](https://tekdashboard.teksystem.com.br/comercial).
 
 ## 📑 Sumário
 
@@ -81,7 +81,7 @@ Para evoluir o projeto e fortalecer a abordagem **Docs as Code**, estão planeja
 - [ ] Implementar **busca interna** na documentação.  
 - [ ] Adicionar **feedback do usuário** em cada seção para medir efetividade do conteúdo.
 - [ ] Armazenar o conteúdo em **arquivos Markdown**, simplificando a edição pelos desenvolvedores.
-- [ ] Configurar uma **estrutura de Pull Requests** para revisão técnica e editorial do conteúdo.  
+- [ ] Configurar o **armazenamento de imagens** visando melhoria no desempenho.  
 
 ## 👩‍💻 Autoria
 
