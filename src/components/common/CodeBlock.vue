@@ -1,16 +1,20 @@
 <template>
   <div class="LStyleCodeContainer">
     <div class="LStyleCodeHeader">
-      <span class="LStyleDot red"></span>
-      <span class="LStyleDot yellow"></span>
-      <span class="LStyleDot green"></span>
+      <span class="LStyleDot" :style="{ backgroundColor: '#ff5f5a' }"></span>
+      <span class="LStyleDot" :style="{ backgroundColor: '#ffbe2e' }"></span>
+      <span class="LStyleDot" :style="{ backgroundColor: '#2aca44' }"></span>
     </div>
 
     <button class="LStyleCopyButton" @click="copyCode">
       {{ copied ? 'Copiado!' : 'Copiar' }}
     </button>
 
-    <pre><code ref="codeRef"><slot /></code></pre>
+    <div class="LStyleBody">
+      <code ref="codeRef" :style="{ color: '#a3a9b6' }">
+        <slot />
+      </code>
+    </div>
   </div>
 </template>
 
@@ -32,6 +36,8 @@ function copyCode() {
 
 <style scoped>
 .LStyleCodeContainer {
+  max-width: 100%;
+  box-sizing: border-box;
   background: #1e1e1e;
   border-radius: 12px;
   padding: 0;
@@ -56,33 +62,18 @@ function copyCode() {
   display: inline-block;
 }
 
-.red {
-  background: #ff5f5a;
-}
-
-.yellow {
-  background: #ffbe2e;
-}
-
-.green {
-  background: #2aca44;
-}
-
-pre {
+.LStyleBody {
   margin: 0;
   padding: 20px;
-  overflow-x: auto;
+  overflow-x: hidden;
   font-size: 14px;
   line-height: 1.5;
-}
-
-code {
-  color: #a3a9b6;
+  word-break: break-word;
 }
 
 .LStyleCopyButton {
   position: absolute;
-  top: 5px;
+  top: 4px;
   right: 10px;
   color: var(--color-background);
   border: none;
@@ -90,5 +81,10 @@ code {
   font-size: 12px;
   border-radius: 6px;
   cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .LStyleCodeContainer { margin: 0px 10px 20px 10px; }
+  .LStyleBody { padding: 14px; }
 }
 </style>

@@ -2,7 +2,7 @@
 
 <template>
   <ToolbarDocumentation :drawer="drawer" :isDesktop="isDesktop" @toggle-drawer="toggleDrawer" />
-  <SideBarDocumentation v-model="drawer" @item-selected="handleItemSelected" />
+  <SideBarDocumentation v-model="drawer" :isDesktop="isDesktop" @item-selected="handleItemSelected" />
   <div class="LStyleAreaConteudo">
     <v-container class="LStyleConteudo" fluid>
       <component :is="activeComponent" />
@@ -61,5 +61,6 @@ onBeforeUnmount(() => window.removeEventListener('resize', handleResize))
 
 @media (max-width: 600px) {
   .LStyleAreaConteudo { margin-top: 45px; }
+  .LStyleConteudo { margin-bottom: 0px; }
 }
 </style>

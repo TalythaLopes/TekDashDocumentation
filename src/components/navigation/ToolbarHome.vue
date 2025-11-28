@@ -31,9 +31,7 @@ import LogoTekSystem from '../common/LogoTekSystem.vue';
   gap: 24px;
 }
 
-:deep(.v-toolbar__content) {
-  max-width: 1500px;
-}
+:deep(.v-toolbar__content) { max-width: 1500px; }
 
 .LStyleBarLeft {
   flex: 1;
@@ -68,13 +66,8 @@ import LogoTekSystem from '../common/LogoTekSystem.vue';
 }
 
 @media (max-width: 900px) {
-  .LStyleTopBar {
-    padding: 0 15px !important;
-  }
-
-  .LStyleRightItem span {
-    display: none;
-  }
+  .LStyleTopBar { padding: 0 15px !important; }
+  .LStyleRightItem span { display: none; }
 }
 
 @media (max-width: 600px) {
@@ -84,17 +77,7 @@ import LogoTekSystem from '../common/LogoTekSystem.vue';
     gap: 10px;
     justify-content: center;
   }
-
-  .LStyleBarRight {
-    gap: 5px;
-  }
-
-  .LStyleRightItem .v-icon {
-    font-size: 18px;
-  }
-
-  :deep(.v-toolbar__content) {
-    height: 35px !important;
-  }
+  .LStyleBarRight { gap: 5px; }
+  :deep(.v-toolbar__content) { height: 35px !important; }
 }
 </style>

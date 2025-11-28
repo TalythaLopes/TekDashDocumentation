@@ -52,26 +52,34 @@
     Agendador de Tarefas do Windows. A estrutura básica é:
   </p>
   <CodeBlock>
-    C:\Tek-System\Exec\ExecMetodoInterpERP.exe -T:<var>SEU_TOKEN</var> -P:<var>SUA_PORTA</var> -E:<var>SUA_EMPRESA</var
-    ><br />
-    -M:TEK_WEBDASHBOARD_TEMA_VENDAS.Main;
+    C:\Tek-System\Exec\ExecMetodoInterpERP.exe -T:<var>SEU_TOKEN</var> -P:<var>SUA_PORTA</var> -E:<var>SUA_EMPRESA</var> -M:TEK_WEBDASHBOARD_TEMA_VENDAS.Main;
   </CodeBlock>
   <p>Onde:</p>
   <ul class="LStyleCheckList">
     <li>
-      <bold>-T:</bold>
-      Token do <bold>usuário responsável</bold> pela execução. Necessário que ele tenha as permissões adequadas.
+      <p>
+        <bold>-T:</bold>
+        Token do <bold>usuário responsável</bold> pela execução. Necessário que ele tenha as permissões adequadas.
+      </p>
     </li>
     <li>
-      <bold>-P:</bold>
-      <bold>Porta</bold> configurada no TekServer (a mesma usada pelos módulos do ERP).
+      <p>
+        <bold>-P: </bold>
+        <bold>Porta</bold> configurada no TekServer (a mesma usada pelos módulos do ERP).
+      </p>
     </li>
     <li>
-      <bold>-E:</bold>
-      Refere-se ao <bold>código da empresa</bold> no ERP. Embora não seja usado no envio, é necessário para a execução
-      do comando.
+      <p>
+        <bold>-E:</bold>
+        Refere-se ao <bold>código da empresa</bold> no ERP. Embora não seja usado no envio, é necessário para a execução
+        do comando.
+      </p>
     </li>
-    <li><bold>-M:</bold> É o <bold>nome da UNIT</bold> e o <bold>método</bold> que deve ser chamado.</li>
+    <li>
+      <p>
+        <bold>-M:</bold> É o <bold>nome da UNIT</bold> e o <bold>método</bold> que deve ser chamado.
+      </p>
+    </li>
   </ul>
   <p>
     Também é possível <bold>combinar diferentes recursos</bold> em um único agendamento, como a
@@ -79,12 +87,9 @@
     <bold> removendo dados antigos antes de enviar dados novos.</bold> Exemplo de agendamento combinado:
   </p>
   <CodeBlock>
-    C:\Tek-System\Exec\ExecMetodoInterpERP.exe -T:<var>SEU_TOKEN</var> -P:<var>SUA_PORTA</var> -E:<var>SUA_EMPRESA</var
-    ><br />
-    -M:TEK_WEBDASHBOARD_TEMA_VENDAS.RetroagirTema('Mes','1'); <br /><br />
-    C:\Tek-System\Exec\ExecMetodoInterpERP.exe -T:<var>SEU_TOKEN</var> -P:<var>SUA_PORTA</var> -E:<var>SUA_EMPRESA</var
-    ><br />
-    -M:TEK_WEBDASHBOARD_TEMA_VENDAS.Main;
+    C:\Tek-System\Exec\ExecMetodoInterpERP.exe -T:<var>SEU_TOKEN</var> -P:<var>SUA_PORTA</var> -E:<var>SUA_EMPRESA</var> -M:TEK_WEBDASHBOARD_TEMA_VENDAS.RetroagirTema('Mes','1');
+    <br/><br/>
+    C:\Tek-System\Exec\ExecMetodoInterpERP.exe -T:<var>SEU_TOKEN</var> -P:<var>SUA_PORTA</var> -E:<var>SUA_EMPRESA</var> -M:TEK_WEBDASHBOARD_TEMA_VENDAS.Main;
   </CodeBlock>
   <p>
     <bold> Nesse exemplo</bold>, antes de cada novo envio, o sistema <bold>remove os dados do mês atual</bold> para em
@@ -92,7 +97,6 @@
     <bold>sincronizada com as mudanças</bold> registradas no ERP. As unidades de tempo disponíveis são 'Dia', 'Mes' e
     'Ano'.
   </p>
-
   <p>
     <bold>Importante:</bold> como mencionado na seção
     <bold :style="{ color: 'var(--color-principal)' }">Funcionamento, </bold> alguns parâmetros são obtidos diretamente da

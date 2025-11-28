@@ -1,6 +1,6 @@
 <template>
-  <v-navigation-drawer v-if="isDesktop || modelValue" v-model="internalDrawer" app :permanent="isDesktop" temporary
-    class="LStyleSideBar" :style="drawerStyle">
+  <v-navigation-drawer v-model="internalDrawer" app :permanent="isDesktop" temporary
+    :class="[{ 'mobile-mode': !isDesktop, 'is-open': internalDrawer }, 'LStyleSideBar']" :style="drawerStyle">
     <v-list nav density="compact">
       <template v-for="(section, sIndex) in sidebarSections" :key="section.title">
         <v-list-item class="LStyleSectionHeader" @click="handleSectionClick(sIndex, section)">
@@ -103,7 +103,10 @@ const sidebarSections: SidebarSection[] = [
   }
 ];
 // Props e Emits
-const props = defineProps<{ modelValue: boolean }>()
+const props = defineProps({
+  modelValue: { type: Boolean, default: false },
+  isDesktop: { type: Boolean, required: true }
+});
 const emit = defineEmits<{
   (e: "update:modelValue", value: boolean): void
   (e: "item-selected", component: DefineComponent<{}, {}, any>): void
@@ -117,7 +120,7 @@ const activeSection = ref<number | null>(null)
 const activeItem = ref<number | null>(null)
 // Computados
 const isDesktop = computed(() => windowWidth.value >= 1000)
-const isMobile = computed(() => windowWidth.value < 400)
+const isMobile = computed(() => windowWidth.value < 600)
 const drawerStyle = computed(() => ({
   top: isMobile.value ? '45px' : '64px',
   height: isMobile.value ? 'calc(100% - 45px)' : 'calc(100% - 64px)'
@@ -171,7 +174,20 @@ onBeforeUnmount(() => window.removeEventListener('resize', handleResize))
 .LStyleSideBar {
   width: 300px !important;
   border-right: 1px solid var(--color-background-site);
-  transition: transform 0.3s ease;
+}
+
+.LStyleSideBar.mobile-mode {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 2000;
+  transform: translateX(-100%) !important;
+  transition: transform .5s cubic-bezier(.2,.8,.2,1), opacity 0.2s;
+}
+
+.LStyleSideBar.mobile-mode.is-open {
+  transform: translateX(0) !important;
 }
 
 .LStyleSectionHeader {
@@ -229,6 +245,7 @@ onBeforeUnmount(() => window.removeEventListener('resize', handleResize))
 .LStyleSubitemTitle {
   font-size: 16px !important;
   font-weight: 400 !important;
+  line-height: 1.3 !important;
 }
 
 .LStyleSelectedSubitem .LStyleSubitemTitle { color: var(--color-principal) !important; }

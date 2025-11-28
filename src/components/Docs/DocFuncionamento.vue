@@ -47,29 +47,43 @@
   <h3 class="LStyleDocumentation">Principais Recursos e Funcionalidades</h3>
   <ul class="LStyleCheckList">
     <li>
-      <v-icon>mdi-check-circle-outline</v-icon> <bold>Dashboards organizados</bold> por temas: vendas, financeiro,
-      estoque e produção.
+      <p>
+        <v-icon>mdi-check-circle-outline</v-icon> <bold>Dashboards organizados</bold> por temas: vendas, financeiro,
+        estoque e produção.
+      </p>
     </li>
     <li>
-      <v-icon>mdi-check-circle-outline</v-icon> Visualizações dinâmicas com <bold>gráficos e tabelas interativas.</bold>
+      <p>
+        <v-icon>mdi-check-circle-outline</v-icon> Visualizações dinâmicas com <bold>gráficos e tabelas interativas.</bold>
+      </p>
     </li>
     <li>
-      <v-icon>mdi-check-circle-outline</v-icon> Uso de <bold>filtros simultâneos</bold> para análises detalhadas e
-      personalizadas.
+      <p>
+        <v-icon>mdi-check-circle-outline</v-icon> Uso de <bold>filtros simultâneos</bold> para análises detalhadas e
+        personalizadas.
+      </p>
     </li>
     <li>
-      <v-icon>mdi-check-circle-outline</v-icon> <bold>Restrição de dados</bold> conforme o nível do usuário no ERP.
+      <p>
+        <v-icon>mdi-check-circle-outline</v-icon> <bold>Restrição de dados</bold> conforme o nível do usuário no ERP.
+      </p>
     </li>
     <li>
-      <v-icon>mdi-check-circle-outline</v-icon> <bold>Gestão centralizada de acessos</bold> diretamente pelo Tek-System.
+      <p>        
+        <v-icon>mdi-check-circle-outline</v-icon> <bold>Gestão centralizada de acessos</bold> diretamente pelo Tek-System.
+      </p>
     </li>
     <li>
-      <v-icon>mdi-check-circle-outline</v-icon> <bold>Atualização de dados em tempo real</bold> ou programada, de acordo
-      com os agendamentos.
+      <p>
+        <v-icon>mdi-check-circle-outline</v-icon> <bold>Atualização de dados em tempo real</bold> ou programada, de acordo
+        com os agendamentos.
+      </p>
     </li>
     <li>
-      <v-icon>mdi-check-circle-outline</v-icon> Acesso <bold>multiplataforma</bold>, disponível no navegador e em
-      aplicativo móvel.
+      <p>        
+        <v-icon>mdi-check-circle-outline</v-icon> Acesso <bold>multiplataforma</bold>, disponível no navegador e em
+        aplicativo móvel.
+      </p>
     </li>
   </ul>
 </template>

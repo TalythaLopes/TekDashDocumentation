@@ -146,6 +146,10 @@ section { padding-top: 120px; }
 }
 
 @media (max-width: 600px) {
+  section { padding-top: 70px !important; }
   .LStyleContainer { gap: 20px; }
+  .LStyleText { gap: 10px; }
+  .LStyleText h4 { font-size: 32px !important; }
+  .LStyleText h2 { font-size: 18px !important; }
 }
 </style>

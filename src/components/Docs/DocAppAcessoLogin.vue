@@ -19,7 +19,7 @@
   </p>
   <p>
     Caso encontre dificuldade,
-    <a :style="{ color: 'var(--color-principal)' }" href="https://www.atendimento.teksystem.com.br">
+    <a :style="{ color: 'var(--color-principal)' }" href="https://www.atendimento.teksystem.com.br" target="_blank">
       entre em contato com nosso suporte </a
     >.
   </p>

@@ -6,10 +6,10 @@
     Ele utiliza dados do ERP Tek-System para criar dashboards organizados por <bold>temas</bold>, sendo eles:
   </p>
   <ul>
-    <li>Vendas</li>
-    <li>Financeiro</li>
-    <li>Estoque</li>
-    <li>Produção</li>
+    <li><p>Vendas</p></li>
+    <li><p>Financeiro</p></li>
+    <li><p>Estoque</p></li>
+    <li><p>Produção</p></li>
   </ul>
   <p>
     Cada tema apresenta <bold>métricas consolidadas, visualizações dinâmicas e filtros simultâneos</bold> para que você
@@ -55,10 +55,10 @@
     sua operação, entre em contato conosco. Oferecemos:
   </p>
   <ul>
-    <li>Implantação assistida</li>
-    <li>Treinamentos para equipes</li>
-    <li>Desenvolvimento de dashboards personalizados</li>
-    <li>Expansão de funcionalidades sob demanda</li>
+    <li><p>Implantação assistida</p></li>
+    <li><p>Treinamentos para equipes</p></li>
+    <li><p>Desenvolvimento de dashboards personalizados</p></li>
+    <li><p>Expansão de funcionalidades sob demanda</p></li>
   </ul>
   <p>
     <bold>Importante:</bold> funcionalidades personalizadas podem gerar orçamento adicional na mensalidade, de acordo

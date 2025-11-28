@@ -37,7 +37,7 @@
   <p>
     Se tiver dúvidas durante o preenchimento, clique no ícone
     <v-icon :color="'var(--color-principal)'" icon="mdi-help-circle" /> disponível em pontos estratégicos da aplicação ou
-    <a :style="{ color: 'var(--color-principal)' }" href="https://www.atendimento.teksystem.com.br">
+    <a :style="{ color: 'var(--color-principal)' }" href="https://www.atendimento.teksystem.com.br" target="_blank">
       entre em contato com nosso suporte </a
     >.
   </p>

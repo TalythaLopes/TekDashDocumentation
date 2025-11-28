@@ -2,10 +2,10 @@
   <h1 class="LStyleDocumentation">Acompanhamento das Execuções</h1>
   <p>É póssível acompanhar <bold>todas as execuções</bold> realizadas e visualizar detalhes como:</p>
   <ul>
-    <li>Horários de envio.</li>
-    <li>Quantidade de dados processados.</li>
-    <li>Possíveis erros.</li>
-    <li>Status atual do processamento.</li>
+      <li><p>Horários de envio.</p></li>
+      <li><p>Quantidade de dados processados.</p></li>
+      <li><p>Possíveis erros.</p></li>
+      <li><p>Status atual do processamento.</p></li>
   </ul>
   <p>
     Para acessar basta clicar no ícone com as iniciais do seu usuário, selecionar <bold>Histórico de Execuções</bold> e

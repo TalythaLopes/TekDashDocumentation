@@ -34,7 +34,7 @@
   }
 
   .LStyleGoogleImg {
-    max-height: 30px;
+    max-height: 45px;
   }
 }
 </style>

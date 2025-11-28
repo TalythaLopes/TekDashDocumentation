@@ -123,12 +123,13 @@ h1.LStyleInView {
   gap: 16px;
   text-align: left;
 
-  transition: transform 0.5s ease;
+  transition: all 0.5s ease;
   will-change: transform;
   transform-origin: center;
 
   &:hover {
-    transform: scale(1.05); 
+    transform: scale(1.05);
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1); 
   }
 }
 .LStyleCard h3 {
