@@ -1,6 +1,5 @@
 <template>
-  <a href="https://play.google.com/store/apps/details?id=br.com.teksystem.tekdashboard.twa" target="_blank"
-    class="LStyleGoogleLink">
+  <a href="https://play.google.com/store/apps/details?id=br.com.teksystem.tekdashboard.twa" target="_blank" class="LStyleGoogleLink">
     <img src="../../../img/DisponivelGooglePlay.png" alt="Disponível para Android no Google Play" class="LStyleGoogleImg" />
   </a>
 </template>

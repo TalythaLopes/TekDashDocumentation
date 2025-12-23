@@ -1,5 +1,5 @@
 <template>
-  <div class="em-construcao" :class="theme">
+  <div class="LStyleWIP" :class="theme">
     <img :src="iconSrc" alt="Ícone de página em construção" />
     <h1 :style="{ color: colortext }">Em construção</h1>
   </div>
@@ -19,7 +19,7 @@ const colortext = computed(() => theme.value === 'dark' ? 'var(--vt-c-red)' : 'v
 </script>
 
 <style scoped>
-.em-construcao {
+.LStyleWIP {
   display: flex;
   flex-direction: column;
   align-items: center;
