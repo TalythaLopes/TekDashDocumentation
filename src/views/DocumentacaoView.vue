@@ -1,41 +1,72 @@
-/* tem que centralizar o content */
-
 <template>
   <ToolbarDocumentation :drawer="drawer" :isDesktop="isDesktop" @toggle-drawer="toggleDrawer" />
-  <SideBarDocumentation v-model="drawer" :isDesktop="isDesktop" @item-selected="handleItemSelected" />
+  <SideBarDocumentation v-model="drawer" :isDesktop="isDesktop" ref="sidebarRef" @item-selected="handleItemSelected" />
   <div class="LStyleAreaConteudo">
     <v-container class="LStyleConteudo" fluid>
-      <component :is="activeComponent" />
+      <component :is="currentComponent" @navigate="handleNavigate" />
     </v-container>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { DefineComponent } from 'vue'
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import type { Component } from 'vue';
+import { ref, computed, onMounted, onBeforeUnmount, shallowRef } from 'vue';
+import { sidebarSections } from '@/components/navigation/sidebar/sidebar.data';
 
-import ToolbarDocumentation from "@/components/navigation/ToolbarDocumentation.vue"
-import SideBarDocumentation from "@/components/navigation/SideBarDocumentation.vue"
-import DocVamosComecar from '@/components/docs/DocVamosComecar.vue'
-// Estados iniciais e referências aos elementos do DOM
-const drawer = ref(true)
-const windowWidth = ref(window.innerWidth)
-const activeComponent = ref<DefineComponent<{}, {}, any>>(DocVamosComecar)
+import ToolbarDocumentation from '@/components/navigation/ToolbarDocumentation.vue';
+import SideBarDocumentation from '@/components/navigation/sidebar/SideBarDocumentation.vue';
+
+type SidebarExposed = {
+  navigateTo: (section: string, item?: string) => void;
+};
+
+// Estado
+const drawer = ref(true);
+const windowWidth = ref(window.innerWidth);
+const currentComponent = shallowRef<Component | null>(null);
+const sidebarRef = ref<SidebarExposed | null>(null);
+
 // Computados
-const isDesktop = computed(() => windowWidth.value >= 1000)
+const isDesktop = computed(() => windowWidth.value >= 1000);
+
 // Métodos
-const toggleDrawer = () => drawer.value = !drawer.value
+const toggleDrawer = () => {
+  drawer.value = !drawer.value;
+};
+
+const handleItemSelected = (component: Component) => {
+  currentComponent.value = component;
+};
+
+const handleNavigate = ({ section, item }: { section: string; item?: string }) => {
+  sidebarRef.value?.navigateTo(section, item);
+};
+
 const handleResize = () => {
-  windowWidth.value = window.innerWidth
-  drawer.value = isDesktop.value // Mantém aberto no desktop (>=1000px)
-}
-const handleItemSelected = (component: DefineComponent<{}, {}, any>) => activeComponent.value = component
-// Ciclo de vida
+  const width = window.innerWidth;
+  windowWidth.value = width;
+
+  if (width >= 1000 && !drawer.value) drawer.value = true;
+  if (width < 1000 && drawer.value) drawer.value = false;
+};
+
+// Lifecycle
 onMounted(() => {
-  window.addEventListener('resize', handleResize)
-  handleResize()
-})
-onBeforeUnmount(() => window.removeEventListener('resize', handleResize))
+  const defaultSection =
+    sidebarSections.find((section) => section.default && section.component) ??
+    sidebarSections.find((section) => section.component);
+
+  if (defaultSection?.component) {
+    currentComponent.value = defaultSection.component;
+  }
+
+  window.addEventListener('resize', handleResize);
+  handleResize();
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', handleResize);
+});
 </script>
 
 <style scoped>
@@ -60,7 +91,11 @@ onBeforeUnmount(() => window.removeEventListener('resize', handleResize))
 }
 
 @media (max-width: 600px) {
-  .LStyleAreaConteudo { margin-top: 45px; }
-  .LStyleConteudo { margin-bottom: 0px; }
+  .LStyleAreaConteudo {
+    margin-top: 45px;
+  }
+  .LStyleConteudo {
+    margin-bottom: 0px;
+  }
 }
 </style>
