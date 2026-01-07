@@ -2,7 +2,7 @@
 import type { Component } from 'vue';
 import VamosComecar from '../../docs/DocVamosComecar.vue';
 import Funcionamento from '../../docs/DocFuncionamento.vue';
-import Instalacao from '../../docs/DocInstalacaoConfiguracao.vue';
+import Instalacao from '../../docs/config/DocInstalacaoConfiguracao.vue';
 import AppAcessoLogin from '../../docs/DocAppAcessoLogin.vue';
 import AppParametros from '../../docs/DocAppParametros.vue';
 import ProximosReleases from '../../docs/release/DocProximosReleases.vue';

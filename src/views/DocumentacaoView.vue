@@ -1,6 +1,14 @@
 <template>
   <ToolbarDocumentation :drawer="drawer" :isDesktop="isDesktop" @toggle-drawer="toggleDrawer" />
-  <SideBarDocumentation v-model="drawer" :isDesktop="isDesktop" ref="sidebarRef" @item-selected="handleItemSelected" />
+  <SideBarDocumentation
+    :toolbarHeight="isMobile ? 45 : 64"
+    v-if="isDesktop || drawer"
+    v-model="drawer"
+    :isDesktop="isDesktop"
+    :activeSectionKey="currentSectionKey"
+    :activeItemKey="currentItemKey"
+    @navigate="handleItemSelected"
+  />
   <div class="LStyleAreaConteudo">
     <v-container class="LStyleConteudo" fluid>
       <component :is="currentComponent" @navigate="handleNavigate" />
@@ -23,23 +31,41 @@ type SidebarExposed = {
 // Estado
 const drawer = ref(true);
 const windowWidth = ref(window.innerWidth);
+const currentSectionKey = ref<string | undefined>(undefined);
+const currentItemKey = ref<string | undefined>(undefined);
 const currentComponent = shallowRef<Component | null>(null);
-const sidebarRef = ref<SidebarExposed | null>(null);
 
 // Computados
 const isDesktop = computed(() => windowWidth.value >= 1000);
+const isMobile = computed(() => windowWidth.value < 600);
 
 // Métodos
 const toggleDrawer = () => {
   drawer.value = !drawer.value;
 };
 
-const handleItemSelected = (component: Component) => {
-  currentComponent.value = component;
+const handleItemSelected = ({ section, item }: { section: string; item?: string }) => {
+  currentSectionKey.value = section;
+  currentItemKey.value = item ?? undefined;
+
+  const sectionData = sidebarSections.find((s) => s.key === section);
+  if (!sectionData) return;
+
+  if (item && sectionData.items) {
+    const itemData = sectionData.items.find((i) => i.key === item);
+    if (itemData?.component) {
+      currentComponent.value = itemData.component;
+      return;
+    }
+  }
+
+  if (sectionData.component) {
+    currentComponent.value = sectionData.component;
+  }
 };
 
 const handleNavigate = ({ section, item }: { section: string; item?: string }) => {
-  sidebarRef.value?.navigateTo(section, item);
+  handleItemSelected({ section, item });
 };
 
 const handleResize = () => {
@@ -58,6 +84,8 @@ onMounted(() => {
 
   if (defaultSection?.component) {
     currentComponent.value = defaultSection.component;
+    currentSectionKey.value = defaultSection.key;
+    currentItemKey.value = undefined;
   }
 
   window.addEventListener('resize', handleResize);

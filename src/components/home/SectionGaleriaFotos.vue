@@ -45,7 +45,7 @@ const fotos = ref<FotoItem[]>([
     alt: '',
     icon: 'mdi-abacus',
     texto:
-      'Acompanhe suas vendas com dashboards visuais e inteligentes: análises por cidade, estado, origem, empresa, órgão, mapas de incidência de pedidos e muito mais em um só lugar.',
+      'Acompanhe suas vendas com dashboards visuais e inteligentes: análises por cidade, estado, origem, empresa, mapas de incidência de pedidos e muito mais em um só lugar.',
   },
   {
     src: '../../../img/SectionGaleria3.png',
