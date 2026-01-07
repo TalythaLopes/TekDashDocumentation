@@ -9,7 +9,7 @@
       <div class="LStyleCardContent">
         <div class="LStyleCardHeader">
           <h5>{{ release.titulo }}</h5>
-          <v-chip size="small" :color="typeMap[release.tipo]?.color" variant="outlined" style="font-size: 14px">
+          <v-chip size="small" :color="typeMap[release.tipo]?.color" variant="outlined" class="LStyleChip">
             {{ typeMap[release.tipo]?.tag || 'Outro' }}
           </v-chip>
         </div>
@@ -110,5 +110,18 @@ const sortedReleases = computed(() => {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.LStyleChip {
+  font-size: 14px;
+  flex-shrink: 0; /* Impede encolhimento */
+  overflow: visible;
+}
+
+@media (max-width: 600px) {
+  .LStyleChip {
+    font-size: 12px !important;
+    height: 24px !important;
+  }
 }
 </style>

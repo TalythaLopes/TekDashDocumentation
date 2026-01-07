@@ -15,4 +15,10 @@ import ReleaseCards from './ReleaseCards.vue';
   height: auto;
   margin: 30px 0 0 40px;
 }
+
+@media (max-width: 600px) {
+  .LStyleDivider {
+    margin: 0;
+  }
+}
 </style>
