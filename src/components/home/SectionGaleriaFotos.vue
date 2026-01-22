@@ -41,14 +41,14 @@ const fotos = ref<FotoItem[]>([
       'Tenha uma visão completa da carteira de clientes de cada supervisor e consultor. Identifique rapidamente clientes novos, ativos, quase inativos e inativos para agir com estratégia e precisão.',
   },
   {
-    src: '../../../img/SectionGaleria5.png',
+    src: '../../../img/SectionGaleria3.png',
     alt: '',
     icon: 'mdi-abacus',
     texto:
       'Acompanhe suas vendas com dashboards visuais e inteligentes: análises por cidade, estado, origem, empresa, mapas de incidência de pedidos e muito mais em um só lugar.',
   },
   {
-    src: '../../../img/SectionGaleria3.png',
+    src: '../../../img/SectionGaleria1.png',
     alt: '',
     icon: 'mdi-cash-multiple',
     texto:
@@ -62,7 +62,7 @@ const fotos = ref<FotoItem[]>([
       'Explore rankings avançados: pedidos de maior valor, desempenho por região, clientes mais rentáveis e total de vendas por consultor. Ideal para criar estratégias de bonificação e incentivo.',
   },
   {
-    src: '../../../img/SectionGaleria1.png',
+    src: '../../../img/SectionGaleria5.png',
     alt: '',
     icon: 'mdi-account-tie',
     texto:
